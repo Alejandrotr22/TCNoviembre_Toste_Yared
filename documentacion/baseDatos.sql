@@ -9,7 +9,8 @@ CREATE TABLE `usuarios`(
     `nombre` VARCHAR(50) NOT NULL,
     `email` VARCHAR(200) NOT NULL,
     `password` VARCHAR(255) NOT NULL,
-    `id_rol` INT NOT NULL
+    `id_rol` INT NOT NULL,
+    `saldo` DECIMAL(8, 2) NOT NULL
 );
 ALTER TABLE
     `usuarios` ADD PRIMARY KEY `usuarios_id_primary`(`id`);
@@ -49,7 +50,8 @@ CREATE TABLE `apuestas`(
     `id_tipo` INT NOT NULL,
     `resultado` VARCHAR(50) NOT NULL,
     `cuota` DECIMAL(8, 2) NOT NULL,
-    `cantidad` DECIMAL(8, 2) NOT NULL
+    `cantidad` DECIMAL(8, 2) NOT NULL,
+    `estado` VARCHAR(50) NOT NULL
 );
 ALTER TABLE
     `apuestas` ADD PRIMARY KEY `apuestas_id_primary`(`id`);
