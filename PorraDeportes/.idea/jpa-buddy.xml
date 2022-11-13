@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="JpaBuddyIdeaProjectConfig">
+    <option name="defaultUnitInitialized" value="true" />
+    <option name="renamerInitialized" value="true" />
+    <option name="reverseEngineeringLastDbConnectionId" value="8d8945f9-54aa-4219-975a-a90a4beb4c71" />
+    <option name="reLastEntityCreationPackage" value="src/main/java/es/iespuertodelacruz/yt/porradeportes/entities" />
+  </component>
+</project>
