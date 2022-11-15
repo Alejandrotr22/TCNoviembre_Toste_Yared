@@ -7,39 +7,42 @@ import java.util.Set;
 @Entity
 @Table(name = "deportes")
 public class Deporte {
+    private Integer id;
+
+    private String nombre;
+
+    private Set<Evento> eventos = new LinkedHashSet<>();
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
-    private Integer id;
-
-    @Column(name = "nombre", nullable = false, length = 50)
-    private String nombre;
-
-    @OneToMany(mappedBy = "idDeporte")
-    private Set<Evento> eventos = new LinkedHashSet<>();
-
     public Integer getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public Deporte setId(Integer id) {
         this.id = id;
+        return this;
     }
 
+    @Column(name = "nombre", nullable = false, length = 50)
     public String getNombre() {
         return nombre;
     }
 
-    public void setNombre(String nombre) {
+    public Deporte setNombre(String nombre) {
         this.nombre = nombre;
+        return this;
     }
 
+    @OneToMany(mappedBy = "idDeporte")
     public Set<Evento> getEventos() {
         return eventos;
     }
 
-    public void setEventos(Set<Evento> eventos) {
+    public Deporte setEventos(Set<Evento> eventos) {
         this.eventos = eventos;
+        return this;
     }
 
 }

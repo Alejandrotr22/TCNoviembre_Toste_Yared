@@ -8,84 +8,91 @@ import java.util.Set;
 @Entity
 @Table(name = "usuarios")
 public class Usuario {
+    private Integer id;
+
+    private String nombre;
+
+    private String email;
+
+    private String password;
+
+    private Rol idRol;
+
+    private BigDecimal saldo;
+
+    private Set<Apuesta> apuestas = new LinkedHashSet<>();
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
-    private Integer id;
-
-    @Column(name = "nombre", nullable = false, length = 50)
-    private String nombre;
-
-    @Column(name = "email", nullable = false, length = 200)
-    private String email;
-
-    @Column(name = "password", nullable = false)
-    private String password;
-
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "id_rol", nullable = false)
-    private Role idRol;
-
-    @Column(name = "saldo", nullable = false, precision = 8, scale = 2)
-    private BigDecimal saldo;
-
-    @OneToMany(mappedBy = "idUsuario")
-    private Set<Apuesta> apuestas = new LinkedHashSet<>();
-
     public Integer getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public Usuario setId(Integer id) {
         this.id = id;
+        return this;
     }
 
+    @Column(name = "nombre", nullable = false, length = 50)
     public String getNombre() {
         return nombre;
     }
 
-    public void setNombre(String nombre) {
+    public Usuario setNombre(String nombre) {
         this.nombre = nombre;
+        return this;
     }
 
+    @Column(name = "email", nullable = false, length = 200)
     public String getEmail() {
         return email;
     }
 
-    public void setEmail(String email) {
+    public Usuario setEmail(String email) {
         this.email = email;
+        return this;
     }
 
+    @Column(name = "password", nullable = false)
     public String getPassword() {
         return password;
     }
 
-    public void setPassword(String password) {
+    public Usuario setPassword(String password) {
         this.password = password;
+        return this;
     }
 
-    public Role getIdRol() {
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "id_rol", nullable = false)
+    public Rol getIdRol() {
         return idRol;
     }
 
-    public void setIdRol(Role idRol) {
+    public Usuario setIdRol(Rol idRol) {
         this.idRol = idRol;
+        return this;
     }
 
+    @Column(name = "saldo", nullable = false, precision = 8, scale = 2)
     public BigDecimal getSaldo() {
         return saldo;
     }
 
-    public void setSaldo(BigDecimal saldo) {
+    public Usuario setSaldo(BigDecimal saldo) {
         this.saldo = saldo;
+        return this;
     }
 
+    @OneToMany(mappedBy = "idUsuario")
     public Set<Apuesta> getApuestas() {
         return apuestas;
     }
 
-    public void setApuestas(Set<Apuesta> apuestas) {
+    public Usuario setApuestas(Set<Apuesta> apuestas) {
         this.apuestas = apuestas;
+        return this;
     }
 
 }

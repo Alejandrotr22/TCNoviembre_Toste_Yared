@@ -33,11 +33,12 @@ CREATE TABLE `eventos`(
     `fecha_inicio` TIMESTAMP NOT NULL,
     `fecha_fin` TIMESTAMP NOT NULL,
     `nombre` VARCHAR(100) NOT NULL,
+    `id_equipo_ganador` INT,
     PRIMARY KEY(`id`)
 );
 
 CREATE TABLE `participantes`(
-    `id_equipo` INT NOT NULL AUTO_INCREMENT,
+    `id_equipo` INT NOT NULL,
     `id_evento` INT NOT NULL,
     PRIMARY KEY(`id_equipo`, `id_evento`)
 );
@@ -54,12 +55,6 @@ CREATE TABLE `apuestas`(
     PRIMARY KEY(`id`)
 );
 
-CREATE TABLE `historial_eventos`(
-    `id_evento` INT NOT NULL AUTO_INCREMENT,
-    `id_equipo_ganador` INT NOT NULL,
-    PRIMARY KEY(`id_evento`, `id_equipo_ganador`)
-);
-
 CREATE TABLE `roles`(
     `id` INT NOT NULL AUTO_INCREMENT,
     `nombre` VARCHAR(25) NOT NULL,
@@ -68,6 +63,8 @@ CREATE TABLE `roles`(
 
 ALTER TABLE
     `eventos` ADD FOREIGN KEY(`id_deporte`) REFERENCES `deportes`(`id`);
+ALTER TABLE
+    `eventos` ADD FOREIGN KEY(`id_equipo_ganador`) REFERENCES `equipos`(`id`);
 ALTER TABLE
     `apuestas` ADD FOREIGN KEY(`id_usuario`) REFERENCES `usuarios`(`id`);
 ALTER TABLE
@@ -80,7 +77,4 @@ ALTER TABLE
     `participantes` ADD FOREIGN KEY(`id_equipo`) REFERENCES `equipos`(`id`);
 ALTER TABLE
     `participantes` ADD FOREIGN KEY(`id_evento`) REFERENCES `eventos`(`id`);
-ALTER TABLE
-    `historial_eventos` ADD FOREIGN KEY(`id_evento`) REFERENCES `eventos`(`id`);
-ALTER TABLE
-    `historial_eventos` ADD FOREIGN KEY(`id_equipo_ganador`) REFERENCES `equipos`(`id`);
+
