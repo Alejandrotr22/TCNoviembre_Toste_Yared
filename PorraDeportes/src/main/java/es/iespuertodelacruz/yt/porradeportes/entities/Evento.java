@@ -24,6 +24,21 @@ public class Evento {
 
     private Set<Equipo> participantes = new LinkedHashSet<>();
 
+    /**
+     * Constructor de copia de la clase Evento
+     * @param e objeto evento a copiar
+     */
+    public Evento(Evento e){
+        this.id = e.getId();
+        this.idDeporte = e.getIdDeporte();
+        this.fechaInicio = e.getFechaInicio();
+        this.fechaFin = e.getFechaFin();
+        this.nombre = e.getNombre();
+        this.idEquipoGanador = e.getIdEquipoGanador();
+        this.apuestas = e.getApuestas();
+        this.participantes = e.getParticipantes();
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)

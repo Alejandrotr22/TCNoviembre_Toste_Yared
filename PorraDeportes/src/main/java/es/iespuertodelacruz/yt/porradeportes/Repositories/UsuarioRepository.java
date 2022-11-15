@@ -1,5 +1,7 @@
 package es.iespuertodelacruz.yt.porradeportes.Repositories;
 
+import es.iespuertodelacruz.yt.porradeportes.entities.Usuario;
+
 import javax.persistence.EntityManagerFactory;
 import java.util.ArrayList;
 
@@ -13,9 +15,7 @@ public class UsuarioRepository implements ICrud<Usuario, Integer>{
 
     @Override
     public Usuario save(Usuario object) {
-
-
-
+    return null;
     }
 
     @Override
