@@ -8,101 +8,107 @@ import java.util.Set;
 @Entity
 @Table(name = "eventos")
 public class Evento {
+    private Integer id;
+
+    private Deporte idDeporte;
+
+    private Instant fechaInicio;
+
+    private Instant fechaFin;
+
+    private String nombre;
+
+    private Equipo idEquipoGanador;
+
+    private Set<Apuesta> apuestas = new LinkedHashSet<>();
+
+    private Set<Equipo> participantes = new LinkedHashSet<>();
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
-    private Integer id;
+    public Integer getId() {
+        return id;
+    }
+
+    public Evento setId(Integer id) {
+        this.id = id;
+        return this;
+    }
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "id_deporte", nullable = false)
-    private Deporte idDeporte;
+    public Deporte getIdDeporte() {
+        return idDeporte;
+    }
+
+    public Evento setIdDeporte(Deporte idDeporte) {
+        this.idDeporte = idDeporte;
+        return this;
+    }
 
     @Column(name = "fecha_inicio", nullable = false)
-    private Instant fechaInicio;
+    public Instant getFechaInicio() {
+        return fechaInicio;
+    }
+
+    public Evento setFechaInicio(Instant fechaInicio) {
+        this.fechaInicio = fechaInicio;
+        return this;
+    }
 
     @Column(name = "fecha_fin", nullable = false)
-    private Instant fechaFin;
+    public Instant getFechaFin() {
+        return fechaFin;
+    }
+
+    public Evento setFechaFin(Instant fechaFin) {
+        this.fechaFin = fechaFin;
+        return this;
+    }
 
     @Column(name = "nombre", nullable = false, length = 100)
-    private String nombre;
+    public String getNombre() {
+        return nombre;
+    }
 
-    @ManyToMany
-    @JoinTable(name = "historial_eventos",
-            joinColumns = @JoinColumn(name = "id_evento"),
-            inverseJoinColumns = @JoinColumn(name = "id_equipo_ganador"))
-    private Set<Equipo> equipos_historial = new LinkedHashSet<>();
+    public Evento setNombre(String nombre) {
+        this.nombre = nombre;
+        return this;
+    }
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_equipo_ganador")
+    public Equipo getIdEquipoGanador() {
+        return idEquipoGanador;
+    }
+
+    public Evento setIdEquipoGanador(Equipo idEquipoGanador) {
+        this.idEquipoGanador = idEquipoGanador;
+        return this;
+    }
 
     @OneToMany(mappedBy = "idEvento")
-    private Set<Apuesta> apuestas = new LinkedHashSet<>();
+    public Set<Apuesta> getApuestas() {
+        return apuestas;
+    }
+
+    public Evento setApuestas(Set<Apuesta> apuestas) {
+        this.apuestas = apuestas;
+        return this;
+    }
 
     @ManyToMany
     @JoinTable(name = "participantes",
             joinColumns = @JoinColumn(name = "id_evento"),
             inverseJoinColumns = @JoinColumn(name = "id_equipo"))
-    private Set<Equipo> equipos_participantes = new LinkedHashSet<>();
-
-    public Integer getId() {
-        return id;
+    public Set<Equipo> getParticipantes() {
+        return participantes;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public Deporte getIdDeporte() {
-        return idDeporte;
-    }
-
-    public void setIdDeporte(Deporte idDeporte) {
-        this.idDeporte = idDeporte;
-    }
-
-    public Instant getFechaInicio() {
-        return fechaInicio;
-    }
-
-    public void setFechaInicio(Instant fechaInicio) {
-        this.fechaInicio = fechaInicio;
-    }
-
-    public Instant getFechaFin() {
-        return fechaFin;
-    }
-
-    public void setFechaFin(Instant fechaFin) {
-        this.fechaFin = fechaFin;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public Set<Equipo> getEquipos_historial() {
-        return equipos_historial;
-    }
-
-    public void setEquipos_historial(Set<Equipo> equipos_historial) {
-        this.equipos_historial = equipos_historial;
-    }
-
-    public Set<Apuesta> getApuestas() {
-        return apuestas;
-    }
-
-    public void setApuestas(Set<Apuesta> apuestas) {
-        this.apuestas = apuestas;
-    }
-
-    public Set<Equipo> getEquipos_participantes() {
-        return equipos_participantes;
-    }
-
-    public void setEquipos_participantes(Set<Equipo> equipos_participantes) {
-        this.equipos_participantes = equipos_participantes;
+    public Evento setParticipantes(Set<Equipo> equipos) {
+        this.participantes = equipos;
+        return this;
     }
 
 }

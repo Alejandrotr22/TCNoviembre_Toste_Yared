@@ -12,8 +12,8 @@
         <class>es.iespuertodelacruz.yt.porradeportes.entities.HistorialEventoId</class>
         <class>es.iespuertodelacruz.yt.porradeportes.entities.Participante</class>
         <class>es.iespuertodelacruz.yt.porradeportes.entities.ParticipanteId</class>
-        <class>es.iespuertodelacruz.yt.porradeportes.entities.Role</class>
-        <class>es.iespuertodelacruz.yt.porradeportes.entities.TiposApuesta</class>
+        <class>es.iespuertodelacruz.yt.porradeportes.entities.Rol</class>
+        <class>es.iespuertodelacruz.yt.porradeportes.entities.TipoApuesta</class>
         <class>es.iespuertodelacruz.yt.porradeportes.entities.Usuario</class>
 
     <properties>

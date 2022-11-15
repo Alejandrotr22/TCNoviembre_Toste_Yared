@@ -7,56 +7,57 @@ import java.util.Set;
 @Entity
 @Table(name = "equipos")
 public class Equipo {
+    private Integer id;
+
+    private String nombre;
+
+    private Set<Evento> eventosGanador = new LinkedHashSet<>();
+
+    private Set<Evento> eventosParticipantes = new LinkedHashSet<>();
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
-    private Integer id;
+    public Integer getId() {
+        return id;
+    }
+
+    public Equipo setId(Integer id) {
+        this.id = id;
+        return this;
+    }
 
     @Column(name = "nombre", nullable = false, length = 200)
-    private String nombre;
+    public String getNombre() {
+        return nombre;
+    }
 
-    @ManyToMany
-    @JoinTable(name = "historial_eventos",
-            joinColumns = @JoinColumn(name = "id_equipo_ganador"),
-            inverseJoinColumns = @JoinColumn(name = "id_evento"))
-    private Set<Evento> eventos_historial = new LinkedHashSet<>();
+    public Equipo setNombre(String nombre) {
+        this.nombre = nombre;
+        return this;
+    }
+
+    @OneToMany(mappedBy = "idEquipoGanador")
+    public Set<Evento> getEventosGanador() {
+        return eventosGanador;
+    }
+
+    public Equipo setEventosGanador(Set<Evento> eventosGanador) {
+        this.eventosGanador = eventosGanador;
+        return this;
+    }
 
     @ManyToMany
     @JoinTable(name = "participantes",
             joinColumns = @JoinColumn(name = "id_equipo"),
             inverseJoinColumns = @JoinColumn(name = "id_evento"))
-    private Set<Evento> eventos_participantes = new LinkedHashSet<>();
-
-    public Integer getId() {
-        return id;
+    public Set<Evento> getEventosParticipantes() {
+        return eventosParticipantes;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public Set<Evento> getEventos_historial() {
-        return eventos_historial;
-    }
-
-    public void setEventos_historial(Set<Evento> eventos_historial) {
-        this.eventos_historial = eventos_historial;
-    }
-
-    public Set<Evento> getEventos_participantes() {
-        return eventos_participantes;
-    }
-
-    public void setEventos_participantes(Set<Evento> eventos_participantes) {
-        this.eventos_participantes = eventos_participantes;
+    public Equipo setEventosParticipantes(Set<Evento> eventosParticipantes) {
+        this.eventosParticipantes = eventosParticipantes;
+        return this;
     }
 
 }
