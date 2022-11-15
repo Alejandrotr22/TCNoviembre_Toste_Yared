@@ -6,40 +6,43 @@ import java.util.Set;
 
 @Entity
 @Table(name = "tipos_apuesta")
-public class TiposApuesta {
+public class TipoApuesta {
+    private Integer id;
+
+    private String descripcion;
+
+    private Set<Apuesta> apuestas = new LinkedHashSet<>();
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
-    private Integer id;
-
-    @Column(name = "descripcion", nullable = false, length = 200)
-    private String descripcion;
-
-    @OneToMany(mappedBy = "idTipo")
-    private Set<Apuesta> apuestas = new LinkedHashSet<>();
-
     public Integer getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public TipoApuesta setId(Integer id) {
         this.id = id;
+        return this;
     }
 
+    @Column(name = "descripcion", nullable = false, length = 200)
     public String getDescripcion() {
         return descripcion;
     }
 
-    public void setDescripcion(String descripcion) {
+    public TipoApuesta setDescripcion(String descripcion) {
         this.descripcion = descripcion;
+        return this;
     }
 
+    @OneToMany(mappedBy = "idTipo")
     public Set<Apuesta> getApuestas() {
         return apuestas;
     }
 
-    public void setApuestas(Set<Apuesta> apuestas) {
+    public TipoApuesta setApuestas(Set<Apuesta> apuestas) {
         this.apuestas = apuestas;
+        return this;
     }
 
 }
