@@ -35,7 +35,7 @@ public class Rol {
         return this;
     }
 
-    @OneToMany(mappedBy = "idRol")
+    @OneToMany(mappedBy = "idRol", fetch = FetchType.EAGER)
     public Set<Usuario> getUsuarios() {
         return usuarios;
     }
@@ -45,4 +45,13 @@ public class Rol {
         return this;
     }
 
+    @Override
+    public String toString() {
+        final StringBuffer sb = new StringBuffer("Rol{");
+        sb.append("id=").append(id);
+        sb.append(", nombre='").append(nombre).append('\'');
+        sb.append(", usuarios=").append(usuarios);
+        sb.append('}');
+        return sb.toString();
+    }
 }

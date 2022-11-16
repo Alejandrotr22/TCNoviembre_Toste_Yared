@@ -7,6 +7,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "usuarios")
+@NamedQuery(name="Usuario.findAll", query = "SELECT u FROM Usuario u")
 public class Usuario {
     private Integer id;
 
@@ -21,6 +22,19 @@ public class Usuario {
     private BigDecimal saldo;
 
     private Set<Apuesta> apuestas = new LinkedHashSet<>();
+
+    public Usuario(){}
+    public Usuario(Usuario usuarioCopia){
+
+        this.id = usuarioCopia.getId();
+        this.nombre = usuarioCopia.getNombre();
+        this.email = usuarioCopia.getEmail();
+        this.password = usuarioCopia.getPassword();
+        this.idRol = usuarioCopia.getIdRol();
+        this.saldo = usuarioCopia.getSaldo();
+        this.apuestas = usuarioCopia.getApuestas();
+
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -85,7 +99,7 @@ public class Usuario {
         return this;
     }
 
-    @OneToMany(mappedBy = "idUsuario")
+    @OneToMany(mappedBy = "idUsuario", cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
     public Set<Apuesta> getApuestas() {
         return apuestas;
     }
@@ -95,4 +109,16 @@ public class Usuario {
         return this;
     }
 
+    @Override
+    public String toString() {
+        final StringBuffer sb = new StringBuffer("Usuario{");
+        sb.append("id=").append(id);
+        sb.append(", nombre='").append(nombre).append('\'');
+        sb.append(", email='").append(email).append('\'');
+        sb.append(", password='").append(password).append('\'');
+        sb.append(", saldo=").append(saldo);
+        sb.append(", apuestas=").append(apuestas);
+        sb.append('}');
+        return sb.toString();
+    }
 }

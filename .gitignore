@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
@@ -37,3 +38,8 @@ build/
 
 ### Mac OS ###
 .DS_Store
+=======
+/build/
+/target/
+.idea
+>>>>>>> d7591cc (Terminada la creacion de las entities con JPABuddy y creado el repository de usuario y hecho un test sobre este y rol para comprobar que las entities se habian creado bien #6)

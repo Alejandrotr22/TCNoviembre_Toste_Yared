@@ -1,6 +1,9 @@
 package es.iespuertodelacruz.yt.porradeportes.Repositories;
 
+import es.iespuertodelacruz.yt.porradeportes.entities.Usuario;
+
 import java.util.ArrayList;
+import java.util.List;
 
 public interface ICrud<T, E> {
 
@@ -10,8 +13,8 @@ public interface ICrud<T, E> {
 
     void update(T object);
 
-    void delete(T object);
+    void delete(E id);
 
-    ArrayList<T> findAll();
+    List<T> findAll();
 
 }

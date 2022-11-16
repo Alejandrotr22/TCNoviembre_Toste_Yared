@@ -8,5 +8,12 @@
       <jdbc-url>jdbc:mariadb://localhost:3306/porra_deportes</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
+    <data-source source="LOCAL" name="porra_deportes@localhost [2]" uuid="55332b6e-6540-4b5e-adb2-028f6606b83d">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://localhost:3306/porra_deportes</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
   </component>
 </project>
