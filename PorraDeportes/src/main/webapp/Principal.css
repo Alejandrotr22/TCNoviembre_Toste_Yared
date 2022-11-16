@@ -1,0 +1,19 @@
+
+.container{
+    width: 100%;
+}
+.nav-bar {
+    width: 100%;
+}
+
+.collapse {
+    flex-direction: row-reverse;
+}
+.dropdown-item{
+    user-select: none;
+}
+.dropdown{
+    margin-left: 2%;
+    margin-right: 2%;
+}
+
