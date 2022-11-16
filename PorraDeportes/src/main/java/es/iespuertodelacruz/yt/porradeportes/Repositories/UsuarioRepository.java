@@ -1,16 +1,11 @@
 package es.iespuertodelacruz.yt.porradeportes.Repositories;
 
-<<<<<<< HEAD
 import es.iespuertodelacruz.yt.porradeportes.entities.Usuario;
-
-=======
 import es.iespuertodelacruz.yt.porradeportes.entities.Apuesta;
-import es.iespuertodelacruz.yt.porradeportes.entities.Usuario;
 
 import javax.persistence.EntityManager;
->>>>>>> d7591cc (Terminada la creacion de las entities con JPABuddy y creado el repository de usuario y hecho un test sobre este y rol para comprobar que las entities se habian creado bien #6)
 import javax.persistence.EntityManagerFactory;
-import java.util.ArrayList;
+import javax.persistence.RollbackException;
 import java.util.List;
 
 public class UsuarioRepository implements ICrud<Usuario, Integer>{
@@ -23,28 +18,28 @@ public class UsuarioRepository implements ICrud<Usuario, Integer>{
 
     @Override
     public Usuario save(Usuario object) {
-<<<<<<< HEAD
-    return null;
-=======
 
         Usuario usuario = null;
 
         EntityManager em = emf.createEntityManager();
-        em.getTransaction().begin();
+        try {
+            em.getTransaction().begin();
 
-        for (Apuesta apuesta: object.getApuestas()) {
-            apuesta.setIdUsuario(object);
+            for (Apuesta apuesta : object.getApuestas()) {
+                apuesta.setIdUsuario(object);
+            }
+            em.persist(object);
+            em.getTransaction().commit();
+            usuario = new Usuario(object);
+        }catch (RollbackException ex){
+            em.close();
+            return null;
         }
-        em.persist(object);
-        em.getTransaction().commit();
-        usuario = new Usuario(object);
-
         em.close();
-
         return usuario;
 
 
->>>>>>> d7591cc (Terminada la creacion de las entities con JPABuddy y creado el repository de usuario y hecho un test sobre este y rol para comprobar que las entities se habian creado bien #6)
+
     }
 
     @Override
@@ -86,6 +81,10 @@ public class UsuarioRepository implements ICrud<Usuario, Integer>{
                 }
             }
 
+            /*
+            usuario.getApuestas().forEach(a -> em.remove(a));
+            usuario.getApuestas().clear();
+            */
             em.remove(usuario);
             em.getTransaction().commit();
 
