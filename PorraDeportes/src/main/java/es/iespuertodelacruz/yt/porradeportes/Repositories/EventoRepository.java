@@ -40,7 +40,7 @@ public class EventoRepository implements ICrud<Evento,Integer>{
     }
 
     @Override
-    public void delete(Evento object) {
+    public void delete(Integer id) {
 
     }
 
