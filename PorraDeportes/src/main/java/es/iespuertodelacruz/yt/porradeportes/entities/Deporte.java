@@ -13,12 +13,22 @@ public class Deporte {
 
     private Set<Evento> eventos = new LinkedHashSet<>();
 
+    /**
+     * Constructor de copia de la case de Deporte
+     * @param d Clase a copiar
+     */
     public Deporte(Deporte d){
         this.id = d.getId();
         this.nombre = d.getNombre();
         this.eventos = d.getEventos();
     }
 
+    /**
+     * Constructor por defecto
+     */
+    public Deporte(){
+
+    }
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)

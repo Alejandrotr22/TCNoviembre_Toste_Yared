@@ -39,6 +39,10 @@ public class Evento {
         this.participantes = e.getParticipantes();
     }
 
+    /**
+     * Constructor por defecto
+     */
+    public Evento(){}
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
