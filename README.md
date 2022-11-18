@@ -28,3 +28,5 @@ Repositorio dedicado a los proyectos de laravel y java web de las apuestas de de
 > 
 > Tests de sus repositories
 > 
+
+El trabajo realizado por uno en JPA se repartirá al otro en Eloquent
