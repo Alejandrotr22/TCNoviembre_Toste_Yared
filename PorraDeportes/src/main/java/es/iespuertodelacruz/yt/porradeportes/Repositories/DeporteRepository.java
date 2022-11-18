@@ -42,7 +42,7 @@ public class DeporteRepository implements ICrud<Deporte,Integer> {
     }
 
     @Override
-    public void delete(Deporte object) {
+    public void delete(Integer id) {
 
     }
 

@@ -13,6 +13,12 @@ public class Deporte {
 
     private Set<Evento> eventos = new LinkedHashSet<>();
 
+    public Deporte(Deporte d){
+        this.id = d.getId();
+        this.nombre = d.getNombre();
+        this.eventos = d.getEventos();
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
