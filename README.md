@@ -29,4 +29,13 @@ Repositorio dedicado a los proyectos de laravel y java web de las apuestas de de
 > Tests de sus repositories
 > 
 
+#### JPA
+* Yared
+> Usuarios, roles, apuesta, tipoApuesta
+>
+* Toste
+> Evento, Deporte, Equipo
+>
+
 El trabajo realizado por uno en JPA se repartirá al otro en Eloquent
+
