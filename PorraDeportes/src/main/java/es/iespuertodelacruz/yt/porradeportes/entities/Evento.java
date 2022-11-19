@@ -103,7 +103,7 @@ public class Evento {
         return this;
     }
 
-    @OneToMany(mappedBy = "idEvento")
+    @OneToMany(mappedBy = "evento")
     public Set<Apuesta> getApuestas() {
         return apuestas;
     }

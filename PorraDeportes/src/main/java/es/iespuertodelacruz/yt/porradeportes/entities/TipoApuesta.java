@@ -6,12 +6,23 @@ import java.util.Set;
 
 @Entity
 @Table(name = "tipos_apuesta")
+@NamedQuery(name="TipoApuesta.findAll", query = "Select t FROM TipoApuesta t")
 public class TipoApuesta {
     private Integer id;
 
     private String descripcion;
 
     private Set<Apuesta> apuestas = new LinkedHashSet<>();
+
+    public TipoApuesta(){}
+
+    public TipoApuesta(TipoApuesta tipoApuesta){
+
+        this.id = tipoApuesta.getId();
+        this.descripcion = tipoApuesta.getDescripcion();
+        this.apuestas = tipoApuesta.getApuestas();
+
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -35,7 +46,7 @@ public class TipoApuesta {
         return this;
     }
 
-    @OneToMany(mappedBy = "idTipo")
+    @OneToMany(mappedBy = "tipoApuesta", cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
     public Set<Apuesta> getApuestas() {
         return apuestas;
     }

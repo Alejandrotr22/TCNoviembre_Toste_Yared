@@ -99,7 +99,7 @@ public class Usuario {
         return this;
     }
 
-    @OneToMany(mappedBy = "idUsuario", cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
     public Set<Apuesta> getApuestas() {
         return apuestas;
     }

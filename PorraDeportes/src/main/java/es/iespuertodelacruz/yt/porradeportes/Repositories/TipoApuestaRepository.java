@@ -1,76 +1,77 @@
 package es.iespuertodelacruz.yt.porradeportes.Repositories;
 
-import es.iespuertodelacruz.yt.porradeportes.entities.Usuario;
 import es.iespuertodelacruz.yt.porradeportes.entities.Apuesta;
+import es.iespuertodelacruz.yt.porradeportes.entities.TipoApuesta;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.RollbackException;
 import java.util.List;
 
-public class UsuarioRepository implements ICrud<Usuario, Integer>{
+public class TipoApuestaRepository implements ICrud<TipoApuesta, Integer> {
 
     EntityManagerFactory emf;
 
-    public UsuarioRepository(EntityManagerFactory emf){
-        this.emf = emf;
-    }
+    public TipoApuestaRepository(EntityManagerFactory emf){ this.emf = emf;}
+
 
     @Override
-    public Usuario save(Usuario object) {
+    public TipoApuesta save(TipoApuesta object) {
 
-        Usuario usuario = null;
-
-        EntityManager em = emf.createEntityManager();
-        try {
-            em.getTransaction().begin();
-
-            for (Apuesta apuesta : object.getApuestas()) {
-                apuesta.setUsuario(object);
-            }
-            em.persist(object);
-            em.getTransaction().commit();
-            usuario = new Usuario(object);
-
-        }catch (RollbackException ex){
-            em.close();
-            return null;
-        }
-        em.close();
-        return usuario;
-
-
-
-    }
-
-    @Override
-    public Usuario findByID(Integer id) {
-
-        EntityManager em = emf.createEntityManager();
-        Usuario usuario;
-        try {
-
-            usuario = em.find(Usuario.class, id);
-
-        }catch (RollbackException ex){
-            em.close();
-            return null;
-        }
-        em.close();
-        return usuario;
-
-    }
-
-    @Override
-    public void update(Usuario object) {
+        TipoApuesta tipoApuesta = null;
 
         EntityManager em = emf.createEntityManager();
 
         try{
 
-        em.getTransaction().begin();
-        Usuario usuarioUpdate = em.merge(object);
-        em.getTransaction().commit();
+            em.getTransaction().begin();
+
+            for (Apuesta apuesta : object.getApuestas()) {
+                apuesta.setTipoApuesta(object);
+            }
+
+            em.persist(object);
+            em.getTransaction().commit();
+            tipoApuesta = new TipoApuesta(object);
+
+        }catch (RollbackException ex){
+            em.close();
+            return null;
+        }
+
+        em.close();
+        return tipoApuesta;
+
+    }
+
+    @Override
+    public TipoApuesta findByID(Integer id) {
+
+        EntityManager em = emf.createEntityManager();
+        TipoApuesta tipoApuesta;
+        try {
+
+            tipoApuesta = em.find(TipoApuesta.class, id);
+
+        }catch (RollbackException ex){
+            em.close();
+            return null;
+        }
+        em.close();
+        return tipoApuesta;
+
+    }
+
+    @Override
+    public void update(TipoApuesta object) {
+
+        EntityManager em = emf.createEntityManager();
+
+        try{
+
+            em.getTransaction().begin();
+            TipoApuesta tipoApuestaUpdate = em.merge(object);
+            em.getTransaction().commit();
 
         }catch (RollbackException ex){
 
@@ -86,16 +87,21 @@ public class UsuarioRepository implements ICrud<Usuario, Integer>{
     public void delete(Integer id) {
 
         EntityManager em = emf.createEntityManager();
+
         try{
 
-        em.getTransaction().begin();
-        Usuario usuario = em.find(Usuario.class, id);
-        if(usuario != null){
-            em.remove(usuario);
-            em.getTransaction().commit();
-        }
+            em.getTransaction().begin();
+            TipoApuesta tipoApuesta = em.find(TipoApuesta.class, id);
+
+            if(tipoApuesta != null){
+
+                em.remove(tipoApuesta);
+                em.getTransaction().commit();
+
+            }
 
         }catch (RollbackException ex){
+
             em.close();
 
         }
@@ -105,26 +111,26 @@ public class UsuarioRepository implements ICrud<Usuario, Integer>{
     }
 
     @Override
-    public List<Usuario> findAll() {
+    public List<TipoApuesta> findAll() {
 
-        List<Usuario> usuarios = null;
+        List<TipoApuesta> tipoApuestas = null;
         EntityManager em = emf.createEntityManager();
 
         try {
 
             em.getTransaction().begin();
-            usuarios = em.createNamedQuery("Usuario.findAll", Usuario.class)
+            tipoApuestas = em.createNamedQuery("TipoApuesta.findAll", TipoApuesta.class)
                     .getResultList();
-            em.getTransaction().commit();
 
+            em.getTransaction().commit();
         }catch (RollbackException ex){
+
             em.close();
             return null;
+
         }
-        em.close();
 
-        return usuarios;
-
+        return tipoApuestas;
 
     }
 }

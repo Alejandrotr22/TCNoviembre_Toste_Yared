@@ -5,14 +5,15 @@ import java.math.BigDecimal;
 
 @Entity
 @Table(name = "apuestas")
+@NamedQuery(name="Apuesta.findAll", query = "select a from Apuesta a")
 public class Apuesta {
     private Integer id;
 
-    private Evento idEvento;
+    private Evento evento;
 
-    private Usuario idUsuario;
+    private Usuario usuario;
 
-    private TipoApuesta idTipo;
+    private TipoApuesta tipoApuesta;
 
     private String resultado;
 
@@ -21,6 +22,21 @@ public class Apuesta {
     private BigDecimal cantidad;
 
     private String estado;
+
+    public Apuesta(){}
+
+    public Apuesta(Apuesta apuesta){
+
+        this.id = apuesta.getId();
+        this.evento = apuesta.getEvento();
+        this.usuario = apuesta.getUsuario();
+        this.tipoApuesta = apuesta.getTipoApuesta();
+        this.resultado = apuesta.getResultado();
+        this.cuota = apuesta.getCuota();
+        this.cantidad = apuesta.getCantidad();
+        this.estado = apuesta.getEstado();
+
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,36 +50,36 @@ public class Apuesta {
         return this;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "id_evento", nullable = false)
-    public Evento getIdEvento() {
-        return idEvento;
+    public Evento getEvento() {
+        return evento;
     }
 
-    public Apuesta setIdEvento(Evento idEvento) {
-        this.idEvento = idEvento;
+    public Apuesta setEvento(Evento idEvento) {
+        this.evento = idEvento;
         return this;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "id_usuario", nullable = false)
-    public Usuario getIdUsuario() {
-        return idUsuario;
+    public Usuario getUsuario() {
+        return usuario;
     }
 
-    public Apuesta setIdUsuario(Usuario idUsuario) {
-        this.idUsuario = idUsuario;
+    public Apuesta setUsuario(Usuario idUsuario) {
+        this.usuario = idUsuario;
         return this;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "id_tipo", nullable = false)
-    public TipoApuesta getIdTipo() {
-        return idTipo;
+    public TipoApuesta getTipoApuesta() {
+        return tipoApuesta;
     }
 
-    public Apuesta setIdTipo(TipoApuesta idTipo) {
-        this.idTipo = idTipo;
+    public Apuesta setTipoApuesta(TipoApuesta idTipo) {
+        this.tipoApuesta = idTipo;
         return this;
     }
 
