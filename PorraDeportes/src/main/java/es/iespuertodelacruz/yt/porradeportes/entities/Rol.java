@@ -6,6 +6,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "roles")
+@NamedQuery(name="Rol.findAll", query = "SELECT r FROM Rol r")
 public class Rol {
     private Integer id;
 
@@ -13,6 +14,15 @@ public class Rol {
 
     private Set<Usuario> usuarios = new LinkedHashSet<>();
 
+    public Rol(){}
+
+    public Rol(Rol rol){
+
+        this.id = rol.getId();
+        this.nombre = rol.getNombre();
+        this.usuarios = rol.getUsuarios();
+
+    }
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
@@ -35,7 +45,7 @@ public class Rol {
         return this;
     }
 
-    @OneToMany(mappedBy = "idRol", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "rol", fetch = FetchType.EAGER)
     public Set<Usuario> getUsuarios() {
         return usuarios;
     }

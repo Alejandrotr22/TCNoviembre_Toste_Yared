@@ -17,7 +17,7 @@ public class Usuario {
 
     private String password;
 
-    private Rol idRol;
+    private Rol rol;
 
     private BigDecimal saldo;
 
@@ -30,7 +30,7 @@ public class Usuario {
         this.nombre = usuarioCopia.getNombre();
         this.email = usuarioCopia.getEmail();
         this.password = usuarioCopia.getPassword();
-        this.idRol = usuarioCopia.getIdRol();
+        this.rol = usuarioCopia.getRol();
         this.saldo = usuarioCopia.getSaldo();
         this.apuestas = usuarioCopia.getApuestas();
 
@@ -80,12 +80,12 @@ public class Usuario {
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "id_rol", nullable = false)
-    public Rol getIdRol() {
-        return idRol;
+    public Rol getRol() {
+        return rol;
     }
 
-    public Usuario setIdRol(Rol idRol) {
-        this.idRol = idRol;
+    public Usuario setRol(Rol idRol) {
+        this.rol = idRol;
         return this;
     }
 

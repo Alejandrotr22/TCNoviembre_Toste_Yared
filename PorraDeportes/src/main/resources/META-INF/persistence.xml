@@ -1,13 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<<<<<<< HEAD
-<persistence version="2.2" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd">
-=======
+
 <persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence"
              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
              xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence
   http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd"
              version="2.2">
->>>>>>> d7591cc (Terminada la creacion de las entities con JPABuddy y creado el repository de usuario y hecho un test sobre este y rol para comprobar que las entities se habian creado bien #6)
     <persistence-unit name="PorraDeportes" transaction-type="RESOURCE_LOCAL">
         <class>es.iespuertodelacruz.yt.porradeportes.entities.Apuesta</class>
         <class>es.iespuertodelacruz.yt.porradeportes.entities.Deporte</class>
@@ -23,7 +20,7 @@
         <property name="javax.persistence.jdbc.user" value="root"/>
         <property name="javax.persistence.jdbc.driver"
                   value="com.mysql.cj.jdbc.Driver"/>
-        <property name="javax.persistence.jdbc.password" value="1q2w3e4r"/>
+        <property name="javax.persistence.jdbc.password" value="RLsL6IRY"/>
 
         <property name="hibernate.dialect"
                   value="org.hibernate.dialect.MySQLDialect" />

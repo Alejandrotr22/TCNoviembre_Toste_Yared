@@ -31,6 +31,7 @@ public class UsuarioRepository implements ICrud<Usuario, Integer>{
             em.persist(object);
             em.getTransaction().commit();
             usuario = new Usuario(object);
+
         }catch (RollbackException ex){
             em.close();
             return null;
@@ -46,9 +47,16 @@ public class UsuarioRepository implements ICrud<Usuario, Integer>{
     public Usuario findByID(Integer id) {
 
         EntityManager em = emf.createEntityManager();
-        Usuario usuario = em.find(Usuario.class, id);
-        em.close();
+        Usuario usuario;
+        try {
 
+            usuario = em.find(Usuario.class, id);
+
+        }catch (RollbackException ex){
+            em.close();
+            return null;
+        }
+        em.close();
         return usuario;
 
     }
@@ -57,10 +65,18 @@ public class UsuarioRepository implements ICrud<Usuario, Integer>{
     public void update(Usuario object) {
 
         EntityManager em = emf.createEntityManager();
+
+        try{
+
         em.getTransaction().begin();
-        Usuario usuarioDDBB = em.find(Usuario.class, object.getId());
-        usuarioDDBB = new Usuario(object);
+        Usuario usuarioUpdate = em.merge(object);
         em.getTransaction().commit();
+
+        }catch (RollbackException ex){
+
+            em.close();
+
+        }
 
         em.close();
 
@@ -70,25 +86,22 @@ public class UsuarioRepository implements ICrud<Usuario, Integer>{
     public void delete(Integer id) {
 
         EntityManager em = emf.createEntityManager();
+        try{
+
         em.getTransaction().begin();
         Usuario usuario = em.find(Usuario.class, id);
         if(usuario != null){
-            if(usuario.getApuestas() != null){
-                Apuesta[] array = usuario.getApuestas().toArray(new Apuesta[usuario.getApuestas().size()]);
-                for (Apuesta apuesta: array) {
-                    usuario.getApuestas().remove(apuesta);
-                    em.remove(apuesta);
-                }
-            }
-
-            /*
-            usuario.getApuestas().forEach(a -> em.remove(a));
-            usuario.getApuestas().clear();
-            */
             em.remove(usuario);
             em.getTransaction().commit();
+        }
+
+        }catch (RollbackException ex){
+            em.close();
 
         }
+
+        em.close();
+
     }
 
     @Override
@@ -96,10 +109,18 @@ public class UsuarioRepository implements ICrud<Usuario, Integer>{
 
         List<Usuario> usuarios = null;
         EntityManager em = emf.createEntityManager();
-        em.getTransaction().begin();
-        em.createNamedQuery("Usuario.findAll", Usuario.class)
-                .getResultList();
-        em.getTransaction().commit();
+
+        try {
+
+            em.getTransaction().begin();
+            usuarios = em.createNamedQuery("Usuario.findAll", Usuario.class)
+                    .getResultList();
+            em.getTransaction().commit();
+
+        }catch (RollbackException ex){
+            em.close();
+            return null;
+        }
         em.close();
 
         return usuarios;

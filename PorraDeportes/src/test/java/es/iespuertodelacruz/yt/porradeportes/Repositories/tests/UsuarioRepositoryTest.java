@@ -33,7 +33,11 @@ class UsuarioRepositoryTest {
 
     @Test
     void testFindById() {
-        fail("Not yet implemented");
+
+        Usuario usuario = null;
+        Assertions.assertNotNull(usuario = usuarioRepository.findByID(1));
+        System.out.println(usuario.toString());
+
     }
 
     @Test
@@ -44,7 +48,7 @@ class UsuarioRepositoryTest {
         usuario.setNombre("yared");
         usuario.setEmail("email@gmail.com");
         usuario.setSaldo(BigDecimal.valueOf(3.23));
-        usuario.setIdRol(rol);
+        usuario.setRol(rol);
         usuario.setPassword("pass");
         Assertions.assertNotNull(usuarioRepository.save(usuario));
 
@@ -52,7 +56,7 @@ class UsuarioRepositoryTest {
         usuario2.setNombre("toste");
         usuario2.setEmail("email@gmail.com");
         usuario2.setSaldo(BigDecimal.valueOf(4.5));
-        usuario2.setIdRol(rol);
+        usuario2.setRol(rol);
         usuario2.setPassword("pass");
         Assertions.assertNotNull(usuarioRepository.save(usuario2));
         rol = rolRepository.findByID(1);
@@ -66,12 +70,36 @@ class UsuarioRepositoryTest {
 
     @Test
     void testUpdate() {
-        fail("Not yet implemented");
+
+        Usuario usuario = usuarioRepository.findByID(1);
+        System.out.println(usuario.toString());
+        usuario.setSaldo(BigDecimal.valueOf(125.25));
+
+        usuarioRepository.update(usuario);
+
+        Assertions.assertEquals(BigDecimal.valueOf(125.25), usuarioRepository.findByID(1).getSaldo());
+
+
     }
 
     @Test
     void testDelete() {
-        fail("Not yet implemented");
+
+        Usuario usuarioGuardado = usuarioRepository.save(new Usuario().setNombre("testDelete").setEmail("email@gmail.com").setPassword("pass")
+                .setRol(rolRepository.findByID(1)).setSaldo(BigDecimal.valueOf(50)));
+
+        System.out.println(usuarioRepository.findByID(usuarioGuardado.getId()).toString());
+
+        usuarioRepository.delete(usuarioGuardado.getId());
+        Assertions.assertNull(usuarioRepository.findByID(usuarioGuardado.getId()));
+
+    }
+
+    @Test
+    void testFindAll(){
+
+        Assertions.assertNotNull(usuarioRepository.findAll());
+
     }
 
 }

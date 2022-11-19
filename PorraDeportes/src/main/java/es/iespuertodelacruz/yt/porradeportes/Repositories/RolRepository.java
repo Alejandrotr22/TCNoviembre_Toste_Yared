@@ -1,11 +1,11 @@
 package es.iespuertodelacruz.yt.porradeportes.Repositories;
 
-import es.iespuertodelacruz.yt.porradeportes.entities.Apuesta;
 import es.iespuertodelacruz.yt.porradeportes.entities.Rol;
 import es.iespuertodelacruz.yt.porradeportes.entities.Usuario;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.RollbackException;
 import java.util.List;
 
 
@@ -23,18 +23,22 @@ public class RolRepository implements ICrud<Rol, Integer>{
         Rol rol = null;
 
         EntityManager em = emf.createEntityManager();
-        em.getTransaction().begin();
+        try {
+            em.getTransaction().begin();
 
-        for (Usuario usuario: object.getUsuarios()) {
-            usuario.setIdRol(object);
+            for (Usuario usuario : object.getUsuarios()) {
+                usuario.setRol(object);
+            }
+            em.persist(object);
+            em.getTransaction().commit();
+            rol = new Rol(object);
+        }catch (RollbackException ex){
+            em.close();
+            return null;
         }
-        em.persist(object);
-        em.getTransaction().commit();
-
 
         em.close();
-
-        return object;
+        return rol;
 
 
     }
@@ -44,9 +48,14 @@ public class RolRepository implements ICrud<Rol, Integer>{
 
 
         EntityManager em = emf.createEntityManager();
-        Rol rol = em.find(Rol.class, id);
+        Rol rol;
+        try {
+            rol = em.find(Rol.class, id);
+        }catch (RollbackException ex) {
+            em.close();
+            return null;
+        }
         em.close();
-
         return rol;
 
     }
@@ -54,16 +63,69 @@ public class RolRepository implements ICrud<Rol, Integer>{
     @Override
     public void update(Rol object) {
 
+        EntityManager em = emf.createEntityManager();
+
+        try{
+
+            em.getTransaction().begin();
+            Rol rolUpdate = em.merge(object);
+            em.getTransaction().commit();
+
+        }catch (RollbackException ex){
+
+            em.close();
+
+        }
+
+        em.close();
+
+
     }
 
     @Override
     public void delete(Integer id) {
 
+        EntityManager em = emf.createEntityManager();
+        try{
+
+            em.getTransaction().begin();
+            Rol rol = em.find(Rol.class, id);
+            if(rol != null){
+                em.remove(rol);
+                em.getTransaction().commit();
+            }
+
+        }catch (RollbackException ex){
+            em.close();
+        }
+
+        em.close();
+
     }
 
     @Override
     public List<Rol> findAll() {
-        return null;
+
+        List<Rol> roles = null;
+        EntityManager em = emf.createEntityManager();
+
+        try{
+
+            em.getTransaction().begin();
+            roles = em.createNamedQuery("Rol.findAll", Rol.class).getResultList();
+            em.getTransaction().commit();
+
+        }catch (RollbackException ex){
+            em.close();
+            return null;
+        }
+
+        em.close();
+
+        return roles;
+
+
+
     }
 
 
