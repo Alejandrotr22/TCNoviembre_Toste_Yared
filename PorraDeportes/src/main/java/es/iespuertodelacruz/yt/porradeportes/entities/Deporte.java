@@ -5,6 +5,7 @@ import java.util.LinkedHashSet;
 import java.util.Set;
 
 @Entity
+
 @Table(name = "deportes")
 public class Deporte {
     private Integer id;

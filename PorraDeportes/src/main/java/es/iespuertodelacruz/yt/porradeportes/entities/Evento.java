@@ -6,6 +6,7 @@ import java.util.LinkedHashSet;
 import java.util.Set;
 
 @Entity
+@NamedQuery(name="Evento.findAll", query = "SELECT e FROM Evento e")
 @Table(name = "eventos")
 public class Evento {
     private Integer id;
@@ -107,7 +108,7 @@ public class Evento {
         return this;
     }
 
-    @OneToMany(mappedBy = "idEvento")
+    @OneToMany(mappedBy = "idEvento",fetch = FetchType.EAGER)
     public Set<Apuesta> getApuestas() {
         return apuestas;
     }
