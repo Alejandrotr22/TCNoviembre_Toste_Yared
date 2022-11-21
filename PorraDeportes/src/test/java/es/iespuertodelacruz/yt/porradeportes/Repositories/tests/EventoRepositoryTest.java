@@ -1,4 +1,4 @@
-package es.iespuertodelacruz.yt.Repositories;
+package es.iespuertodelacruz.yt.porradeportes.Repositories.tests;
 
 import org.junit.jupiter.api.*;
 
@@ -22,8 +22,11 @@ class EventoRepositoryTest {
         emf.close();
     }
 
+
     @Test
     void save() {
+
+
     }
 
     @Test

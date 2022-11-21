@@ -40,16 +40,34 @@ public class DeporteRepository implements ICrud<Deporte,Integer> {
     public Deporte findByID(Integer id) {
 
         EntityManager em = emf.createEntityManager();
-        em.getTransaction().begin();
-        Deporte deporte = em.find(Deporte.class, id);
-        em.getTransaction().commit();
-        em.close();
+        Deporte deporte = null;
+        try{
+            em.getTransaction().begin();
+            deporte = em.find(Deporte.class, id);
+            em.getTransaction().commit();
+            em.close();
+        }catch (RollbackException ex){
+            em.close();
+            return null;
+        }
+
         return deporte;
     }
 
     @Override
     public void update(Deporte object) {
-
+        EntityManager em = emf.createEntityManager();
+        try {
+            em.getTransaction().begin();
+            Deporte deporteBBDD = em.find(Deporte.class, object.getId());
+            deporteBBDD = new Deporte(object);
+            em.getTransaction().commit();
+            em.close();
+            //return true;
+        }catch (RollbackException ex){
+            em.close();
+            //return false;
+        }
     }
 
     @Override

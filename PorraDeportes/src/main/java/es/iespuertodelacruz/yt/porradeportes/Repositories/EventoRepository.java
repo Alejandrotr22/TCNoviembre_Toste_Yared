@@ -65,6 +65,7 @@ public class EventoRepository implements ICrud<Evento,Integer>{
             em.getTransaction().begin();
             Evento eventoBBDD = em.find(Evento.class, object.getId());
             eventoBBDD = new Evento(object);
+
             em.getTransaction().commit();
             em.close();
             //return true;
@@ -102,10 +103,10 @@ public class EventoRepository implements ICrud<Evento,Integer>{
     }
 
     @Override
-    public ArrayList<Evento> findAll() {
+    public List<Evento> findAll() {
         EntityManager em = emf.createEntityManager();
+        List<Evento> eventos = new ArrayList<>();
         try {
-            List<Evento> eventos = new ArrayList<>();
             em.getTransaction().begin();
             eventos = em.createNamedQuery("Evento.findAll", Evento.class).getResultList();
             em.getTransaction().commit();
@@ -113,7 +114,6 @@ public class EventoRepository implements ICrud<Evento,Integer>{
         }catch (RollbackException ex){
 
         }
-
         return eventos;
     }
 }
