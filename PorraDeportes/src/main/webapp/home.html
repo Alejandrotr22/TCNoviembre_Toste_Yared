@@ -14,44 +14,48 @@
   </head>
   <body>
 
-<div class="container">
+
+    <main class="container-fluid">
+      <header class="row">
     
-    <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="#"><img src="logo.png" width="40px"/></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#menu">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="menu">
-            <div class="dropdown">
-            <button type="button" class="btn btn-dark dropdown" data-toggle="dropdown">Usuario </button>
-                <div class="dropdown-menu dropdown-menu-right">
+        <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand" href="#"><img src="logo.png" width="40px"/></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#menu">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="btn-group" id="menu">
+              <button type="button" class="btn btn-dark dropdown-toggle" data-toggle="dropdown">Usuario
+              </button>
+              <div class="dropdown-menu dropdown-menu-right">
                 <div class="dropdown-item">Ver usuario</div>
-                <div class="dropdown-divider">Tenis</div>
+                <div class="dropdown-divider"></div>
                 <div class="dropdown-item">Iniciar Sesión</div>
                 <div class="dropdown-item">Registrarse</div>
             </div>
-        </div>
-        <div class="collapse navbar-collapse" id="menu">
-            <div class="dropdown">
-            <button type="button" class="btn btn-outline btn-dark dropdown" data-toggle="dropdown">Deportes </button>
-                <div class="dropdown-menu dropdown-menu-right">
-                <div class="dropdown-item">Football</div>
-                <div class="dropdown-item">Tenis</div>
-                <div class="dropdown-item">Formula 1</div>
+            <div class="btn-group" id="menu">
+                <div class="dropdown">
+                <button type="button" class="btn btn-outline btn-dark dropdown" data-toggle="dropdown">Deportes </button>
+                    <div class="dropdown-menu dropdown-menu-right">
+                    <div class="dropdown-item">Football</div>
+                    <div class="dropdown-item">Tenis</div>
+                    <div class="dropdown-item">Formula 1</div>
+                </div>
             </div>
-        </div>
-      </nav>
-
-      <div class="dropdown">
-        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">Muestra el submenu </button>
-            <div class="dropdown-menu dropdown-menu-right">
-            <div class="dropdown-item">Opcion1</div>
-            <div class="dropdown-item">Opcion1</div>
-            <div class="dropdown-item">Opcion1</div>
-        </div>
+            <form class="form-inline">
+              <input class="btn btn-primary btn-sm mr-2" data-toggle="modal" data-target="#entrar" type="button" value="Login">
+              <input class="btn btn-primary btn-sm" data-toggle="modal" data-target="#registro" type="button" value="Registro">
+          </form>
+          </nav>
+          
+          
+    
+    
     </div>
+    
+    </main>
 
-
+<div class="container">
+  
 </div>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
