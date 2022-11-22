@@ -26,7 +26,7 @@ public class EventoRepository implements ICrud<Evento,Integer>{
             em.getTransaction().begin();
 
             for (Apuesta a: object.getApuestas()) {
-                a.setIdEvento(object);
+                a.setEvento(object);
             }
 
             em.persist(object);
@@ -59,7 +59,7 @@ public class EventoRepository implements ICrud<Evento,Integer>{
     }
 
     @Override
-    public void update(Evento object) {
+    public Boolean update(Evento object) {
         EntityManager em = emf.createEntityManager();
         try {
             em.getTransaction().begin();
@@ -68,16 +68,16 @@ public class EventoRepository implements ICrud<Evento,Integer>{
 
             em.getTransaction().commit();
             em.close();
-            //return true;
+            return true;
         }catch (RollbackException ex){
             em.close();
-            //return false;
+            return null;
         }
 
     }
 
     @Override
-    public void delete(Integer id) {
+    public Boolean delete(Integer id) {
 
         EntityManager em = emf.createEntityManager();
         try {
@@ -87,18 +87,21 @@ public class EventoRepository implements ICrud<Evento,Integer>{
                 if (evento.getApuestas().size() == 0){
                     em.remove(evento);
                     em.getTransaction().commit();
-                    //return true;
+                    em.close();
+                    return true;
 
                 }else{
-                    //return false;
+                    em.close();
+                    return false;
                 }
             }else{
-                //return false;
+                em.close();
+                return false;
             }
-            em.close();
+
         }catch (RollbackException ex){
             em.close();
-            //return false;
+            return null;
         }
     }
 

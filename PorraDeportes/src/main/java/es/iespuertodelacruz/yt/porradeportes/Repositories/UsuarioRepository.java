@@ -62,7 +62,7 @@ public class UsuarioRepository implements ICrud<Usuario, Integer>{
     }
 
     @Override
-    public void update(Usuario object) {
+    public Boolean update(Usuario object) {
 
         EntityManager em = emf.createEntityManager();
 
@@ -75,15 +75,17 @@ public class UsuarioRepository implements ICrud<Usuario, Integer>{
         }catch (RollbackException ex){
 
             em.close();
+            return null;
 
         }
 
         em.close();
+        return true;
 
     }
 
     @Override
-    public void delete(Integer id) {
+    public Boolean delete(Integer id) {
 
         EntityManager em = emf.createEntityManager();
         try{
@@ -93,14 +95,19 @@ public class UsuarioRepository implements ICrud<Usuario, Integer>{
         if(usuario != null){
             em.remove(usuario);
             em.getTransaction().commit();
+        }else{
+            em.close();
+            return false;
         }
 
         }catch (RollbackException ex){
             em.close();
+            return null;
 
         }
 
         em.close();
+        return true;
 
     }
 

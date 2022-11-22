@@ -55,7 +55,7 @@ public class DeporteRepository implements ICrud<Deporte,Integer> {
     }
 
     @Override
-    public boolean update(Deporte object) {
+    public Boolean update(Deporte object) {
         EntityManager em = emf.createEntityManager();
         try {
             em.getTransaction().begin();
@@ -66,13 +66,13 @@ public class DeporteRepository implements ICrud<Deporte,Integer> {
             return true;
         }catch (RollbackException ex){
             em.close();
-            return false;
+            return null;
         }
     }
 
     @Override
-    public void delete(Integer id) {
-
+    public Boolean delete(Integer id) {
+        return null;
     }
 
     @Override

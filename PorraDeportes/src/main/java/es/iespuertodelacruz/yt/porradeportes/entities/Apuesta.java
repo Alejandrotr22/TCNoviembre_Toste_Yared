@@ -13,9 +13,7 @@ public class Apuesta {
 
     private Usuario usuario;
 
-    private TipoApuesta tipoApuesta;
-
-    private String resultado;
+    private String prediccion;
 
     private BigDecimal cuota;
 
@@ -30,8 +28,7 @@ public class Apuesta {
         this.id = apuesta.getId();
         this.evento = apuesta.getEvento();
         this.usuario = apuesta.getUsuario();
-        this.tipoApuesta = apuesta.getTipoApuesta();
-        this.resultado = apuesta.getResultado();
+        this.prediccion = apuesta.getPrediccion();
         this.cuota = apuesta.getCuota();
         this.cantidad = apuesta.getCantidad();
         this.estado = apuesta.getEstado();
@@ -72,24 +69,13 @@ public class Apuesta {
         return this;
     }
 
-    @ManyToOne(fetch = FetchType.EAGER, optional = false)
-    @JoinColumn(name = "id_tipo", nullable = false)
-    public TipoApuesta getTipoApuesta() {
-        return tipoApuesta;
+    @Column(name = "prediccion", nullable = false, length = 200)
+    public String getPrediccion() {
+        return prediccion;
     }
 
-    public Apuesta setTipoApuesta(TipoApuesta idTipo) {
-        this.tipoApuesta = idTipo;
-        return this;
-    }
-
-    @Column(name = "resultado", nullable = false, length = 50)
-    public String getResultado() {
-        return resultado;
-    }
-
-    public Apuesta setResultado(String resultado) {
-        this.resultado = resultado;
+    public Apuesta setPrediccion(String prediccion) {
+        this.prediccion = prediccion;
         return this;
     }
 

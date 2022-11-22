@@ -70,7 +70,8 @@ public class RolRepositoryTest {
         rolRepository.update(rol);
 
         Assertions.assertEquals("RolUpdate", rolRepository.findByID(2).getNombre(), "El nombre del rol del" +
-                "usuario no es RolUpdate");
+                " usuario no es RolUpdate");
+
 
     }
 

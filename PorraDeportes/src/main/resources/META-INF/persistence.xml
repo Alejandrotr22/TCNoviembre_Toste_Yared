@@ -11,7 +11,6 @@
         <class>es.iespuertodelacruz.yt.porradeportes.entities.Equipo</class>
         <class>es.iespuertodelacruz.yt.porradeportes.entities.Evento</class>
         <class>es.iespuertodelacruz.yt.porradeportes.entities.Rol</class>
-        <class>es.iespuertodelacruz.yt.porradeportes.entities.TipoApuesta</class>
         <class>es.iespuertodelacruz.yt.porradeportes.entities.Usuario</class>
 
     <properties>
@@ -20,7 +19,7 @@
         <property name="javax.persistence.jdbc.user" value="root"/>
         <property name="javax.persistence.jdbc.driver"
                   value="com.mysql.cj.jdbc.Driver"/>
-        <property name="javax.persistence.jdbc.password" value="RLsL6IRY"/>
+        <property name="javax.persistence.jdbc.password" value="1q2w3e4r"/>
 
         <property name="hibernate.dialect"
                   value="org.hibernate.dialect.MySQLDialect" />

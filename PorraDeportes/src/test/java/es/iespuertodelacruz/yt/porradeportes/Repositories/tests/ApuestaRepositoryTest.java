@@ -30,10 +30,11 @@ public class ApuestaRepositoryTest {
     @Test
     void testFindById(){
 
+        /**
         Apuesta apuesta = null;
         Assertions.assertNotNull(apuesta = apuestaRepository.findByID(1));
         System.out.println(apuesta.toString());
-
+    **/
     }
 
     @Test

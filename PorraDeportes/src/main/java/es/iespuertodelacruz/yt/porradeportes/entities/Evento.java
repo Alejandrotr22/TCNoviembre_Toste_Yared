@@ -21,6 +21,8 @@ public class Evento {
 
     private Equipo idEquipoGanador;
 
+    private String resultado;
+
     private Set<Apuesta> apuestas = new LinkedHashSet<>();
 
     private Set<Equipo> participantes = new LinkedHashSet<>();
@@ -36,6 +38,7 @@ public class Evento {
         this.fechaFin = e.getFechaFin();
         this.nombre = e.getNombre();
         this.idEquipoGanador = e.getIdEquipoGanador();
+        this.resultado = e.getResultado();
         this.apuestas = e.getApuestas();
         this.participantes = e.getParticipantes();
     }
@@ -108,8 +111,15 @@ public class Evento {
         return this;
     }
 
+    @Column(name = "resultado", nullable = true, length = 200)
+    public String getResultado(){ return resultado; }
 
-    @OneToMany(mappedBy = "idEvento",fetch = FetchType.EAGER)
+    public void setResultado(String resultado){
+        this.resultado = resultado;
+    }
+
+
+    @OneToMany(mappedBy = "evento",fetch = FetchType.EAGER)
     public Set<Apuesta> getApuestas() {
         return apuestas;
     }
