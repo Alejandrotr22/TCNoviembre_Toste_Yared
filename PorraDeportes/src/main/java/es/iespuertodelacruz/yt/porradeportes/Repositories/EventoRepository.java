@@ -2,8 +2,7 @@ package es.iespuertodelacruz.yt.porradeportes.Repositories;
 
 import es.iespuertodelacruz.yt.porradeportes.entities.Apuesta;
 import es.iespuertodelacruz.yt.porradeportes.entities.Evento;
-import es.iespuertodelacruz.yt.porradeportes.entities.Usuario;
-import jdk.jfr.Event;
+
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -26,7 +25,7 @@ public class EventoRepository implements ICrud<Evento,Integer>{
             em.getTransaction().begin();
 
             for (Apuesta a: object.getApuestas()) {
-                a.setIdEvento(object);
+                a.setEvento(object);
             }
 
             em.persist(object);
@@ -59,7 +58,7 @@ public class EventoRepository implements ICrud<Evento,Integer>{
     }
 
     @Override
-    public void update(Evento object) {
+    public boolean update(Evento object) {
         EntityManager em = emf.createEntityManager();
         try {
             em.getTransaction().begin();
@@ -68,18 +67,18 @@ public class EventoRepository implements ICrud<Evento,Integer>{
 
             em.getTransaction().commit();
             em.close();
-            //return true;
+            return true;
         }catch (RollbackException ex){
             em.close();
-            //return false;
+            return false;
         }
 
     }
 
     @Override
-    public void delete(Integer id) {
-
+    public boolean delete(Integer id) {
         EntityManager em = emf.createEntityManager();
+        boolean res = false;
         try {
             em.getTransaction().begin();
             Evento evento = em.find(Evento.class, id);
@@ -87,19 +86,20 @@ public class EventoRepository implements ICrud<Evento,Integer>{
                 if (evento.getApuestas().size() == 0){
                     em.remove(evento);
                     em.getTransaction().commit();
-                    //return true;
+                    res = true;
 
                 }else{
-                    //return false;
+                    res = false;
                 }
             }else{
-                //return false;
+                res =  false;
             }
             em.close();
         }catch (RollbackException ex){
             em.close();
-            //return false;
+            return res ;
         }
+        return res ;
     }
 
     @Override

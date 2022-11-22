@@ -71,8 +71,8 @@ public class DeporteRepository implements ICrud<Deporte,Integer> {
     }
 
     @Override
-    public void delete(Integer id) {
-
+    public boolean delete(Integer id) {
+        return false;
     }
 
     @Override
