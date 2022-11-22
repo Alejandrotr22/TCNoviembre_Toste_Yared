@@ -7,6 +7,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.RollbackException;
 import java.util.ArrayList;
+import java.util.List;
 
 public class DeporteRepository implements ICrud<Deporte,Integer> {
 
@@ -55,7 +56,7 @@ public class DeporteRepository implements ICrud<Deporte,Integer> {
     }
 
     @Override
-    public boolean update(Deporte object) {
+    public Boolean update(Deporte object) {
         EntityManager em = emf.createEntityManager();
         try {
             em.getTransaction().begin();
@@ -71,12 +72,44 @@ public class DeporteRepository implements ICrud<Deporte,Integer> {
     }
 
     @Override
-    public boolean delete(Integer id) {
-        return false;
+    public Boolean delete(Integer id) {
+        EntityManager em = emf.createEntityManager();
+        Boolean res = false;
+        try {
+            em.getTransaction().begin();
+            Deporte deporte = em.find(Deporte.class, id);
+            if (deporte != null){
+                if (deporte.getEventos().size() == 0){
+                    em.remove(deporte);
+                    em.getTransaction().commit();
+                    res = true;
+
+                }else{
+                    res = null;
+                }
+            }else{
+                res =  false;
+            }
+            em.close();
+        }catch (RollbackException ex){
+            em.close();
+            return res ;
+        }
+        return res ;
     }
 
     @Override
-    public ArrayList<Deporte> findAll() {
-        return null;
+    public List<Deporte> findAll() {
+        EntityManager em = emf.createEntityManager();
+        List<Deporte> deportes = new ArrayList<>();
+        try {
+            em.getTransaction().begin();
+            deportes = em.createNamedQuery("Deporte.findAll", Deporte.class).getResultList();
+            em.getTransaction().commit();
+            em.close();
+        }catch (RollbackException ex){
+            return null;
+        }
+        return deportes;
     }
 }

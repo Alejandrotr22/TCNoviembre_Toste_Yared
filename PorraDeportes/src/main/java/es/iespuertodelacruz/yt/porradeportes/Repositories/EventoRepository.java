@@ -58,7 +58,7 @@ public class EventoRepository implements ICrud<Evento,Integer>{
     }
 
     @Override
-    public boolean update(Evento object) {
+    public Boolean update(Evento object) {
         EntityManager em = emf.createEntityManager();
         try {
             em.getTransaction().begin();
@@ -76,9 +76,9 @@ public class EventoRepository implements ICrud<Evento,Integer>{
     }
 
     @Override
-    public boolean delete(Integer id) {
+    public Boolean delete(Integer id) {
         EntityManager em = emf.createEntityManager();
-        boolean res = false;
+        Boolean res = false;
         try {
             em.getTransaction().begin();
             Evento evento = em.find(Evento.class, id);
@@ -89,7 +89,7 @@ public class EventoRepository implements ICrud<Evento,Integer>{
                     res = true;
 
                 }else{
-                    res = false;
+                    res = null;
                 }
             }else{
                 res =  false;
@@ -112,7 +112,7 @@ public class EventoRepository implements ICrud<Evento,Integer>{
             em.getTransaction().commit();
             em.close();
         }catch (RollbackException ex){
-
+            return null;
         }
         return eventos;
     }
