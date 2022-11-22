@@ -26,13 +26,14 @@
 
 }
 body{
-    height: 1080px;
+    height: auto;
 }
 
 
 .cuota{
     height: calc(2.25rem + 2px);
-    
+    width: 10%;
+    text-align: center;
 }
 
 form{

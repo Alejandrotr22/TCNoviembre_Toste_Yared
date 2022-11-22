@@ -14,42 +14,44 @@
   </head>
   <body>
 
+    <section class="justify-content-center">
+      <div class="">
+          <div class="list-group d-block">
+              <a class="list-group-item list-group-item-action active" data-toggle="list"
+                  data-target="#ganador">Ganador</a>
+          </div>
+      </div>
+      <div class="mt-3">
+          <div class="tab-content">
+              <div class="tab-pane fade show active row" id="ganador">
+                  <form class="formGanador" action="/NOMBRE-SERVLET" method="POST">
+                      <div class="form-row justify-content-center">
+                          <div class="col-md-3 form-group">
+                              <label for="">Ganador</label>
+                              <select class="form-control" id="ganador" name="ganador">
+                                  <option>1</option>
+                                  <option>2</option>
+                                  <option>X</option>
+                              </select>
+                          </div>
+                      </div>
+                      <div class="form-row justify-content-center">
+                          <div class="col-md-5 text-center">
+                              <label>Cuantia</label>
+                              <input type="number" class="" name="CuantiaGanador" min="1" value="1">
+                              <span>€</span>
+                          </div>
+                          <div class="col-md-5 text-center">
+                              <input type="submit" name="CrearApuesta" class="btn btn-primary" value="Crear Apuesta">
+                          </div>
+                      </div>
+                  </form>
+              </div>
+          </div>
 
-    <main class="container">
-      <header class="row">
-    
-        <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
-            <a class="navbar-brand" href="#"><img src="logo.png" width="40px"/></a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#menu">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="btn-group " id="menu">
-              <button type="button" class="btn btn-dark dropdown-toggle float-end" data-toggle="dropdown">Usuario
-              </button>
-              <div class="dropdown-menu dropdown-menu-right">
-                <div class="dropdown-item">Ver usuario</div>
-                <div class="dropdown-divider"></div>
-                <div class="dropdown-item">Iniciar Sesión</div>
-                <div class="dropdown-item">Registrarse</div>
-            </div>
-            <div class="btn-group" id="menu">
-                <div class="dropdown">
-                <button type="button" class="btn btn-outline btn-dark dropdown" data-toggle="dropdown">Deportes </button>
-                    <div class="dropdown-menu dropdown-menu-right">
-                    <div class="dropdown-item">Football</div>
-                    <div class="dropdown-item">Tenis</div>
-                    <div class="dropdown-item">Formula 1</div>
-                </div>
-            </div>
-            <form class="form-inline">
-              <input class="btn btn-primary btn-sm mr-2" data-toggle="modal" data-target="#entrar" type="button" value="Login">
-              <input class="btn btn-primary btn-sm" data-toggle="modal" data-target="#registro" type="button" value="Registro">
-          </form>
-          </nav>
+      </div>
+  </section>
 
-    </div>
-    
-    </main>
 
 <div class="container">
   
