@@ -64,7 +64,7 @@ public class ApuestaRepository implements ICrud<Apuesta, Integer>{
     }
 
     @Override
-    public void update(Apuesta object) {
+    public boolean update(Apuesta object) {
 
         EntityManager em = emf.createEntityManager();
 
@@ -81,7 +81,7 @@ public class ApuestaRepository implements ICrud<Apuesta, Integer>{
         }
 
         em.close();
-
+        return false;
     }
 
     @Override

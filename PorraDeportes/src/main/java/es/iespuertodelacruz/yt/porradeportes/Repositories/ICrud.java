@@ -13,7 +13,7 @@ public interface ICrud<T, E> {
 
     boolean update(T object);
 
-    void delete(E id);
+    boolean delete(E id);
 
     List<T> findAll();
 

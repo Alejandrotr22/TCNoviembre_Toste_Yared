@@ -6,6 +6,7 @@ import java.util.LinkedHashSet;
 import java.util.Set;
 
 @Entity
+@NamedQuery(name="Evento.findAll", query = "SELECT e FROM Evento e")
 @Table(name = "eventos")
 public class Evento {
     private Integer id;
@@ -39,6 +40,10 @@ public class Evento {
         this.participantes = e.getParticipantes();
     }
 
+    /**
+     * Constructor por defecto
+     */
+    public Evento(){}
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
@@ -103,7 +108,8 @@ public class Evento {
         return this;
     }
 
-    @OneToMany(mappedBy = "evento")
+
+    @OneToMany(mappedBy = "idEvento",fetch = FetchType.EAGER)
     public Set<Apuesta> getApuestas() {
         return apuestas;
     }
