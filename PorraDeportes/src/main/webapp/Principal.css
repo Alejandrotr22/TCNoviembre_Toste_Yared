@@ -29,3 +29,18 @@ body{
     height: 1080px;
 }
 
+
+.cuota{
+    height: calc(2.25rem + 2px);
+    
+}
+
+.formGanador{
+    margin-left: 2%;
+    margin-right: 2%;
+    padding: 2%;
+    border: 5px;
+    border-style: solid;
+    border-radius: 4px;
+    border-color: rgb(70, 70,70);
+}
