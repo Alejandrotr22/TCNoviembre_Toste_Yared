@@ -35,7 +35,7 @@ class UsuarioRepositoryTest {
     void testFindById() {
 
         Usuario usuario = null;
-        Assertions.assertNotNull(usuario = usuarioRepository.findByID(1));
+        Assertions.assertNotNull(usuario = usuarioRepository.findByID(1), "No se ha podido encontrar al usuario");
         System.out.println(usuario.toString());
 
     }
@@ -50,7 +50,7 @@ class UsuarioRepositoryTest {
         usuario.setSaldo(BigDecimal.valueOf(3.23));
         usuario.setRol(rol);
         usuario.setPassword("pass");
-        Assertions.assertNotNull(usuarioRepository.save(usuario));
+        Assertions.assertNotNull(usuarioRepository.save(usuario), "No se ha guardado el usuario");
 
         Usuario usuario2 = new Usuario();
         usuario2.setNombre("toste");
@@ -58,7 +58,7 @@ class UsuarioRepositoryTest {
         usuario2.setSaldo(BigDecimal.valueOf(4.5));
         usuario2.setRol(rol);
         usuario2.setPassword("pass");
-        Assertions.assertNotNull(usuarioRepository.save(usuario2));
+        Assertions.assertNotNull(usuarioRepository.save(usuario2), "No se ha guardado el usuario");
         rol = rolRepository.findByID(1);
 
         System.out.println(usuario.toString());
@@ -77,7 +77,8 @@ class UsuarioRepositoryTest {
 
         usuarioRepository.update(usuario);
 
-        Assertions.assertEquals(BigDecimal.valueOf(125.25), usuarioRepository.findByID(1).getSaldo());
+        Assertions.assertEquals(BigDecimal.valueOf(125.25), usuarioRepository.findByID(1).getSaldo(), "El saldo" +
+                " del usuario no es 125.25");
 
 
     }
@@ -91,14 +92,15 @@ class UsuarioRepositoryTest {
         System.out.println(usuarioRepository.findByID(usuarioGuardado.getId()).toString());
 
         usuarioRepository.delete(usuarioGuardado.getId());
-        Assertions.assertNull(usuarioRepository.findByID(usuarioGuardado.getId()));
+        Assertions.assertNull(usuarioRepository.findByID(usuarioGuardado.getId()), "El usuario sigue existiendo " +
+                "tras el delete");
 
     }
 
     @Test
     void testFindAll(){
 
-        Assertions.assertNotNull(usuarioRepository.findAll());
+        Assertions.assertNotNull(usuarioRepository.findAll(), "El findAll ha devuelto un nulo");
 
     }
 

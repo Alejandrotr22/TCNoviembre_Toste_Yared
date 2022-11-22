@@ -35,7 +35,7 @@ public class RolRepositoryTest {
     void testFindById(){
 
         Rol rol = null;
-        Assertions.assertNotNull(rol = rolRepository.findByID(1));
+        Assertions.assertNotNull(rol = rolRepository.findByID(1), "Find ha devuelto un nulo");
         System.out.println(rol.toString());
 
     }
@@ -50,7 +50,7 @@ public class RolRepositoryTest {
         usuariosRol.add(usuario);
         rol.setUsuarios(usuariosRol);
 
-        Assertions.assertNotNull(rolRepository.save(rol));
+        Assertions.assertNotNull(rolRepository.save(rol), "Save a devuelto un nulo");
 
         usuario = usuarioRepository.findByID(1);
 
@@ -69,7 +69,8 @@ public class RolRepositoryTest {
 
         rolRepository.update(rol);
 
-        Assertions.assertEquals("RolUpdate", rolRepository.findByID(2).getNombre());
+        Assertions.assertEquals("RolUpdate", rolRepository.findByID(2).getNombre(), "El nombre del rol del" +
+                "usuario no es RolUpdate");
 
     }
 
@@ -80,7 +81,7 @@ public class RolRepositoryTest {
 
         rolRepository.delete(rolGuardado.getId());
 
-        Assertions.assertNull(rolRepository.findByID(rolGuardado.getId()));
+        Assertions.assertNull(rolRepository.findByID(rolGuardado.getId()), "Delete no ha devuelvo nulo");
 
 
     }
@@ -88,7 +89,7 @@ public class RolRepositoryTest {
     @Test
     void testFindAll(){
 
-        Assertions.assertNotNull(rolRepository.findAll());
+        Assertions.assertNotNull(rolRepository.findAll(), "No se ha podido obtener todos los usuarios");
 
     }
 

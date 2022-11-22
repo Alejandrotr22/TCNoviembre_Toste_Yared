@@ -30,7 +30,7 @@ public class TipoApuestaRepositoryTest {
 
         TipoApuesta tipoApuesta = null;
 
-        Assertions.assertNotNull(tipoApuesta = tipoApuestaRepository.findByID(1));
+        Assertions.assertNotNull(tipoApuesta = tipoApuestaRepository.findByID(1), "Find ha devuelto un nulo");
         System.out.println(tipoApuesta.toString());
 
     }
@@ -40,7 +40,7 @@ public class TipoApuestaRepositoryTest {
 
         TipoApuesta tipoApuesta = new TipoApuesta();
         tipoApuesta.setDescripcion("TipoApuestaTestSave");
-        Assertions.assertNotNull(tipoApuestaRepository.save(tipoApuesta));
+        Assertions.assertNotNull(tipoApuestaRepository.save(tipoApuesta), "Save a devuelto un nulo");
 
 
     }
@@ -53,7 +53,8 @@ public class TipoApuestaRepositoryTest {
 
         tipoApuestaRepository.update(tipoApuesta);
 
-        Assertions.assertEquals("TipoApuestaUpdate", tipoApuestaRepository.findByID(1).getDescripcion());
+        Assertions.assertEquals("TipoApuestaUpdate", tipoApuestaRepository.findByID(1).getDescripcion(), "" +
+                "La descripcion de la apuesta no coincido con TipoApuestaUpdate");
 
 
     }
@@ -66,7 +67,8 @@ public class TipoApuestaRepositoryTest {
 
         tipoApuestaRepository.delete(tipoApuestaGuardada.getId());
 
-        Assertions.assertNull(tipoApuestaRepository.findByID(tipoApuestaGuardada.getId()));
+        Assertions.assertNull(tipoApuestaRepository.findByID(tipoApuestaGuardada.getId()), "La apuesta sigue existiendo" +
+                " tras hacer el delete");
 
 
     }
@@ -74,7 +76,7 @@ public class TipoApuestaRepositoryTest {
     @Test
     void testFindAll(){
 
-        Assertions.assertNotNull(tipoApuestaRepository.findAll());
+        Assertions.assertNotNull(tipoApuestaRepository.findAll(), "El findAll ha devuelto un nulo");
 
     }
 

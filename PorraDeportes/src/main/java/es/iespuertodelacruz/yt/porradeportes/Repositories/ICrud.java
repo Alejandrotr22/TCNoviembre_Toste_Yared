@@ -11,7 +11,7 @@ public interface ICrud<T, E> {
 
     T findByID(E id);
 
-    void update(T object);
+    boolean update(T object);
 
     void delete(E id);
 
