@@ -15,6 +15,17 @@ public class Equipo {
 
     private Set<Evento> eventosParticipantes = new LinkedHashSet<>();
 
+    public Equipo(){}
+
+    public Equipo(Equipo equipo){
+
+        this.id = equipo.getId();
+        this.nombre = equipo.getNombre();
+        this.eventosGanador = getEventosGanador();
+        this.eventosParticipantes = getEventosParticipantes();
+
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)

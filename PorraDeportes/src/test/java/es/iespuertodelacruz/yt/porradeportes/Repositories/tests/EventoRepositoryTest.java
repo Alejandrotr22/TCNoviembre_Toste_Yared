@@ -75,18 +75,18 @@ class EventoRepositoryTest {
         assertNotNull(all,"No se ha rellenado el list");
     }
     private Evento crearEvento(){
-        Evento e = new Evento();
-        e.setNombre(nombre);
-        e.setIdDeporte(deporteRepository.findByID(13));
-        e.setApuestas(apuestas);
+        Evento evento = new Evento();
+        evento.setNombre(nombre);
+        evento.setIdDeporte(deporteRepository.findByID(1));
+        evento.setApuestas(apuestas);
         long time = new Date().getTime();
         Timestamp fecha = new Timestamp(time);
-        e.setFechaFin(fecha.toInstant());
-        e.setFechaInicio(fecha.toInstant());
-        e.setParticipantes(participantes);
-        e.setResultado(null);
-        e.setIdEquipoGanador(null);
-        e = eventoRepository.save(e);
-        return e;
+        evento.setFechaFin(fecha.toInstant());
+        evento.setFechaInicio(fecha.toInstant());
+        evento.setParticipantes(participantes);
+        evento.setResultado(null);
+        evento.setIdEquipoGanador(null);
+        evento = eventoRepository.save(evento);
+        return evento;
     }
 }
