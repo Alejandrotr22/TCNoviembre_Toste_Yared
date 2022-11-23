@@ -13,7 +13,7 @@ public class Apuesta {
 
     private Usuario usuario;
 
-    private String resultado;
+    private String prediccion;
 
     private BigDecimal cuota;
 
@@ -28,7 +28,7 @@ public class Apuesta {
         this.id = apuesta.getId();
         this.evento = apuesta.getEvento();
         this.usuario = apuesta.getUsuario();
-        this.resultado = apuesta.getResultado();
+        this.prediccion = apuesta.getPrediccion();
         this.cuota = apuesta.getCuota();
         this.cantidad = apuesta.getCantidad();
         this.estado = apuesta.getEstado();
@@ -69,13 +69,13 @@ public class Apuesta {
         return this;
     }
 
-    @Column(name = "resultado", nullable = false, length = 50)
-    public String getResultado() {
-        return resultado;
+    @Column(name = "prediccion", nullable = false, length = 200)
+    public String getPrediccion() {
+        return prediccion;
     }
 
-    public Apuesta setResultado(String resultado) {
-        this.resultado = resultado;
+    public Apuesta setPrediccion(String resultado) {
+        this.prediccion = resultado;
         return this;
     }
 

@@ -30,7 +30,7 @@ public class EventoRepository implements ICrud<Evento,Integer>{
 
             em.persist(object);
             evento = new Evento(object);
-
+            em.getTransaction().commit();
             em.close();
         }catch (RollbackException ex){
             em.close();

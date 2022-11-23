@@ -90,6 +90,6 @@ class DeporteRepositoryTest {
         List<Deporte> all = deporteRepository.findAll();
         System.out.println(all);
         assertNotNull(all,"No se ha rellenado el list");
-        System.out.println(all);
+
     }
 }
