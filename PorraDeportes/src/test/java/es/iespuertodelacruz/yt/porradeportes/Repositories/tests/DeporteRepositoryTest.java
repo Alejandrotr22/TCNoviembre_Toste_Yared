@@ -7,7 +7,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
+import org.junit.jupiter.api.*;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 
@@ -20,10 +20,13 @@ class DeporteRepositoryTest {
 
     EntityManagerFactory emf;
 
-    String nombre;
+    int id = 4;
+    String nombre = "Carrera1";
     Set<Evento> eventos = new LinkedHashSet<>();
 
     Deporte d = new Deporte();
+
+
 
     @BeforeEach
     void setUp() {
@@ -36,17 +39,25 @@ class DeporteRepositoryTest {
 
     }
 
+    
     @Test
     void save() {
         DeporteRepository deporteRepository = new DeporteRepository(emf);
-
+        d.setNombre(nombre);
+        d.setEventos(eventos);
+        d.setId(id);
         deporteRepository.save(d);
         assertNotNull(d.getId(),"No se ha asignado un id al deporte");
-
     }
 
     @Test
     void findByID() {
+        DeporteRepository deporteRepository = new DeporteRepository(emf);
+        Deporte d2 = deporteRepository.findByID(d.getId());
+
+        assertEquals(d2.getId(),d.getId(),"los id no son iguales");
+        assertEquals(d2.getNombre(),d.getNombre(),"los nombres no son iguales");
+
     }
 
     @Test
@@ -55,6 +66,8 @@ class DeporteRepositoryTest {
 
     @Test
     void delete() {
+        DeporteRepository deporteRepository = new DeporteRepository(emf);
+        deporteRepository.delete();
     }
 
     @Test
