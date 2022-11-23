@@ -5,7 +5,7 @@ import java.util.LinkedHashSet;
 import java.util.Set;
 
 @Entity
-
+@NamedQuery(name="Deporte.findAll", query = "SELECT d FROM Deporte d")
 @Table(name = "deportes")
 public class Deporte {
     private Integer id;

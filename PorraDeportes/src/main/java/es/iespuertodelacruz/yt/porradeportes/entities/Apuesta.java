@@ -74,6 +74,7 @@ public class Apuesta {
         return prediccion;
     }
 
+
     public Apuesta setPrediccion(String prediccion) {
         this.prediccion = prediccion;
         return this;
