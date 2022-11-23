@@ -23,13 +23,18 @@
         <section class="justify-content-center">
             <div class="">
                 <div class="list-group d-block">
+                    <h1>Tipos de apuestas</h1>
                     <a class="list-group-item list-group-item-action active" data-toggle="list"
-                        data-target="#ganador">Ganador</a>
+                        data-target="#ganador">1 Ganador</a>
+                    <a class="list-group-item list-group-item-action" data-toggle="list"
+                        data-target="#marcador">Marcador</a>
                 </div>
             </div>
             <div class="mt-3">
                 <div class="tab-content">
+                    <!-- formulario de Ganador -->
                     <div class="tab-pane fade show active row" id="ganador">
+                        <!-- formulario -->
                         <form class="formGanador" action="/NOMBRE-SERVLET" method="POST">
                             <div class="form-row justify-content-center">
                                 <div class="col-md-3 form-group">
@@ -43,9 +48,11 @@
                                 <div class="col-md-5 text-center">
                                     <label>Cuotas</label>
                                     <br>
+                                    <!-- Nombre equipo 1 -->
                                     <label for="">Equipo1</label>
                                     <input class="cuota" type="text" name="cuota1" id="cuota1" value="1" readonly >
                                     <input class="cuota" type="text" name="cuota2" id="cuota2" value="1" readonly >
+                                    <!-- Nombre equipo 2 -->
                                     <label for="">Equipo2</label>
                                     <br>
                                     <label for="">Empate</label>
@@ -58,13 +65,51 @@
                                     <span>€</span>
                                 </div>
                                 <div class="col-md-5 text-center">
+                                    <!-- Nombre del submit -->
+                                    <input type="submit" name="ApuestaGanador" class="btn btn-primary" value="Crear Apuesta">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <!-- fromulario de Marcador -->
+                    <div class="tab-pane fade show row" id="marcador">
+                        <!-- formulario -->
+                        <form class="formGanador" action="/NOMBRE-SERVLET" method="POST">
+                            <div class="form-row justify-content-center">
+                                <div class="col-md-6 form-group text-center">
+                                    <label>Marcador</label>
+                                    <br>
+                                    <!-- Nombre equipo 1 -->
+                                    <label for="">Equipo1</label>
+                                    <input class="marcador" type="text" name="marcador1" id="marcador1"  >
+                                    -
+                                    <input class="marcador" type="text" name="marcador2" id="marcador2"  >
+                                    <!-- Nombre equipo 2 -->
+                                    <label for="">Equipo2</label>
+                                </div>
+                                <div class="col-md-5 text-center">
+                                    <label>Cuotas</label>
+                                    <br>
+                                    <label for="">Equipo1</label>
+                                    <input class="cuota" type="text" name="cuota1" id="cuota1" value="1" readonly >
+                                    <input class="cuota" type="text" name="cuota2" id="cuota2" value="1" readonly >
+                                    <label for="">Equipo2</label>
+                                </div>
+                            </div>
+                            <div class="form-row justify-content-center">
+                                <div class="col-md-5 text-center">
+                                    <label>Cuantia</label>
+                                    <input type="number" class="" name="CuantiaGanador" min="1" value="1">
+                                    <span>€</span>
+                                </div>
+                                <div class="col-md-5 text-center">
+                                    <!-- Nombre del submit -->
                                     <input type="submit" name="CrearApuesta" class="btn btn-primary" value="Crear Apuesta">
                                 </div>
                             </div>
                         </form>
                     </div>
                 </div>
-
             </div>
         </section>
 
