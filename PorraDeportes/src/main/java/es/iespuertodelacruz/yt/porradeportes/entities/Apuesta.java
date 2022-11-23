@@ -13,8 +13,6 @@ public class Apuesta {
 
     private Usuario usuario;
 
-    private TipoApuesta tipoApuesta;
-
     private String resultado;
 
     private BigDecimal cuota;
@@ -30,7 +28,6 @@ public class Apuesta {
         this.id = apuesta.getId();
         this.evento = apuesta.getEvento();
         this.usuario = apuesta.getUsuario();
-        this.tipoApuesta = apuesta.getTipoApuesta();
         this.resultado = apuesta.getResultado();
         this.cuota = apuesta.getCuota();
         this.cantidad = apuesta.getCantidad();
@@ -69,17 +66,6 @@ public class Apuesta {
 
     public Apuesta setUsuario(Usuario idUsuario) {
         this.usuario = idUsuario;
-        return this;
-    }
-
-    @ManyToOne(fetch = FetchType.EAGER, optional = false)
-    @JoinColumn(name = "id_tipo", nullable = false)
-    public TipoApuesta getTipoApuesta() {
-        return tipoApuesta;
-    }
-
-    public Apuesta setTipoApuesta(TipoApuesta idTipo) {
-        this.tipoApuesta = idTipo;
         return this;
     }
 
