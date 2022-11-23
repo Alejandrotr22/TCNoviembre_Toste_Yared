@@ -64,7 +64,7 @@ public class ApuestaRepository implements ICrud<Apuesta, Integer>{
     }
 
     @Override
-    public void update(Apuesta object) {
+    public Boolean update(Apuesta object) {
 
         EntityManager em = emf.createEntityManager();
 
@@ -77,15 +77,16 @@ public class ApuestaRepository implements ICrud<Apuesta, Integer>{
         }catch (RollbackException ex){
 
             em.close();
+            return null;
 
         }
 
         em.close();
-
+        return true;
     }
 
     @Override
-    public void delete(Integer id) {
+    public Boolean delete(Integer id) {
 
         EntityManager em = emf.createEntityManager();
 
@@ -98,15 +99,19 @@ public class ApuestaRepository implements ICrud<Apuesta, Integer>{
                 em.remove(apuesta);
                 em.getTransaction().commit();
 
+            }else{
+                return false;
             }
 
         }catch (RollbackException ex){
 
             em.close();
+            return null;
 
         }
 
         em.close();
+        return true;
 
     }
 

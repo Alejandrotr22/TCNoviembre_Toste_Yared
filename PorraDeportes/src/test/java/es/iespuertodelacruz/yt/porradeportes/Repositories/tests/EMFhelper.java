@@ -6,31 +6,31 @@ import javax.persistence.Persistence;
 
 public class EMFhelper {
 
-	//Singleton
-	
-	private static EMFhelper emfHelper;
-	private EntityManagerFactory emf;
-	
-	private EMFhelper() {
-		
-		emf = Persistence.createEntityManagerFactory("PorraDeportes");
-		
-	}
-	
-	public static EMFhelper getSingleton() {
-		
-		if(emfHelper == null) {
-			emfHelper = new EMFhelper();
-		}
-		
-		return emfHelper;
-		
-	}
-	
-	public EntityManagerFactory getEMF() {
-		
-		return emf;
-		
-	}
-	
+    //Singleton
+
+    private static EMFhelper emfHelper;
+    private EntityManagerFactory emf;
+
+    private EMFhelper() {
+
+        emf = Persistence.createEntityManagerFactory("PorraDeportes");
+
+    }
+
+    public static EMFhelper getSingleton() {
+
+        if(emfHelper == null) {
+            emfHelper = new EMFhelper();
+        }
+
+        return emfHelper;
+
+    }
+
+    public EntityManagerFactory getEMF() {
+
+        return emf;
+
+    }
+
 }

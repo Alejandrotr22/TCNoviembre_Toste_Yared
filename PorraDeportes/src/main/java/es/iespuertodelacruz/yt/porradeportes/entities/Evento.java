@@ -6,6 +6,7 @@ import java.util.LinkedHashSet;
 import java.util.Set;
 
 @Entity
+@NamedQuery(name="Evento.findAll", query = "SELECT e FROM Evento e")
 @Table(name = "eventos")
 public class Evento {
     private Integer id;
@@ -19,6 +20,8 @@ public class Evento {
     private String nombre;
 
     private Equipo idEquipoGanador;
+
+    private String resultado;
 
     private Set<Apuesta> apuestas = new LinkedHashSet<>();
 
@@ -35,10 +38,15 @@ public class Evento {
         this.fechaFin = e.getFechaFin();
         this.nombre = e.getNombre();
         this.idEquipoGanador = e.getIdEquipoGanador();
+        this.resultado = e.getResultado();
         this.apuestas = e.getApuestas();
         this.participantes = e.getParticipantes();
     }
 
+    /**
+     * Constructor por defecto
+     */
+    public Evento(){}
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
@@ -103,7 +111,15 @@ public class Evento {
         return this;
     }
 
-    @OneToMany(mappedBy = "evento")
+    @Column(name = "resultado", nullable = true, length = 200)
+    public String getResultado(){ return resultado; }
+
+    public void setResultado(String resultado){
+        this.resultado = resultado;
+    }
+
+
+    @OneToMany(mappedBy = "evento",fetch = FetchType.EAGER)
     public Set<Apuesta> getApuestas() {
         return apuestas;
     }

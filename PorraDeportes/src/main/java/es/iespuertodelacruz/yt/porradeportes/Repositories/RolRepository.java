@@ -61,7 +61,7 @@ public class RolRepository implements ICrud<Rol, Integer>{
     }
 
     @Override
-    public void update(Rol object) {
+    public Boolean update(Rol object) {
 
         EntityManager em = emf.createEntityManager();
 
@@ -74,16 +74,16 @@ public class RolRepository implements ICrud<Rol, Integer>{
         }catch (RollbackException ex){
 
             em.close();
-
+            return null;
         }
 
         em.close();
-
+        return true;
 
     }
 
     @Override
-    public void delete(Integer id) {
+    public Boolean delete(Integer id) {
 
         EntityManager em = emf.createEntityManager();
         try{
@@ -93,13 +93,17 @@ public class RolRepository implements ICrud<Rol, Integer>{
             if(rol != null){
                 em.remove(rol);
                 em.getTransaction().commit();
+            }else{
+                return false;
             }
 
         }catch (RollbackException ex){
             em.close();
+            return null;
         }
 
         em.close();
+        return true;
 
     }
 

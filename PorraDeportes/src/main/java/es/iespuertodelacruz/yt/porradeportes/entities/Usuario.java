@@ -8,6 +8,8 @@ import java.util.Set;
 @Entity
 @Table(name = "usuarios")
 @NamedQuery(name="Usuario.findAll", query = "SELECT u FROM Usuario u")
+@NamedQuery(name="Usuario.findByEmail", query = "select u from Usuario u where u.email = :email")
+@NamedQuery(name="Usuario.findByUser", query = "select u from Usuario u where u.nombre = :usuario")
 public class Usuario {
     private Integer id;
 
@@ -23,7 +25,9 @@ public class Usuario {
 
     private Set<Apuesta> apuestas = new LinkedHashSet<>();
 
-    public Usuario(){}
+    public Usuario(){
+
+    }
     public Usuario(Usuario usuarioCopia){
 
         this.id = usuarioCopia.getId();

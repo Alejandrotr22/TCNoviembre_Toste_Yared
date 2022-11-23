@@ -1,136 +1,142 @@
 package es.iespuertodelacruz.yt.porradeportes.Repositories;
 
 import es.iespuertodelacruz.yt.porradeportes.entities.Apuesta;
-import es.iespuertodelacruz.yt.porradeportes.entities.TipoApuesta;
+import es.iespuertodelacruz.yt.porradeportes.entities.Equipo;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.RollbackException;
 import java.util.List;
 
-public class TipoApuestaRepository implements ICrud<TipoApuesta, Integer> {
+public class EquipoRepository implements ICrud<Equipo, Integer> {
 
     EntityManagerFactory emf;
 
-    public TipoApuestaRepository(EntityManagerFactory emf){ this.emf = emf;}
-
+    public EquipoRepository(EntityManagerFactory emf){this.emf = emf; }
 
     @Override
-    public TipoApuesta save(TipoApuesta object) {
+    public Equipo save(Equipo object) {
 
-        TipoApuesta tipoApuesta = null;
+        Equipo equipo = null;
 
         EntityManager em = emf.createEntityManager();
 
-        try{
+        try {
 
             em.getTransaction().begin();
-
-            for (Apuesta apuesta : object.getApuestas()) {
-                apuesta.setTipoApuesta(object);
-            }
-
             em.persist(object);
             em.getTransaction().commit();
-            tipoApuesta = new TipoApuesta(object);
+            equipo = new Equipo(object);
 
         }catch (RollbackException ex){
+
             em.close();
             return null;
+
         }
 
         em.close();
-        return tipoApuesta;
+        return equipo;
+
 
     }
 
     @Override
-    public TipoApuesta findByID(Integer id) {
+    public Equipo findByID(Integer id) {
 
         EntityManager em = emf.createEntityManager();
-        TipoApuesta tipoApuesta;
+        Equipo equipo;
+
         try {
 
-            tipoApuesta = em.find(TipoApuesta.class, id);
+            equipo = em.find(Equipo.class, id);
 
         }catch (RollbackException ex){
+
             em.close();
             return null;
+
         }
+
         em.close();
-        return tipoApuesta;
+        return equipo;
 
     }
 
     @Override
-    public void update(TipoApuesta object) {
+    public Boolean update(Equipo object) {
 
         EntityManager em = emf.createEntityManager();
 
-        try{
+        try {
 
             em.getTransaction().begin();
-            TipoApuesta tipoApuestaUpdate = em.merge(object);
+            em.merge(object);
             em.getTransaction().commit();
 
         }catch (RollbackException ex){
 
             em.close();
+            return null;
 
         }
 
         em.close();
+        return true;
 
     }
 
     @Override
-    public void delete(Integer id) {
+    public Boolean delete(Integer id) {
 
         EntityManager em = emf.createEntityManager();
 
-        try{
+        try {
 
             em.getTransaction().begin();
-            TipoApuesta tipoApuesta = em.find(TipoApuesta.class, id);
+            Equipo equipo = em.find(Equipo.class, id);
+            if(equipo != null){
 
-            if(tipoApuesta != null){
-
-                em.remove(tipoApuesta);
+                em.remove(equipo);
                 em.getTransaction().commit();
 
+            }else{
+                return false;
             }
 
         }catch (RollbackException ex){
 
             em.close();
+            return null;
 
         }
 
         em.close();
+        return true;
 
     }
 
     @Override
-    public List<TipoApuesta> findAll() {
+    public List<Equipo> findAll() {
 
-        List<TipoApuesta> tipoApuestas = null;
+
+        List<Equipo> equipos = null;
         EntityManager em = emf.createEntityManager();
 
         try {
 
             em.getTransaction().begin();
-            tipoApuestas = em.createNamedQuery("TipoApuesta.findAll", TipoApuesta.class)
+            equipos = em.createNamedQuery("Equipo.findAll", Equipo.class)
                     .getResultList();
-
             em.getTransaction().commit();
-        }catch (RollbackException ex){
 
+        }catch (RollbackException ex){
             em.close();
             return null;
-
         }
+        em.close();
 
-        return tipoApuestas;
+        return equipos;
 
     }
 }

@@ -11,9 +11,9 @@ public interface ICrud<T, E> {
 
     T findByID(E id);
 
-    boolean update(T object);
+    Boolean update(T object);
 
-    void delete(E id);
+    Boolean delete(E id);
 
     List<T> findAll();
 

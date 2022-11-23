@@ -5,12 +5,9 @@ import es.iespuertodelacruz.yt.porradeportes.Repositories.UsuarioRepository;
 import es.iespuertodelacruz.yt.porradeportes.entities.Rol;
 import es.iespuertodelacruz.yt.porradeportes.entities.Usuario;
 import org.junit.jupiter.api.*;
-
 import javax.persistence.EntityManagerFactory;
-
 import java.math.BigDecimal;
 
-import static org.junit.jupiter.api.Assertions.fail;
 
 
 class UsuarioRepositoryTest {
