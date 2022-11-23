@@ -2,8 +2,7 @@ package es.iespuertodelacruz.yt.porradeportes.Repositories;
 
 import es.iespuertodelacruz.yt.porradeportes.entities.Apuesta;
 import es.iespuertodelacruz.yt.porradeportes.entities.Evento;
-import es.iespuertodelacruz.yt.porradeportes.entities.Usuario;
-import jdk.jfr.Event;
+
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -31,7 +30,7 @@ public class EventoRepository implements ICrud<Evento,Integer>{
 
             em.persist(object);
             evento = new Evento(object);
-
+            em.getTransaction().commit();
             em.close();
         }catch (RollbackException ex){
             em.close();
@@ -71,15 +70,15 @@ public class EventoRepository implements ICrud<Evento,Integer>{
             return true;
         }catch (RollbackException ex){
             em.close();
-            return null;
+            return false;
         }
 
     }
 
     @Override
     public Boolean delete(Integer id) {
-
         EntityManager em = emf.createEntityManager();
+        Boolean res = false;
         try {
             em.getTransaction().begin();
             Evento evento = em.find(Evento.class, id);
@@ -87,22 +86,20 @@ public class EventoRepository implements ICrud<Evento,Integer>{
                 if (evento.getApuestas().size() == 0){
                     em.remove(evento);
                     em.getTransaction().commit();
-                    em.close();
-                    return true;
+                    res = true;
 
                 }else{
-                    em.close();
-                    return false;
+                    res = null;
                 }
             }else{
-                em.close();
-                return false;
+                res =  false;
             }
-
         }catch (RollbackException ex){
             em.close();
-            return null;
+            return res ;
+
         }
+        return res ;
     }
 
     @Override
@@ -115,7 +112,7 @@ public class EventoRepository implements ICrud<Evento,Integer>{
             em.getTransaction().commit();
             em.close();
         }catch (RollbackException ex){
-
+            return null;
         }
         return eventos;
     }
