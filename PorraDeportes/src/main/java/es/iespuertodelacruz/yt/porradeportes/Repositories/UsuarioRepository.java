@@ -134,4 +134,44 @@ public class UsuarioRepository implements ICrud<Usuario, Integer>{
 
 
     }
+
+    public Usuario findByEmail(String email) {
+
+        EntityManager em = emf.createEntityManager();
+        Usuario usuario;
+        try {
+
+            usuario = em.createNamedQuery("Usuario.findByEmail", Usuario.class)
+                    .setParameter("email", email)
+                    .getSingleResult();
+
+
+        }catch (Exception ex){
+            em.close();
+            return null;
+        }
+        em.close();
+        return usuario;
+
+    }
+
+    public Usuario findByUser(String user) {
+
+        EntityManager em = emf.createEntityManager();
+        Usuario usuario;
+        try {
+
+            usuario = em.createNamedQuery("Usuario.findByUser", Usuario.class)
+                    .setParameter("usuario", user)
+                    .getSingleResult();
+
+
+        }catch (Exception ex){
+            em.close();
+            return null;
+        }
+        em.close();
+        return usuario;
+
+    }
 }

@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <!--
 Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -17,19 +19,20 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
     <section>
         <section class="cartaLogin">
             <h3 class="titleLogin">Registro</h3>
-            <form class="formulario" action="ServletUsuarios" method="POST">
+            <form class="formulario" action="ServletLoginRegister" method="POST">
                 <label class="label">Usuario</label>
                 <input class="inputText" type="text" name="usuario" placeholder="nombre de usuario">
                 <label class="label">Email</label>
                 <input class="inputText" type="email" name="email" placeholder="correo">
                 <label class="label">Contraseña</label>
                 <input class="inputText" type="password" name="password" placeholder="contraseña">
-                <input class="inputSubmit" type="submit" name="login" value="Registrarse">
+                <input class="inputSubmit" type="submit" name="registro" value="Registrarse">
             </form>
             <div class="other">
-                <a href="index.html"><button class="btn">Iniciar Sesión</button></a>
+                <a href="login.jsp"><button class="btn">Iniciar Sesión</button></a>
             </div>
         </section>
     </section>
+    <p style="color: #ff9100; font-size: 1.8rem; " >${respuesta}</p>
     </body>
 </html>

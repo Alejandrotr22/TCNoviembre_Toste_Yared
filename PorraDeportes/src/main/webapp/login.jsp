@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+         pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="es">
     <head>
@@ -14,17 +16,18 @@
         <section>
             <section class="cartaLogin">
                 <h3 class="titleLogin">Iniciar Sesión</h3>
-                <form class="formulario" action="ServletUsuarios" method="POST">
-                    <label class="label">Email</label>
-                    <input class="inputText" type="email" name="email" placeholder="correo">
+                <form class="formulario" action="ServletLoginRegister" method="POST">
+                    <%--@declare id="introduce un email válido"--%><label class="label">Email</label>
+                    <input class="inputText" type="email" name="email" placeholder="correo" aria-errormessage="Introduce un email válido">
                     <label class="label">Contraseña</label>  
                     <input class="inputText" type="password" name="password" placeholder="contraseña">
                     <input class="inputSubmit" type="submit" name="login" value="Iniciar Sesión">
                 </form>
                 <div class="other">
-                    <a href="registrarse.html"><button class="btn">Registrarse</button></a>
+                    <a href="registrarse.jsp"><button class="btn">Registrarse</button></a>
                 </div>
             </section>
         </section>
+        <p style="color: #ff9100; font-size: 1.8rem; " >${respuesta}</p>
     </body>
 </html>

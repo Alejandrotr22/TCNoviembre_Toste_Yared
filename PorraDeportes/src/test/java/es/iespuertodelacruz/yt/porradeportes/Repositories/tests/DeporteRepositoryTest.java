@@ -41,18 +41,12 @@ class DeporteRepositoryTest {
     
     @Test
     void save() {
-<<<<<<< HEAD
-        d.setNombre(nombre);
-        d.setEventos(eventos);
-        deporteRepository.save(d);
-        assertNotNull(d.getId(),"No se ha asignado un id al deporte");
 
-=======
         deporte.setNombre(nombre);
         deporte.setEventos(eventos);
         deporteRepository.save(deporte);
         assertNotNull(deporte.getId(),"No se ha asignado un id al deporte");
->>>>>>> feature_LoginRegister_12
+
     }
 
     @Test
