@@ -14,7 +14,6 @@ import javax.persistence.EntityManagerFactory;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 class DeporteRepositoryTest {
@@ -48,6 +47,7 @@ class DeporteRepositoryTest {
         d.setEventos(eventos);
         deporteRepository.save(d);
         assertNotNull(d.getId(),"No se ha asignado un id al deporte");
+
     }
 
     @Test
