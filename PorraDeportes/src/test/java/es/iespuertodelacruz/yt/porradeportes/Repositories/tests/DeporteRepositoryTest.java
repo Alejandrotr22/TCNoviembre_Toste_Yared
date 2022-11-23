@@ -4,11 +4,9 @@ import es.iespuertodelacruz.yt.porradeportes.Repositories.DeporteRepository;
 import es.iespuertodelacruz.yt.porradeportes.entities.Deporte;
 import es.iespuertodelacruz.yt.porradeportes.entities.Evento;
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.*;
-import javax.persistence.EntityManager;
+
 import javax.persistence.EntityManagerFactory;
 
 import java.util.LinkedHashSet;
@@ -24,7 +22,7 @@ class DeporteRepositoryTest {
     String nombre = "Carrera1";
     Set<Evento> eventos = new LinkedHashSet<>();
 
-    Deporte d = new Deporte();
+    Deporte deporte = new Deporte();
     DeporteRepository deporteRepository;
 
 
@@ -43,46 +41,53 @@ class DeporteRepositoryTest {
     
     @Test
     void save() {
+<<<<<<< HEAD
         d.setNombre(nombre);
         d.setEventos(eventos);
         deporteRepository.save(d);
         assertNotNull(d.getId(),"No se ha asignado un id al deporte");
 
+=======
+        deporte.setNombre(nombre);
+        deporte.setEventos(eventos);
+        deporteRepository.save(deporte);
+        assertNotNull(deporte.getId(),"No se ha asignado un id al deporte");
+>>>>>>> feature_LoginRegister_12
     }
 
     @Test
     void findByID() {
 
-        d.setNombre(nombre);
-        d.setEventos(eventos);
-        d = deporteRepository.save(d);
-        Deporte d2 = deporteRepository.findByID(d.getId());
+        deporte.setNombre(nombre);
+        deporte.setEventos(eventos);
+        deporte = deporteRepository.save(deporte);
+        Deporte d2 = deporteRepository.findByID(deporte.getId());
 
-        assertEquals(d2.getId(),d.getId(),"los id no son iguales");
-        assertEquals(d2.getNombre(),d.getNombre(),"los nombres no son iguales");
+        assertEquals(d2.getId(), deporte.getId(),"los id no son iguales");
+        assertEquals(d2.getNombre(), deporte.getNombre(),"los nombres no son iguales");
 
     }
 
     @Test
     void update() {
-        d = new Deporte();
-        d.setNombre("carrera3");
-        d.setEventos(eventos);
-        d = deporteRepository.save(d);
-        Deporte d1 = deporteRepository.findByID(d.getId());
-        d1.setNombre("carrera2");
-        Boolean update = deporteRepository.update(d1);
+        deporte = new Deporte();
+        deporte.setNombre("carrera3");
+        deporte.setEventos(eventos);
+        deporte = deporteRepository.save(deporte);
+        Deporte deporte1 = deporteRepository.findByID(deporte.getId());
+        deporte1.setNombre("carrera2");
+        Boolean update = deporteRepository.update(deporte1);
         assertTrue(update,"No se ha realizado el update correctamente");
-        assertNotEquals(d.getNombre(),nombre,"Los nombres no se han cambiado");
+        assertNotEquals(deporte.getNombre(),nombre,"Los nombres no se han cambiado");
     }
 
     @Test
     void delete() {
-        Deporte d2 = new Deporte();
-        d2.setNombre(nombre);
-        d2.setEventos(eventos);
-        deporteRepository.save(d2);
-        assertTrue(deporteRepository.delete(d2.getId()),"no se elimina correctamente");
+        Deporte deporte2 = new Deporte();
+        deporte2.setNombre(nombre);
+        deporte2.setEventos(eventos);
+        deporteRepository.save(deporte2);
+        assertTrue(deporteRepository.delete(deporte2.getId()),"no se elimina correctamente");
     }
 
     @Test
