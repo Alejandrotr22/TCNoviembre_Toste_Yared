@@ -12,6 +12,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -25,13 +26,14 @@ class DeporteRepositoryTest {
     Set<Evento> eventos = new LinkedHashSet<>();
 
     Deporte d = new Deporte();
-
+    DeporteRepository deporteRepository;
 
 
     @BeforeEach
     void setUp() {
         EMFhelper EMF = EMFhelper.getSingleton();
         emf = EMF.getEMF();
+        deporteRepository = new DeporteRepository(emf);
     }
 
     @AfterEach
@@ -42,17 +44,18 @@ class DeporteRepositoryTest {
     
     @Test
     void save() {
-        DeporteRepository deporteRepository = new DeporteRepository(emf);
         d.setNombre(nombre);
         d.setEventos(eventos);
-        d.setId(id);
         deporteRepository.save(d);
         assertNotNull(d.getId(),"No se ha asignado un id al deporte");
     }
 
     @Test
     void findByID() {
-        DeporteRepository deporteRepository = new DeporteRepository(emf);
+
+        d.setNombre(nombre);
+        d.setEventos(eventos);
+        d = deporteRepository.save(d);
         Deporte d2 = deporteRepository.findByID(d.getId());
 
         assertEquals(d2.getId(),d.getId(),"los id no son iguales");
@@ -62,15 +65,31 @@ class DeporteRepositoryTest {
 
     @Test
     void update() {
+        d = new Deporte();
+        d.setNombre("carrera3");
+        d.setEventos(eventos);
+        d = deporteRepository.save(d);
+        Deporte d1 = deporteRepository.findByID(d.getId());
+        d1.setNombre("carrera2");
+        Boolean update = deporteRepository.update(d1);
+        assertTrue(update,"No se ha realizado el update correctamente");
+        assertNotEquals(d.getNombre(),nombre,"Los nombres no se han cambiado");
     }
 
     @Test
     void delete() {
-        DeporteRepository deporteRepository = new DeporteRepository(emf);
-        deporteRepository.delete();
+        Deporte d2 = new Deporte();
+        d2.setNombre(nombre);
+        d2.setEventos(eventos);
+        deporteRepository.save(d2);
+        assertTrue(deporteRepository.delete(d2.getId()),"no se elimina correctamente");
     }
 
     @Test
     void findAll() {
+        List<Deporte> all = deporteRepository.findAll();
+        System.out.println(all);
+        assertNotNull(all,"No se ha rellenado el list");
+        System.out.println(all);
     }
 }
