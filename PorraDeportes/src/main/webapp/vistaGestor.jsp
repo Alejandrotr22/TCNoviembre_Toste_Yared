@@ -19,10 +19,10 @@
 <body>
 
     <main class="container-fluid">
-
+        <h1>Gestiona los diferentes parametros</h1>
         <section class="justify-content-center">
             <div class="">
-                <div class="list-group d-block">
+                <div class="list-group">
                     <a class="list-group-item list-group-item-action active" data-toggle="list"
                         data-target="#eventos">Eventos</a>
                     <a class="list-group-item list-group-item-action " data-toggle="list"
@@ -38,32 +38,24 @@
                     <!--  formularios de Eventos   -->
                     <div class="tab-pane fade show active row" id="eventos">
                         <form class="formGanador">
-                            <div class="form-row justify-content-center">
-                                <div class="col-md-3 form-group">
-                                    <label for="">Ganador</label>
-                                    <select class="form-control" id="ganador" name="ganador">
-                                        <option>1</option>
-                                        <option>2</option>
-                                        <option>X</option>
-                                    </select>
-                                </div>
-                                <div class="col-md-5 text-center">
-                                    <label>Cuotas</label>
-                                    <br>
-                                    <input class="cuota" type="text" name="cuota1" id="cuota1" value="1" readonly >
-                                    <input class="cuota" type="text" name="cuota2" id="cuota2" value="1" readonly >
-                                </div>
-                            </div>
-                            <div class="form-row justify-content-center">
-                                <div class="col-md-5 text-center">
-                                    <label>Cuantia</label>
-                                    <input type="number" class="" name="CuantiaGanador" min="1" value="1">
-                                    <span>€</span>
-                                </div>
-                                <div class="col-md-5 text-center">
-                                    <input type="submit" class="btn btn-primary" value="Crear Apuesta">
-                                </div>
-                            </div>
+                            <label for="formControlInput" class="form-label">Email address</label>
+                            <input type="email" class="form-control" id="formControlInput" placeholder="name@example.com">
+                            <label for="formControlInput" class="form-label">Email address</label>
+                            <input type="email" class="form-control" id="formControlInput" placeholder="name@example.com">
+                            <label for="formControlInput" class="form-label">Email address</label>
+                            <input type="email" class="form-control" id="formControlInput" placeholder="name@example.com">
+                            <label for="formControlInput" class="form-label">Email address</label>
+                            <input type="email" class="form-control" id="formControlInput" placeholder="name@example.com">
+                        </form>
+                        <form class="formGanador">
+                            <label for="formControlInput" class="form-label">Email address</label>
+                            <input type="email" class="form-control" id="formControlInput" placeholder="name@example.com">
+                            <label for="formControlInput" class="form-label">Email address</label>
+                            <input type="email" class="form-control" id="formControlInput" placeholder="name@example.com">
+                            <label for="formControlInput" class="form-label">Email address</label>
+                            <input type="email" class="form-control" id="formControlInput" placeholder="name@example.com">
+                            <label for="formControlInput" class="form-label">Email address</label>
+                            <input type="email" class="form-control" id="formControlInput" placeholder="name@example.com">
                         </form>
                     </div>
 
@@ -129,12 +121,7 @@
             </div>
         </section>
 
-
-
-
-
-
-
+    </main>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
