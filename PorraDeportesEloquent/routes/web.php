@@ -18,3 +18,27 @@ Route::get('/', function () {
 });
 
 Route::get('/find', 'App\Http\Controllers\pruebasDDBB@pruebaFind');
+
+Route::get('/login', function (){
+    return view('login');
+});
+
+Route::post('Login', 'App\Http\Controllers\Login@index');
+
+Route::any('/home', function (){
+    return view('home');
+});
+
+Route::post('Registro', 'App\Http\Controllers\Login@registro');
+
+Route::get('registrarsePage', function () {
+    return view('registrarse');
+});
+
+Route::get('loginPage', function (){
+    return view('login');
+});
+
+Route::any('/registrarse', function () {
+    return view('registrarse');
+});
