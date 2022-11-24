@@ -38,7 +38,7 @@
                     <!--  formularios de Eventos   -->
                     <div class="tab-pane fade show active row" id="eventos">
                         <div class="form-row justify-content-center">
-                            <form class="formGanador col-md-4 mt-3">
+                           <form class="formGanador col-md-4 mt-3" action="/NombreServlet" method="POST">
                                 <h3>Crear Evento</h3>
                                 <label for="" class="form-label">Nombre</label>
                                 <input type="text" name="nombreCrearA" class="form-control"  >
@@ -55,7 +55,7 @@
                                 <input type="submit" name="CrearA" class="form-control" value="Crear Evento">
                             </form>
                             
-                            <form class="formGanador col-md-4 mt-3">
+                           <form class="formGanador col-md-4 mt-3" action="/NombreServlet" method="POST">
                                 <h3>Modificar/Cerrar Evento</h3>
                                 <label for="">Evento</label>
                                 <select class="form-control"  name="IdModA">
@@ -92,7 +92,7 @@
                                 <input type="submit" name="ModA" class="form-control" value="Modificar/Cerrar Evento">
                             </form>
 
-                            <form class="formGanador col-md-3 mt-3">
+                           <form class="formGanador col-md-4 mt-3" action="/NombreServlet" method="POST">
                                 <h3>Eliminar Evento</h3>
                                 <label for="">Evento</label>
                                 <select class="form-control" name="IdDelA">
@@ -105,7 +105,7 @@
                                 <input type="submit" name="DelA" class="form-control" value="Eliminar Evento">
                             </form>
 
-                            <form class="formGanador col-md-3 mt-3">
+                           <form class="formGanador col-md-4 mt-3" action="/NombreServlet" method="POST">
                                 <h3>Buscar Evento</h3>
                                 <label for="">Evento</label>
                                 <select class="form-control" name="IdFindA">
@@ -118,7 +118,7 @@
                                 <input type="submit" name="FindA" class="form-control" value="Buscar Evento">
                             </form>
 
-                            <form class="formGanador col-md-3 mt-3">
+                           <form class="formGanador col-md-4 mt-3" action="/NombreServlet" method="POST">
                                 <h3>Mostrar Todos</h3>
                                 <br>
                                 <input type="submit" name="FindAllA" class="form-control" value="Mostrar Todos ">
@@ -133,7 +133,7 @@
                     <!--  formularios de Apuestas   -->
                     <div class="tab-pane fade row" id="apuestas">
                         <div class="form-row justify-content-center">
-                            <form class="formGanador col-md-4 mt-3">
+                          <form class="formGanador col-md-4 mt-3" action="/NombreServlet" method="POST">
                                 <h3>Crear Apuesta</h3>
                                 <label for="">Evento</label>
                                 <select class="form-control"  name="IdEventoCrearE">
@@ -159,7 +159,7 @@
                                 <input type="submit" name="CrearE" class="form-control" value="Crear Apuesta">
                             </form>
                             
-                            <form class="formGanador col-md-4 mt-3">
+                           <form class="formGanador col-md-4 mt-3" action="/NombreServlet" method="POST">
                                 <h3>Modificar/Comprobar Apuesta</h3>
                                 <label for="">Apuesta</label>
                                 <select class="form-control"  name="IdCrearE">
@@ -193,7 +193,7 @@
                             </form>
                             </form>
 
-                            <form class="formGanador col-md-3 mt-3">
+                           <form class="formGanador col-md-4 mt-3" action="/NombreServlet" method="POST">
                                 <h3>Eliminar Apuesta</h3>
                                 <label for="">Apuesta</label>
                                 <select class="form-control" name="IdDelE">
@@ -205,7 +205,7 @@
                                 <input type="submit" name="DelE" class="form-control" value="Eliminar Apuesta">
                             </form>
 
-                            <form class="formGanador col-md-3 mt-3">
+                           <form class="formGanador col-md-4 mt-3" action="/NombreServlet" method="POST">
                                 <h3>Buscar Apuesta</h3>
                                 <label for="">Apuesta</label>
                                 <select class="form-control" name="IdFindE">
@@ -217,7 +217,7 @@
                                 <input type="submit" name="FindE" class="form-control" value="Buscar Apuesta">
                             </form>
 
-                            <form class="formGanador col-md-3 mt-3">
+                           <form class="formGanador col-md-4 mt-3" action="/NombreServlet" method="POST">
                                 <h3>Mostrar Todos</h3>
                                 <br>
                                 <input type="submit" name="FindAllE" class="form-control" value="Mostrar Todos ">
@@ -232,7 +232,7 @@
                     <!-- fromularios de Usuario -->
                     <div class="tab-pane fade" id="usuarios">
                         <div class="form-row justify-content-center">
-                            <form class="formGanador col-md-4 mt-3">
+                           <form class="formGanador col-md-4 mt-3" action="/NombreServlet" method="POST">
                                 <h3>Crear Usuario</h3>
                                 <label for="" class="form-label">Nombre</label>
                                 <input type="text" name="NombreCrearU" class="form-control"  >
@@ -253,7 +253,7 @@
                                 <input type="submit" name="CrearU" class="form-control" value="Crear Usuario">
                             </form>
                             
-                            <form class="formGanador col-md-4 mt-3">
+                           <form class="formGanador col-md-4 mt-3" action="/NombreServlet" method="POST">
                                 <h3>Modificar Usuario</h3>
                                 <label for="">Usuario</label>
                                 <select class="form-control"  name="IdModU">
@@ -281,7 +281,7 @@
                                 <input type="submit" name="ModU" class="form-control" value="Modificar Usuario">
                             </form>
 
-                            <form class="formGanador col-md-3 mt-3">
+                           <form class="formGanador col-md-4 mt-3" action="/NombreServlet" method="POST">
                                 <h3>Eliminar Usuario</h3>
                                 <label for="">Usuario</label>
                                 <select class="form-control" name="IdDelU">
@@ -294,7 +294,7 @@
                                 <input type="submit" name="DelU" class="form-control" value="Eliminar Usuario">
                             </form>
 
-                            <form class="formGanador col-md-3 mt-3">
+                           <form class="formGanador col-md-4 mt-3" action="/NombreServlet" method="POST">
                                 <h3>Buscar Usuario</h3>
                                 <label for="">Usuario</label>
                                 <select class="form-control" name="IdFindU">
@@ -307,7 +307,7 @@
                                 <input type="submit" name="FindU" class="form-control" value="Buscar Usuario">
                             </form>
 
-                            <form class="formGanador col-md-3 mt-3">
+                           <form class="formGanador col-md-4 mt-3" action="/NombreServlet" method="POST">
                                 <h3>Mostrar Todos</h3>
                                 <br>
                                 <input type="submit" name="FindAllU" class="form-control" value="Mostrar Todos ">
@@ -322,7 +322,7 @@
                     <!-- fromularios de Deportes -->
                     <div class="tab-pane fade" id="deportes">
                         <div class="form-row justify-content-center">
-                            <form class="formGanador col-md-4 mt-3">
+                           <form class="formGanador col-md-4 mt-3" action="/NombreServlet" method="POST">
                                 <h3>Crear Deporte</h3>
                                 <label for="" class="form-label">Nombre</label>
                                 <input type="text" name="NombreCrearD" class="form-control"  >
@@ -330,7 +330,7 @@
                                 <input type="submit" name="CrearD" class="form-control" value="Crear Deporte">
                             </form>
                             
-                            <form class="formGanador col-md-4 mt-3">
+                           <form class="formGanador col-md-4 mt-3" action="/NombreServlet" method="POST">
                                 <h3>Modificar Deporte</h3>
                                 <label for="">Deporte</label>
                                 <select class="form-control"  name="IdModD">
@@ -345,7 +345,7 @@
                                 <input type="submit" name="ModD" class="form-control" value="Modificar Deporte">
                             </form>
 
-                            <form class="formGanador col-md-3 mt-3">
+                           <form class="formGanador col-md-4 mt-3" action="/NombreServlet" method="POST">
                                 <h3>Eliminar Deporte</h3>
                                 <label for="">Deporte</label>
                                 <select class="form-control" name="IdDelD">
@@ -358,7 +358,7 @@
                                 <input type="submit" name="DelD" class="form-control" value="Eliminar Deporte">
                             </form>
 
-                            <form class="formGanador col-md-3 mt-3">
+                           <form class="formGanador col-md-4 mt-3" action="/NombreServlet" method="POST">
                                 <h3>Buscar Deporte</h3>
                                 <label for="">Deporte</label>
                                 <select class="form-control" name="IdFindD">
@@ -371,7 +371,7 @@
                                 <input type="submit" name="FindD" class="form-control" value="Buscar Deporte">
                             </form>
 
-                            <form class="formGanador col-md-3 mt-3">
+                           <form class="formGanador col-md-4 mt-3" action="/NombreServlet" method="POST">
                                 <h3>Mostrar Todos</h3>
                                 <br>
                                 <input type="submit" name="FindAllD" class="form-control" value="Mostrar Todos ">

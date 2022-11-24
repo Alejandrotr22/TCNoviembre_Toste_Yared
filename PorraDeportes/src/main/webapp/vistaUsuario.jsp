@@ -17,10 +17,15 @@
 <body>
 <h1><h1>
 
-<form action="" method="POST">
-    <label for="">Nuevo Saldo</label>
-    <input type="number" name="saldo" min="0">
-</form>
+    <form class="formGanador col-md-3 mt-3" action="/nombreServlet" method="POST">
+        <h3>Buscar Evento</h3>
+        <label for="" class="form-label">Nuevo Saldo</label>
+        <input type="number" name="Saldo" class="form-control" min="0"  >
+        <br>
+        <input type="submit" name="Actualizar Saldo" class="form-control" value="Actualizar">
+    </form>
+
+
 
 
 
