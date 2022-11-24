@@ -21,7 +21,7 @@
                     <input class="inputText" type="email" name="email" placeholder="correo" aria-errormessage="Introduce un email válido">
                     <label class="label">Contraseña</label>  
                     <input class="inputText" type="password" name="password" placeholder="contraseña">
-                    <input class="inputSubmit" type="submit" name="login" value="Iniciar Sesión">
+                    <input class="inputSubmit" type="submit" id="login" name="login" value="Iniciar Sesión">
                 </form>
                 <div class="other">
                     <a href="registrarse.jsp"><button class="btn">Registrarse</button></a>
