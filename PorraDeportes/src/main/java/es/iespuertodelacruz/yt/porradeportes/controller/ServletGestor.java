@@ -124,8 +124,6 @@ public class ServletGestor extends HttpServlet {
 			evento.setFechaInicio(date1.toInstant());
 			evento.setFechaFin(date2.toInstant());
 			evento.setIdDeporte(deporte);
-			evento.setParticipantes(participantes);
-			
 			Evento save = eventoRepository.save(evento);
 			
 			request.setAttribute("res", save + "");
@@ -188,8 +186,6 @@ public class ServletGestor extends HttpServlet {
 				
 			}
 			
-			
-			
 			if (!nombre.equals("")) {
 				evento.setNombre(nombre);
 			}
@@ -222,30 +218,41 @@ public class ServletGestor extends HttpServlet {
 		// eliminar Evento
 		if (request.getParameter("DelE") != null) {
 										
-			RequestDispatcher requestDispatcher = request.getRequestDispatcher("vistaGestor.jsp");
-            requestDispatcher.forward(request, response);
+			String eventoid = request.getParameter("IdDelE");
+			String[] split = eventoid.split("-");
+			Boolean delete = null;
+			try {
+				delete = eventoRepository.delete(Integer.parseInt(split[1]));
+			} catch (Exception e) {
+				
+			}
+			
+			request.setAttribute("res", (delete)?"Se ha borrado correctamente":"No se ha borrado correctamente" + "");
+			this.doGet(request, response);
 		
 		}
 		// mostrar Evento
 		if (request.getParameter("FindE") != null) {
 			String eventoid = request.getParameter("IdFindE");
 			String[] split = eventoid.split("-");
-			Evento save = null;
+			Evento find = null;
 			try {
-				save = eventoRepository.findByID(Integer.parseInt(split[1]));
+				find = eventoRepository.findByID(Integer.parseInt(split[1]));
 			} catch (Exception e) {
 				
 			}
 			
-			request.setAttribute("res", save + "");
-			doGet(request, response);
+			request.setAttribute("res", find + "");
+			this.doGet(request, response);
 		
 		}
 		// mostrar Todos
 		if (request.getParameter("FindAllE") != null) {
 			
-			RequestDispatcher requestDispatcher = request.getRequestDispatcher("vistaGestor.jsp");
-            requestDispatcher.forward(request, response);
+			List<Evento> findAll = eventoRepository.findAll();
+			
+			request.setAttribute("res", findAll + "");
+			this.doGet(request, response);
 		
 		}
 		

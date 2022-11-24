@@ -94,14 +94,14 @@
                                 <input type="submit" name="ModA" class="form-control" value="Modificar/Cerrar Evento">
                             </form>
 
-                           <form class="formGanador col-md-4 mt-3" action="/NombreServlet" method="POST">
+                           <form class="formGanador col-md-4 mt-3" action="/ServletGestor" method="POST">
                                 <h3>Eliminar Evento</h3>
                                 <label for="">Evento</label>
                                 <select class="form-control" name="IdDelE">
                                     <option></option>
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
+                                    <c:forEach items="${eventos}" var="evento">
+        								<option>${evento.getNombre()}-${evento.getId()}</option>
+									</c:forEach>
                                 </select>
                                 <br>
                                 <input type="submit" name="DelE" class="form-control" value="Eliminar Evento">
@@ -120,7 +120,7 @@
                                 <input type="submit" name="FindE" class="form-control" value="Buscar Evento">
                             </form>
 
-                           <form class="formGanador col-md-4 mt-3" action="/NombreServlet" method="POST">
+                           <form class="formGanador col-md-4 mt-3" action="/ServletGestor" method="POST">
                                 <h3>Mostrar Todos</h3>
                                 <br>
                                 <input type="submit" name="FindAllE" class="form-control" value="Mostrar Todos ">
