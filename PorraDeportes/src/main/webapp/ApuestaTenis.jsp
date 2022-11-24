@@ -23,13 +23,16 @@
         <section class="justify-content-center">
             <div class="">
                 <div class="list-group d-block">
+                    <h1>Tipos de apuestas</h1>
                     <a class="list-group-item list-group-item-action active" data-toggle="list"
                         data-target="#ganador">Ganador</a>
                 </div>
             </div>
             <div class="mt-3">
                 <div class="tab-content">
+                    <!--  Formulario Ganador  -->
                     <div class="tab-pane fade show active row" id="ganador">
+                        <!-- Nombre del formulario -->
                         <form class="formGanador" action="/NOMBRE-SERVLET" method="POST">
                             <div class="form-row justify-content-center">
                                 <div class="col-md-3 form-group">
@@ -67,7 +70,7 @@
         </section>
 
 
-
+    </main>
 
 
 
