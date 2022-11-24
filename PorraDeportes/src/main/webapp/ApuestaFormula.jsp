@@ -1,3 +1,4 @@
+<%@ page import="es.iespuertodelacruz.yt.porradeportes.entities.Usuario" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -35,9 +36,9 @@
                                 <div class="col-md-3 form-group">
                                     <label for="">Ganador</label>
                                     <select class="form-control" id="ganador" name="ganador">
-                                        <option>1</option>
-                                        <option>2</option>
-                                        <option>X</option>
+                                        <c:forEach items="${participantes}" var="participante">
+                                            <option></option>
+                                        </c:forEach>
                                     </select>
                                 </div>
                             </div>

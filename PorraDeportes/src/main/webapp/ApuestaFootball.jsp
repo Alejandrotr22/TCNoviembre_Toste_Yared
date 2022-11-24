@@ -102,7 +102,7 @@
                         <div class="form-row justify-content-center">
                             <div class="col-md-5 text-center">
                                 <label>Cuantia</label>
-                                <input type="number" class="" name="CuantiaGanador" min="1" value="1" max="${user.getSaldo()}>
+                                <input type="number" class="" name="CuantiaGanador" min="1" value="1" max="${user.getSaldo()}/>
                                 <span>€</span>
                                  <span>Tu saldo actual: ${user.getSaldo()}</span>
                             </div>
