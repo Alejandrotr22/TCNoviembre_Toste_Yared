@@ -63,6 +63,12 @@ form{
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0; 
 }
-input.form-control{
+input.form-control, select{
     margin-bottom: 5px;
+}
+
+textarea{
+    width: 96%;
+    margin-left: 2%;
+    margin-right: 2%;
 }
