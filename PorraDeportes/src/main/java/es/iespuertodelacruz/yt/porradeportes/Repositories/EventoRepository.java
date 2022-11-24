@@ -1,6 +1,7 @@
 package es.iespuertodelacruz.yt.porradeportes.Repositories;
 
 import es.iespuertodelacruz.yt.porradeportes.entities.Apuesta;
+import es.iespuertodelacruz.yt.porradeportes.entities.Equipo;
 import es.iespuertodelacruz.yt.porradeportes.entities.Evento;
 import es.iespuertodelacruz.yt.porradeportes.entities.Usuario;
 
@@ -8,7 +9,9 @@ import es.iespuertodelacruz.yt.porradeportes.entities.Usuario;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.RollbackException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class EventoRepository implements ICrud<Evento,Integer>{
@@ -27,6 +30,9 @@ public class EventoRepository implements ICrud<Evento,Integer>{
 
             for (Apuesta a: object.getApuestas()) {
                 a.setEvento(object);
+            }
+            for (Equipo participante : object.getParticipantes()) {
+                participante.getEventosParticipantes().add(object);
             }
 
 
@@ -116,5 +122,43 @@ public class EventoRepository implements ICrud<Evento,Integer>{
             return null;
         }
         return eventos;
+    }
+
+    public List<Evento> findActive(){
+
+        EntityManager em = emf.createEntityManager();
+        List<Evento> eventosNoFinalizados = new ArrayList<>();
+        String query = "select * from eventos where fecha_fin > now()";
+        try {
+
+            eventosNoFinalizados = em.createNativeQuery(query, Evento.class)
+                    .getResultList();
+
+
+        }catch (Exception ex){
+            em.close();
+            return null;
+        }
+        em.close();
+        return eventosNoFinalizados;
+
+    }
+
+    public List<Evento> findGanado(Integer id){
+
+        EntityManager em = emf.createEntityManager();
+        List<Evento> eventosGanadosPorEquipo = new ArrayList<>();
+        String query = "select * from eventos where id_equipo_ganador = "+id;
+        try {
+            em.getTransaction().begin();
+            eventosGanadosPorEquipo = em.createNativeQuery(query, Evento.class)
+                    .getResultList();
+            em.getTransaction().commit();
+            em.close();
+        }catch (RollbackException ex){
+            return null;
+        }
+        return eventosGanadosPorEquipo;
+
     }
 }

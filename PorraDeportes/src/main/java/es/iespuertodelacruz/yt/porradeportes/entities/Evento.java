@@ -7,6 +7,8 @@ import java.util.Set;
 
 @Entity
 @NamedQuery(name="Evento.findAll", query = "SELECT e FROM Evento e")
+@NamedQuery(name="Evento.findActive", query = "select e from Evento e where e.fechaFin.getTime() > :fechaActual")
+@NamedQuery(name = "Evento.findGanado", query = "select e from Evento  e where e.idEquipoGanador = :idEquipo")
 @Table(name = "eventos")
 public class Evento {
     private Integer id;

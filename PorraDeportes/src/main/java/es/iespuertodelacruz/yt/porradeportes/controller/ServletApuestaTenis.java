@@ -2,10 +2,7 @@ package es.iespuertodelacruz.yt.porradeportes.controller;
 
 import es.iespuertodelacruz.yt.porradeportes.Repositories.ApuestaRepository;
 import es.iespuertodelacruz.yt.porradeportes.Repositories.EventoRepository;
-<<<<<<< HEAD
-=======
 import es.iespuertodelacruz.yt.porradeportes.Repositories.UsuarioRepository;
->>>>>>> 08d04097dc437cd99da3e1f34235942a9171dda5
 import es.iespuertodelacruz.yt.porradeportes.entities.Apuesta;
 import es.iespuertodelacruz.yt.porradeportes.entities.Equipo;
 import es.iespuertodelacruz.yt.porradeportes.entities.Evento;
@@ -17,13 +14,13 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.math.BigDecimal;
-import java.util.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
 import java.util.stream.Collectors;
 
-@WebServlet(name = "ServletApuestaFootball", value = "/ServletApuestaFootball")
-public class ServletApuestaFootball extends HttpServlet {
+@WebServlet(name = "ServletApuestaTenis", value = "/ServletApuestaTenis")
+public class ServletApuestaTenis extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -31,19 +28,17 @@ public class ServletApuestaFootball extends HttpServlet {
         EventoRepository eventoRepository = new EventoRepository(emf);
         ApuestaRepository apuestaRepository = new ApuestaRepository(emf);
 
-        //Integer idEvento = Integer.parseInt(request.getParameter("id_Evento"));
-        Evento eventoApostar = eventoRepository.findByID(/*idEvento*/1);
+        Evento eventoApostar = eventoRepository.findByID(/*idEvento*/2);
         ArrayList<Equipo> participantes = new ArrayList<Equipo>(eventoApostar.getParticipantes());
         List<Equipo> participantesOrdenados = participantes.stream().sorted((Comparator.comparing(Equipo::getId))).collect(Collectors.toList());
         request.setAttribute("equipo1", participantesOrdenados.get(0).getNombre());
-        request.setAttribute("cuotaEquipo1", "1.25");
+        request.setAttribute("cuotaEquipo1", "1.65");
         request.setAttribute("equipo2", participantesOrdenados.get(1).getNombre());
-        request.setAttribute("cuotaEquipo2", "2.50");
-        request.setAttribute("empate", participantesOrdenados.get(2).getNombre());
-        request.setAttribute("cuotaEmpate", "1.85");
+        request.setAttribute("cuotaEquipo2", "1.85");
 
 
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("ApuestaFootball.jsp");
+
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("ApuestaTenis.jsp");
         requestDispatcher.forward(request, response);
 
     }
@@ -51,15 +46,9 @@ public class ServletApuestaFootball extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        Logger logger = Logger.getLogger("ganador");
-        logger.log(Level.INFO, request.getParameter("ganador"));
-        logger.log(Level.INFO, request.getParameter("cuota"+request.getParameter("ganador")));
-
         EntityManagerFactory emf = (EntityManagerFactory) request.getServletContext().getAttribute("emf");
         EventoRepository eventoRepository = new EventoRepository(emf);
         ApuestaRepository apuestaRepository = new ApuestaRepository(emf);
-
-
         UsuarioRepository usuarioRepository = new UsuarioRepository(emf);
         Integer eventoID = null;
         Evento eventoApostar = null;
@@ -75,34 +64,32 @@ public class ServletApuestaFootball extends HttpServlet {
 
             if(ganadoEquipo1.size() > ganadoEquipo2.size()){
 
-                request.setAttribute("cuotaEquipo1", "1.35");
-                request.setAttribute("cuotaEquipo2", "2.20");
-                request.setAttribute("cuotaEmpate", "1.85");
+                request.setAttribute("cuotaEquipo1", "1.55");
+                request.setAttribute("cuotaEquipo2", "1.95");
+
 
             } else if (ganadoEquipo1.size() < ganadoEquipo2.size()) {
 
-                request.setAttribute("cuotaEquipo1", "2.20");
-                request.setAttribute("cuotaEquipo2", "1.35");
-                request.setAttribute("cuotaEmpate", "1.85");
+                request.setAttribute("cuotaEquipo1", "1.95");
+                request.setAttribute("cuotaEquipo2", "1.55");
+
 
             }else{
 
-                request.setAttribute("cuotaEquipo1", "1.85");
-                request.setAttribute("cuotaEquipo2", "1.85");
-                request.setAttribute("cuotaEmpate", "1.40");
+                request.setAttribute("cuotaEquipo1", "1.75");
+                request.setAttribute("cuotaEquipo2", "1.75");
 
             }
 
             request.setAttribute("equipo1", participantesOrdenados.get(0).getNombre());
             request.setAttribute("equipo2", participantesOrdenados.get(1).getNombre());
-            request.setAttribute("empate", participantesOrdenados.get(2).getNombre());
 
-
-            RequestDispatcher requestDispatcher = request.getRequestDispatcher("ApuestaFootball.jsp");
+            RequestDispatcher requestDispatcher = request.getRequestDispatcher("ApuestaTenis.jsp");
             requestDispatcher.forward(request, response);
 
-        }else if(request.getParameter("ApuestaGanador") != null){
-            eventoApostar = (Evento)request.getSession().getAttribute("evento");
+        }else if(request.getParameter("ApuestaGanador") != null) {
+
+            eventoApostar = (Evento) request.getSession().getAttribute("evento");
             String ganador = request.getParameter("ganador");
             Usuario usuario = (Usuario) request.getSession().getAttribute("user");
             String prediccion = ganador;
@@ -124,50 +111,7 @@ public class ServletApuestaFootball extends HttpServlet {
 
             response.sendRedirect("ServletPrincipal");
 
-
-
-        }else if(request.getParameter("apostarResultado") != null){
-
-            eventoApostar = (Evento)request.getSession().getAttribute("evento");
-            String marcador1 = request.getParameter("marcador1");
-            String marcador2 = request.getParameter("marcador2");
-            String cuota = "";
-
-            Usuario usuario = (Usuario) request.getSession().getAttribute("user");
-            ArrayList<Equipo> participantes = new ArrayList<Equipo>(eventoApostar.getParticipantes());
-            List<Equipo> participantesOrdenados = participantes.stream().sorted((Comparator.comparing(Equipo::getId))).collect(Collectors.toList());
-            String prediccion = participantesOrdenados.get(0).getNombre() + "_" + marcador1 + "_" + participantesOrdenados.get(1).getNombre() + "_" + marcador2;
-            if(Integer.parseInt(marcador1) > Integer.parseInt(marcador2)){
-                cuota = request.getParameter("cuota"+participantesOrdenados.get(0).getNombre());
-            }else if(Integer.parseInt(marcador1) < Integer.parseInt(marcador2)){
-                cuota = request.getParameter("cuota"+participantesOrdenados.get(1).getNombre());
-            }else{
-                cuota = request.getParameter("cuota"+participantesOrdenados.get(2).getNombre());
-            }
-
-            BigDecimal cantidad = BigDecimal.valueOf(Double.valueOf(request.getParameter("CuantiaGanador")));
-            BigDecimal cuotaDe = BigDecimal.valueOf(Double.valueOf(cuota));
-            Apuesta apuesta = new Apuesta();
-            apuesta.setUsuario(usuario);
-            apuesta.setEvento(eventoApostar);
-            apuesta.setPrediccion(prediccion);
-            apuesta.setCantidad(cantidad);
-            apuesta.setEstado("Realizada");
-            apuesta.setCuota(cuotaDe);
-            apuestaRepository.save(apuesta);
-
-            Usuario usuarioApuesta = new Usuario(usuario);
-            usuarioApuesta.setSaldo(BigDecimal.valueOf(usuarioApuesta.getSaldo().doubleValue() - cantidad.doubleValue()));
-            usuarioRepository.update(usuarioApuesta);
-            request.getSession().setAttribute("user", usuarioApuesta);
-
-            response.sendRedirect("ServletPrincipal");
-
-
         }
-
-
-
 
     }
 }
