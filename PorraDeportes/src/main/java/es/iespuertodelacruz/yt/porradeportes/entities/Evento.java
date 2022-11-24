@@ -7,6 +7,8 @@ import java.util.Set;
 
 @Entity
 @NamedQuery(name="Evento.findAll", query = "SELECT e FROM Evento e")
+@NamedQuery(name="Evento.findActive", query = "select e from Evento e where e.fechaFin.getTime() > :fechaActual")
+@NamedQuery(name = "Evento.findGanado", query = "select e from Evento  e where e.idEquipoGanador = :idEquipo")
 @Table(name = "eventos")
 public class Evento {
     private Integer id;
@@ -59,7 +61,7 @@ public class Evento {
         return this;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "id_deporte", nullable = false)
     public Deporte getIdDeporte() {
         return idDeporte;
@@ -100,7 +102,7 @@ public class Evento {
         return this;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_equipo_ganador")
     public Equipo getIdEquipoGanador() {
         return idEquipoGanador;
@@ -129,7 +131,7 @@ public class Evento {
         return this;
     }
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "participantes",
             joinColumns = @JoinColumn(name = "id_evento"),
             inverseJoinColumns = @JoinColumn(name = "id_equipo"))

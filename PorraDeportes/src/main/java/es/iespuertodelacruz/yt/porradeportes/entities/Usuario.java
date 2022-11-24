@@ -82,7 +82,7 @@ public class Usuario {
         return this;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "id_rol", nullable = false)
     public Rol getRol() {
         return rol;

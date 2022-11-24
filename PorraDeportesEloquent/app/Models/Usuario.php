@@ -21,6 +21,7 @@ class Usuario extends Model
      */
     protected $fillable = ['id_rol', 'nombre', 'email', 'password', 'saldo'];
 
+    public $timestamps = false;
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */

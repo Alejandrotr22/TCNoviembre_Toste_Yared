@@ -48,7 +48,7 @@ public class Equipo {
         return this;
     }
 
-    @OneToMany(mappedBy = "idEquipoGanador")
+    @OneToMany(mappedBy = "idEquipoGanador", fetch = FetchType.EAGER)
     public Set<Evento> getEventosGanador() {
         return eventosGanador;
     }
@@ -58,7 +58,7 @@ public class Equipo {
         return this;
     }
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "participantes",
             joinColumns = @JoinColumn(name = "id_equipo"),
             inverseJoinColumns = @JoinColumn(name = "id_evento"))

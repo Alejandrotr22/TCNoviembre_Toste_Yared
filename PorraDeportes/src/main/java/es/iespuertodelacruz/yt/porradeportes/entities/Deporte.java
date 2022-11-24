@@ -52,7 +52,7 @@ public class Deporte {
         return this;
     }
 
-    @OneToMany(mappedBy = "idDeporte")
+    @OneToMany(mappedBy = "idDeporte", fetch = FetchType.EAGER)
     public Set<Evento> getEventos() {
         return eventos;
     }

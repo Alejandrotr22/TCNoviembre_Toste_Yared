@@ -11,6 +11,8 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 @WebServlet(name = "ServletLoginRegister", value = "/ServletLoginRegister")
 public class ServletLoginRegister extends HttpServlet {
@@ -35,8 +37,10 @@ public class ServletLoginRegister extends HttpServlet {
                 boolean checkpw = BCrypt.checkpw(passForm, usuarioDDBB.getPassword());
                 if(checkpw) {
                     request.getSession().setAttribute("user", usuarioDDBB);
-                    RequestDispatcher requestDispatcher = request.getRequestDispatcher("home.html");
+                    /*RequestDispatcher requestDispatcher = request.getRequestDispatcher("/ServletApuestaFootball");
                     requestDispatcher.forward(request, response);
+                     */
+                    response.sendRedirect("ServletPrincipal");
                 }else{
                     request.setAttribute("respuesta", "Contraseña Incorrecta");
                     RequestDispatcher requestDispatcher = request.getRequestDispatcher("login.jsp");

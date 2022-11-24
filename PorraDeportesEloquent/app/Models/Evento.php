@@ -15,13 +15,14 @@ use Illuminate\Database\Eloquent\Model;
  * @property Apuesta[] $apuestas
  * @property Deporte $deporte
  * @property Equipo $equipo
+ * @property string $resultado
  */
 class Evento extends Model
 {
     /**
      * @var array
      */
-    protected $fillable = ['id_deporte', 'id_equipo_ganador', 'fecha_inicio', 'fecha_fin', 'nombre'];
+    protected $fillable = ['id_deporte', 'id_equipo_ganador', 'fecha_inicio', 'fecha_fin', 'nombre', 'resultado'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
