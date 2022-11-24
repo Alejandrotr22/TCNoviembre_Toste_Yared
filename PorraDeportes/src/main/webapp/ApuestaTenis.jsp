@@ -1,3 +1,5 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="es.iespuertodelacruz.yt.porradeportes.entities.Usuario" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -23,71 +25,63 @@
     <section class="justify-content-center">
         <div class="">
             <div class="list-group d-block">
-                <h1>Tipos de apuestas</h1>
-                <a class="list-group-item list-group-item-action active" data-toggle="list"
-                   data-target="#ganador">Ganador</a>
+                <h1>Apuesta Tenis</h1>
             </div>
         </div>
         <div class="mt-3">
             <div class="tab-content">
-                <!--  Formulario Ganador  -->
-                <div class="tab-pane fade show active row" id="ganador">
-                    <!-- Nombre del formulario -->
-                    <form class="formGanador" action="/NOMBRE-SERVLET" method="POST">
+                <!-- formulario de Ganador -->
+                <div class="tab-pane fade show active row" id="ganadorTab">
+                    <!-- formulario -->
+                    <form class="formGanador" action="ServletApuestaTenis" method="POST">
                         <div class="form-row justify-content-center">
                             <div class="col-md-3 form-group">
-                                <label for="ganador">Ganador</label>
+                                <label for="">Ganador</label>
                                 <select class="form-control" id="ganador" name="ganador">
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>X</option>
+                                    <option>${equipo1}</option>
+                                    <option>${equipo2}</option>
                                 </select>
                             </div>
                             <div class="col-md-5 text-center">
                                 <label>Cuotas</label>
                                 <br>
-                                <label for="">Equipo1</label>
-                                <input class="cuota" type="text" name="cuota1" id="cuota1" value="1" readonly >
-                                <input class="cuota" type="text" name="cuota2" id="cuota2" value="1" readonly >
-                                <label for="">Equipo2</label>
+                                <!-- Nombre equipo 1 -->
+                                <label for="">${equipo1}</label>
+                                <input class="cuota" type="text" name="cuota${equipo1}" id="cuota${equipo1}" value="${cuotaEquipo1}"  >
+                                <input class="cuota" type="text" name="cuota${equipo2}" id="cuota${equipo2}" value="${cuotaEquipo2}"  >
+                                <!-- Nombre equipo 2 -->
+                                <label for="">${equipo2}</label>
                             </div>
                         </div>
                         <div class="form-row justify-content-center">
                             <div class="col-md-5 text-center">
                                 <label>Cuantia</label>
-                                <input type="number" class="" name="CuantiaGanador" min="1" value="1" max=""${user.getSaldo()}>
+                                <input type="number" step=".01" class="" name="CuantiaGanador" id="CuantiaGanador" min="1" value="1" max="${user.getSaldo()}">
                                 <span>€</span>
                                 <span>Tu saldo actual: ${user.getSaldo()}</span>
                             </div>
                             <div class="col-md-5 text-center">
-                                <input type="submit" name="CrearApuesta" class="btn btn-primary" value="Crear Apuesta">
+                                <!-- Nombre del submit -->
+                                <input type="submit" name="ApuestaGanador" class="btn btn-primary" value="Crear Apuesta">
                             </div>
                         </div>
                     </form>
                 </div>
             </div>
-
         </div>
     </section>
 
-
-</main>
-
-
-
-
-
-<!-- Optional JavaScript -->
-<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-        crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-        crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-        crossorigin="anonymous"></script>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
 
 </body>
 </html>

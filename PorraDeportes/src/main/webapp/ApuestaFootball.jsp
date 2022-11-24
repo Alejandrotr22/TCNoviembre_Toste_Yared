@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="es.iespuertodelacruz.yt.porradeportes.entities.Usuario" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
@@ -26,15 +27,15 @@
             <div class="list-group d-block">
                 <h1>Tipos de apuestas</h1>
                 <a class="list-group-item list-group-item-action active" data-toggle="list"
-                   data-target="#ganador">Ganador</a>
+                   data-target="#ganadorTab">Ganador</a>
                 <a class="list-group-item list-group-item-action" data-toggle="list"
-                   data-target="#marcador">Marcador</a>
+                   data-target="#marcadorTab">Marcador</a>
             </div>
         </div>
         <div class="mt-3">
             <div class="tab-content">
                 <!-- formulario de Ganador -->
-                <div class="tab-pane fade show active row">
+                <div class="tab-pane fade show active row" id="ganadorTab">
                     <!-- formulario -->
                     <form class="formGanador" action="ServletApuestaFootball" method="POST">
                         <div class="form-row justify-content-center">
@@ -50,20 +51,20 @@
                                 <label>Cuotas</label>
                                 <br>
                                 <!-- Nombre equipo 1 -->
-                                <label for="">Equipo1</label>
+                                <label for="">${equipo1}</label>
                                 <input class="cuota" type="text" name="cuota${equipo1}" id="cuota${equipo1}" value="${cuotaEquipo1}"  >
                                 <input class="cuota" type="text" name="cuota${empate}" id="cuota${empate}" value="${cuotaEmpate}"  >
                                 <input class="cuota" type="text" name="cuota${equipo2}" id="cuota${equipo2}" value="${cuotaEquipo2}"  >
                                 <!-- Nombre equipo 2 -->
-                                <label for="">Equipo2</label>
+                                <label for="">${equipo2}</label>
                                 <br>
-                                <label for="">Empate</label>
+                                <label for="">${empate}</label>
                             </div>
                         </div>
                         <div class="form-row justify-content-center">
                             <div class="col-md-5 text-center">
                                 <label>Cuantia</label>
-                                <input type="number" step=".01" class="" name="CuantiaGanador" id="CuantiaGanador" min="1" value="${user.getSaldo()}" max="${user.getSaldo()}">
+                                <input type="number" step=".01" class="" name="CuantiaGanador" id="CuantiaGanador" min="1" value="1" max="${user.getSaldo()}">
                                 <span>€</span>
                                 <span>Tu saldo actual: ${user.getSaldo()}</span>
                             </div>
@@ -75,40 +76,40 @@
                     </form>
                 </div>
                 <!-- fromulario de Marcador -->
-                <div class="tab-pane fade show row" id="marcador">
+                <div class="tab-pane fade show row" id="marcadorTab">
                     <!-- formulario -->
-                    <form class="formGanador" action="/NOMBRE-SERVLET" method="POST">
+                    <form class="formGanador" action="ServletApuestaFootball" method="POST">
                         <div class="form-row justify-content-center">
                             <div class="col-md-6 form-group text-center">
                                 <label>Marcador</label>
                                 <br>
                                 <!-- Nombre equipo 1 -->
-                                <label for="">Equipo1</label>
+                                <label for="">${equipo1}</label>
                                 <input class="marcador" type="text" name="marcador1" id="marcador1"  >
                                 -
                                 <input class="marcador" type="text" name="marcador2" id="marcador2"  >
                                 <!-- Nombre equipo 2 -->
-                                <label for="">Equipo2</label>
+                                <label for="">${equipo2}</label>
                             </div>
                             <div class="col-md-5 text-center">
                                 <label>Cuotas</label>
                                 <br>
-                                <label for="">Equipo1</label>
-                                <input class="cuota" type="text" name="cuota1" id="cuota1" value="1" readonly >
-                                <input class="cuota" type="text" name="cuota2" id="cuota2" value="1" readonly >
-                                <label for="">Equipo2</label>
+                                <label for="">${equipo1}</label>
+                                <input class="cuota" type="text" name="cuota${equipo1}" id="cuota${equipo1}" value="${cuotaEquipo1}"  >
+                                <input class="cuota" type="text" name="cuota${equipo2}" id="cuota${equipo2}" value="${cuotaEquipo2}"  >
+                                <label for="">${equipo2}</label>
                             </div>
                         </div>
                         <div class="form-row justify-content-center">
                             <div class="col-md-5 text-center">
                                 <label>Cuantia</label>
-                                <input type="number" class="" name="CuantiaGanador" min="1" value="1" max="${user.getSaldo()}>
+                                <input type="number" step=".01" class="" name="CuantiaGanador" min="1" value="1" max="${user.getSaldo()}">
                                 <span>€</span>
                                  <span>Tu saldo actual: ${user.getSaldo()}</span>
                             </div>
                             <div class="col-md-5 text-center">
                                 <!-- Nombre del submit -->
-                                <input type="submit" name="CrearApuesta" class="btn btn-primary" value="Crear Apuesta">
+                                <input type="submit" name="apostarResultado" class="btn btn-primary" value="Crear Apuesta">
                             </div>
                         </div>
                     </form>
