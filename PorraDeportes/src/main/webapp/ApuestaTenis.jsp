@@ -20,6 +20,7 @@
 
 <main class="container-fluid">
 
+<<<<<<< HEAD
     <section class="justify-content-center">
         <div class="">
             <div class="list-group d-block">
@@ -50,6 +51,39 @@
                                 <input class="cuota" type="text" name="cuota1" id="cuota1" value="1" readonly >
                                 <input class="cuota" type="text" name="cuota2" id="cuota2" value="1" readonly >
                                 <label for="">Equipo2</label>
+=======
+        <section class="justify-content-center">
+            <div class="">
+                <div class="list-group d-block">
+                    <h1>Tipos de apuestas</h1>
+                    <a class="list-group-item list-group-item-action active" data-toggle="list"
+                        data-target="#ganador">Ganador</a>
+                </div>
+            </div>
+            <div class="mt-3">
+                <div class="tab-content">
+                    <!--  Formulario Ganador  -->
+                    <div class="tab-pane fade show active row" id="ganador">
+                        <!-- Nombre del formulario -->
+                        <form class="formGanador" action="/NOMBRE-SERVLET" method="POST">
+                            <div class="form-row justify-content-center">
+                                <div class="col-md-3 form-group">
+                                    <label for="">Ganador</label>
+                                    <select class="form-control" id="ganador" name="ganador">
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>X</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-5 text-center">
+                                    <label>Cuotas</label>
+                                    <br>
+                                    <label for="">Equipo1</label>
+                                    <input class="cuota" type="text" name="cuota1" id="cuota1" value="1" readonly >
+                                    <input class="cuota" type="text" name="cuota2" id="cuota2" value="1" readonly >
+                                    <label for="">Equipo2</label>
+                                </div>
+>>>>>>> develop
                             </div>
                         </div>
                         <div class="form-row justify-content-center">
@@ -70,8 +104,12 @@
         </div>
     </section>
 
+<<<<<<< HEAD
 
 </main>
+=======
+    </main>
+>>>>>>> develop
 
 
 

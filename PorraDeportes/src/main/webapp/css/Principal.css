@@ -45,3 +45,30 @@ form{
     border-radius: 4px;
     border-color: rgb(70, 70,70);
 }
+
+.marcador{
+    height: calc(2.25rem + 2px);
+    width: 20%;
+    text-align: center;
+}
+.list-group{
+    flex-direction: row;
+}
+.list-group-item:first-child{
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+.list-group-item:last-child{
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0; 
+}
+input.form-control, select{
+    margin-bottom: 5px;
+}
+
+textarea{
+    width: 96%;
+    margin-left: 2%;
+    margin-right: 2%;
+}
