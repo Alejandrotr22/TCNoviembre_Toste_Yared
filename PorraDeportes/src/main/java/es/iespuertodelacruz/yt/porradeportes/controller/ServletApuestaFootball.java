@@ -115,9 +115,9 @@ public class ServletApuestaFootball extends HttpServlet {
             Usuario usuarioApuesta = new Usuario(usuario);
             usuarioApuesta.setSaldo(BigDecimal.valueOf(usuarioApuesta.getSaldo().doubleValue() - cantidad.doubleValue()));
             usuarioRepository.update(usuarioApuesta);
+            request.getSession().setAttribute("user", usuarioApuesta);
 
-            RequestDispatcher requestDispatcher = request.getRequestDispatcher("Principal.jsp");
-            requestDispatcher.forward(request, response);
+            response.sendRedirect("ServletPrincipal");
 
 
 
@@ -154,9 +154,9 @@ public class ServletApuestaFootball extends HttpServlet {
             Usuario usuarioApuesta = new Usuario(usuario);
             usuarioApuesta.setSaldo(BigDecimal.valueOf(usuarioApuesta.getSaldo().doubleValue() - cantidad.doubleValue()));
             usuarioRepository.update(usuarioApuesta);
+            request.getSession().setAttribute("user", usuarioApuesta);
 
-            RequestDispatcher requestDispatcher = request.getRequestDispatcher("Principal.jsp");
-            requestDispatcher.forward(request, response);
+            response.sendRedirect("ServletPrincipal");
 
 
         }
