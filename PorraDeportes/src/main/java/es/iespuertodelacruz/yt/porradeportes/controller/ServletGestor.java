@@ -142,7 +142,7 @@ public class ServletGestor extends HttpServlet {
 				
 			}
 										
-			String nombre = request.getParameter("nombreModE");
+			String nombre = request.getParameter("NombreModE");
 			String fecha1 = request.getParameter("FechaInicioModE");
 			String fecha2 = request.getParameter("FechaFinModE");
 			SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm");
@@ -155,19 +155,9 @@ public class ServletGestor extends HttpServlet {
 				
 			}
 			
-			String strParticipantes = request.getParameter("PartModE");
-			String[] split = strParticipantes.split(",");
-			Set<Equipo> participantes = new LinkedHashSet<>();
-			for (String id : split) {
-				try {
-					Equipo equipo = equipoRepository.findByID(Integer.parseInt(id));
-					participantes.add(equipo);
-				} catch (Exception e) {
-					
-				}
-			}
+
 			
-			String resultado = request.getParameter("EstadoModE");
+			String resultado = request.getParameter("ResModE");
 			String strDeporte = request.getParameter("DeporteModE");
 			String[] splitDeporte = strDeporte.split("-");
 			Deporte deporte = new Deporte();
@@ -186,9 +176,9 @@ public class ServletGestor extends HttpServlet {
 				
 			}
 			
-			if (!nombre.equals("")) {
+			//if (!nombre.equals("")) {
 				evento.setNombre(nombre);
-			}
+			//}
 			if (!fecha1.equals("")) {
 				evento.setFechaInicio(date1.toInstant());
 			}
@@ -197,9 +187,6 @@ public class ServletGestor extends HttpServlet {
 			}
 			if (!strDeporte.equals("")) {
 				evento.setIdDeporte(deporte);
-			}
-			if (!strParticipantes.equals("")) {
-				evento.setParticipantes(participantes);
 			}
 			if (!strGanador.equals("")) {
 				evento.setIdEquipoGanador(equipo);

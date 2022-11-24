@@ -2,6 +2,7 @@ package es.iespuertodelacruz.yt.porradeportes.Repositories;
 
 import es.iespuertodelacruz.yt.porradeportes.entities.Apuesta;
 import es.iespuertodelacruz.yt.porradeportes.entities.Evento;
+import es.iespuertodelacruz.yt.porradeportes.entities.Usuario;
 
 
 import javax.persistence.EntityManager;
@@ -27,6 +28,7 @@ public class EventoRepository implements ICrud<Evento,Integer>{
             for (Apuesta a: object.getApuestas()) {
                 a.setEvento(object);
             }
+
 
             em.persist(object);
             evento = new Evento(object);
@@ -62,8 +64,7 @@ public class EventoRepository implements ICrud<Evento,Integer>{
         EntityManager em = emf.createEntityManager();
         try {
             em.getTransaction().begin();
-            Evento eventoBBDD = em.find(Evento.class, object.getId());
-            eventoBBDD = new Evento(object);
+            Evento eventoUpdate = em.merge(object);
 
             em.getTransaction().commit();
             em.close();

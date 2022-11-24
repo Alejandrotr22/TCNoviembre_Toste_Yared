@@ -71,9 +71,9 @@
                                 <label for="" class="form-label">Fecha inicio</label>
                                 <input type="datetime-local" name="FechaInicioModE" class="form-control"  >
                                 <label for="" class="form-label">Fecha fin</label>
-                                <input type="datetime-local" name="FechaFinModA" class="form-control"  >
+                                <input type="datetime-local" name="FechaFinModE" class="form-control"  >
                                 <label for="" class="form-label">Resultado</label>
-                                <input type="text" name="ResModA" class="form-control"  >
+                                <input type="text" name="ResModE" class="form-control"  >
                                 <label for="" class="form-label">Ganador</label>
                                 <select class="form-control" name="GanadorModE">
                                     <option></option>
@@ -88,10 +88,8 @@
         								<option>${deporte.getNombre()}-${deporte.getId()}</option>
 									</c:forEach>
                                 </select>
-                                <label for="" class="form-label">Estado</label>
-                                <input type="text" name="EstadoModE" class="form-control"  >
                                 <br>
-                                <input type="submit" name="ModA" class="form-control" value="Modificar/Cerrar Evento">
+                                <input type="submit" name="ModE" class="form-control" value="Modificar/Cerrar Evento">
                             </form>
 
                            <form class="formGanador col-md-4 mt-3" action="/ServletGestor" method="POST">
