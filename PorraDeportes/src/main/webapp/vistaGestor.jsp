@@ -1,10 +1,11 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Apuesta Tenis</title>
+<title>Vista Gestor</title>
 <!-- Required meta tags -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -14,10 +15,9 @@
     integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
 <!-- Course CSS -->
-<link rel="stylesheet" href="Principal.css" />
+<link rel="stylesheet" href="css/Principal.css" />
 </head>
 <body>
-
     <main class="container-fluid">
         <h1>Gestiona los diferentes parametros</h1>
         <section class="justify-content-center">
@@ -38,56 +38,58 @@
                     <!--  formularios de Eventos   -->
                     <div class="tab-pane fade show active row" id="eventos">
                         <div class="form-row justify-content-center">
-                           <form class="formGanador col-md-4 mt-3" action="/NombreServlet" method="POST">
+                           <form class="formGanador col-md-4 mt-3" action="/ServletGestor" method="POST">
                                 <h3>Crear Evento</h3>
                                 <label for="" class="form-label">Nombre</label>
-                                <input type="text" name="nombreCrearA" class="form-control"  >
+                                <input type="text" name="nombreCrearE" class="form-control"  >
                                 <label for="" class="form-label">Fecha</label>
-                                <input type="datetime-local" name="FechaCrearA" class="form-control"  >
+                                <input type="datetime-local" name="FechaCrearE" class="form-control"  >
+                                <label for="" class="form-label">Participantes(id separados por comas)</label>
+                                <input type="text" name="PartCrearE" class="form-control"  >
                                 <label for="" class="form-label">Deporte</label>
-                                <select class="form-control"  name="deporteCrearA">
+                                <select class="form-control"  name="DeporteCrearE">
                                     <option></option>
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
+                                    <c:forEach items="${deportes}" var="deporte">
+        								<option>${deporte.getNombre()}-${deporte.getId()}</option>
+									</c:forEach>
                                 </select>
                                 <br>
-                                <input type="submit" name="CrearA" class="form-control" value="Crear Evento">
+                                <input type="submit" name="CrearE" class="form-control" value="Crear Evento">
                             </form>
                             
-                           <form class="formGanador col-md-4 mt-3" action="/NombreServlet" method="POST">
+                           <form class="formGanador col-md-4 mt-3" action="/ServletGestor" method="POST">
                                 <h3>Modificar/Cerrar Evento</h3>
                                 <label for="">Evento</label>
-                                <select class="form-control"  name="IdModA">
+                                <select class="form-control"  name="IdModE">
                                     <option></option>
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
+                                    <c:forEach items="${eventos}" var="evento">
+        								<option>${evento.getNombre()}-${evento.getId()}</option>
+									</c:forEach>
                                 </select>
                                 <label for="" class="form-label">Nombre</label>
-                                <input type="text" name="NombreModA" class="form-control"  >
+                                <input type="text" name="NombreModE" class="form-control"  >
                                 <label for="" class="form-label">Fecha inicio</label>
-                                <input type="datetime-local" name="FechaInicioModA" class="form-control"  >
+                                <input type="datetime-local" name="FechaInicioModE" class="form-control"  >
                                 <label for="" class="form-label">Fecha fin</label>
                                 <input type="datetime-local" name="FechaFinModA" class="form-control"  >
                                 <label for="" class="form-label">Resultado</label>
                                 <input type="text" name="ResModA" class="form-control"  >
                                 <label for="" class="form-label">Ganador</label>
-                                <select class="form-control" name="GanadorModA">
+                                <select class="form-control" name="GanadorModE">
                                     <option></option>
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
+                                    <c:forEach items="${equipos}" var="equipo">
+        								<option>${equipo.getNombre()}-${equipo.getId()}</option>
+									</c:forEach>
                                 </select>
                                 <label for="" class="form-label">Deporte</label>
-                                <select class="form-control" name="deporteModA">
+                                <select class="form-control" name="DeporteModE">
                                     <option></option>
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
+                                    <c:forEach items="${deportes}" var="deporte">
+        								<option>${deporte.getNombre()}-${deporte.getId()}</option>
+									</c:forEach>
                                 </select>
                                 <label for="" class="form-label">Estado</label>
-                                <input type="text" name="EstadoModA" class="form-control"  >
+                                <input type="text" name="EstadoModE" class="form-control"  >
                                 <br>
                                 <input type="submit" name="ModA" class="form-control" value="Modificar/Cerrar Evento">
                             </form>
@@ -95,38 +97,38 @@
                            <form class="formGanador col-md-4 mt-3" action="/NombreServlet" method="POST">
                                 <h3>Eliminar Evento</h3>
                                 <label for="">Evento</label>
-                                <select class="form-control" name="IdDelA">
+                                <select class="form-control" name="IdDelE">
                                     <option></option>
                                     <option>1</option>
                                     <option>2</option>
                                     <option>3</option>
                                 </select>
                                 <br>
-                                <input type="submit" name="DelA" class="form-control" value="Eliminar Evento">
+                                <input type="submit" name="DelE" class="form-control" value="Eliminar Evento">
                             </form>
 
-                           <form class="formGanador col-md-4 mt-3" action="/NombreServlet" method="POST">
+                           <form class="formGanador col-md-4 mt-3" action="/ServletGestor" method="POST">
                                 <h3>Buscar Evento</h3>
                                 <label for="">Evento</label>
-                                <select class="form-control" name="IdFindA">
+                                <select class="form-control" name="IdFindE">
                                     <option></option>
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
+                                    <c:forEach items="${eventos}" var="evento">
+        								<option>${evento.getNombre()}-${evento.getId()}</option>
+									</c:forEach>
                                 </select>
                                 <br>
-                                <input type="submit" name="FindA" class="form-control" value="Buscar Evento">
+                                <input type="submit" name="FindE" class="form-control" value="Buscar Evento">
                             </form>
 
                            <form class="formGanador col-md-4 mt-3" action="/NombreServlet" method="POST">
                                 <h3>Mostrar Todos</h3>
                                 <br>
-                                <input type="submit" name="FindAllA" class="form-control" value="Mostrar Todos ">
+                                <input type="submit" name="FindAllE" class="form-control" value="Mostrar Todos ">
                             </form>
                         </div>
                         <br>
                         <textarea name="res" id=""  rows="20">
-
+${res}
 
                         </textarea>
                     </div>
@@ -136,91 +138,91 @@
                           <form class="formGanador col-md-4 mt-3" action="/NombreServlet" method="POST">
                                 <h3>Crear Apuesta</h3>
                                 <label for="">Evento</label>
-                                <select class="form-control"  name="IdEventoCrearE">
+                                <select class="form-control"  name="IdEventoCrearA">
                                     <option></option>
                                     <option>1</option>
                                     <option>2</option>
                                     <option>3</option>
                                 </select>
                                 <label for="">Usuario</label>
-                                <select class="form-control"  name="UIdCrearE">
+                                <select class="form-control"  name="UIdCrearA">
                                     <option></option>
                                     <option>1</option>
                                     <option>2</option>
                                     <option>3</option>
                                 </select>
                                 <label for="" class="form-label">Predicción</label>
-                                <input type="text" name="PredCrearE" class="form-control"  >
+                                <input type="text" name="PredCrearA" class="form-control"  >
                                 <label for="" class="form-label">Cuota</label>
-                                <input type="number" name="PredCrearE" class="form-control"  >
+                                <input type="number" name="PredCrearA" class="form-control"  >
                                 <label for="" class="form-label">Cantidad</label>
-                                <input type="number" name="CantCrearE" class="form-control"  >
+                                <input type="number" name="CantCrearA" class="form-control"  >
                                 <br>
-                                <input type="submit" name="CrearE" class="form-control" value="Crear Apuesta">
+                                <input type="submit" name="CrearA" class="form-control" value="Crear Apuesta">
                             </form>
                             
-                           <form class="formGanador col-md-4 mt-3" action="/NombreServlet" method="POST">
+                           <form class="formGanador col-md-4 mt-3" action="/ServletGestor" method="POST">
                                 <h3>Modificar/Comprobar Apuesta</h3>
                                 <label for="">Apuesta</label>
-                                <select class="form-control"  name="IdCrearE">
+                                <select class="form-control"  name="IdCrearA">
                                     <option></option>
                                     <option>1</option>
                                     <option>2</option>
                                     <option>3</option>
                                 </select>
                                 <label for="">Evento</label>
-                                <select class="form-control"  name="IdEventoCrearE">
+                                <select class="form-control"  name="IdEventoCrearA">
                                     <option></option>
                                     <option>1</option>
                                     <option>2</option>
                                     <option>3</option>
                                 </select>
                                 <label for="">Usuario</label>
-                                <select class="form-control"  name="UIdCrearE">
+                                <select class="form-control"  name="UIdCrearA">
                                     <option></option>
                                     <option>1</option>
                                     <option>2</option>
                                     <option>3</option>
                                 </select>
                                 <label for="" class="form-label">Predicción</label>
-                                <input type="text" name="PredCrearE" class="form-control"  >
+                                <input type="text" name="PredCrearA" class="form-control"  >
                                 <label for="" class="form-label">Cuota</label>
-                                <input type="number" name="PredCrearE" class="form-control"  >
+                                <input type="number" name="PredCrearA" class="form-control"  >
                                 <label for="" class="form-label">Cantidad</label>
-                                <input type="number" name="CantCrearE" class="form-control"  >
+                                <input type="number" name="CantCrearA" class="form-control"  >
                                 <br>
-                                <input type="submit" name="CrearE" class="form-control" value="Crear Apuesta">
+                                <input type="submit" name="CrearA" class="form-control" value="Crear Apuesta">
                             </form>
                             </form>
 
                            <form class="formGanador col-md-4 mt-3" action="/NombreServlet" method="POST">
                                 <h3>Eliminar Apuesta</h3>
                                 <label for="">Apuesta</label>
-                                <select class="form-control" name="IdDelE">
+                                <select class="form-control" name="IdDelA">
                                     <option>1</option>
                                     <option>2</option>
                                     <option>3</option>
                                 </select>
                                 <br>
-                                <input type="submit" name="DelE" class="form-control" value="Eliminar Apuesta">
+                                <input type="submit" name="DelA" class="form-control" value="Eliminar Apuesta">
                             </form>
 
                            <form class="formGanador col-md-4 mt-3" action="/NombreServlet" method="POST">
                                 <h3>Buscar Apuesta</h3>
                                 <label for="">Apuesta</label>
-                                <select class="form-control" name="IdFindE">
+                                <select class="form-control" name="IdFindA">
                                     <option>1</option>
                                     <option>2</option>
                                     <option>3</option>
                                 </select>
                                 <br>
-                                <input type="submit" name="FindE" class="form-control" value="Buscar Apuesta">
+                                <input type="submit" name="FindA" class="form-control" value="Buscar Apuesta">
                             </form>
 
                            <form class="formGanador col-md-4 mt-3" action="/NombreServlet" method="POST">
                                 <h3>Mostrar Todos</h3>
                                 <br>
-                                <input type="submit" name="FindAllE" class="form-control" value="Mostrar Todos ">
+                                <input type="submit" name="FindAllA" class="form-control" value="Mostrar Todos ">
                             </form>
                         </div>
                         <br>

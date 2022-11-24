@@ -6,6 +6,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "equipos")
+@NamedQuery(name="Equipo.findAll", query = "SELECT e FROM Equipo e")
 public class Equipo {
     private Integer id;
 
