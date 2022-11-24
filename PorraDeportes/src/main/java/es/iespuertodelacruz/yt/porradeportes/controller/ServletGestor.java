@@ -176,9 +176,9 @@ public class ServletGestor extends HttpServlet {
 				
 			}
 			
-			//if (!nombre.equals("")) {
+			if (!nombre.equals("")) {
 				evento.setNombre(nombre);
-			//}
+			}
 			if (!fecha1.equals("")) {
 				evento.setFechaInicio(date1.toInstant());
 			}
