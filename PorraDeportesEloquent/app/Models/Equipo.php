@@ -25,11 +25,5 @@ class Equipo extends Model
         return $this->belongsToMany('App\Models\Evento', 'participantes', 'id_equipo', 'id_evento');
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function eventos()
-    {
-        return $this->hasMany('App\Models\Evento', 'id_equipo_ganador');
-    }
+
 }

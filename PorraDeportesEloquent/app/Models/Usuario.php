@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $password
  * @property float $saldo
  * @property Apuesta[] $apuestas
- * @property Role $role
+ * @property Rol $role
  */
 class Usuario extends Model
 {
