@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('login');
 });
 
 Route::get('/find', 'App\Http\Controllers\pruebasDDBB@pruebaFind');
@@ -42,3 +42,9 @@ Route::get('loginPage', function (){
 Route::any('/registrarse', function () {
     return view('registrarse');
 });
+
+Route::any('principalIndex', 'App\Http\Controllers\Principal@index');
+
+Route::post('ControllerApuestaFootball', 'App\Http\Controllers\ApuestaFootball@index');
+
+Route::post('ControllerApuestaFootballGanador', 'App\Http\Controllers\ApuestaFootball@ganador');

@@ -19,7 +19,7 @@ class Login extends Controller
             $checkPass = password_verify($passLogin, $usuario->password);
             if($checkPass) {
                 session()->put('user', $usuario);
-                return view('home');
+                return redirect('principalIndex');
             }else{
                 $respuesta = "Login incorrecto";
             }
