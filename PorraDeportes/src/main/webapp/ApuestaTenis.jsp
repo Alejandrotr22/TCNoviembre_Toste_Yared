@@ -56,7 +56,7 @@
                         <div class="form-row justify-content-center">
                             <div class="col-md-5 text-center">
                                 <label>Cuantia</label>
-                                <input type="number" step=".01" class="" name="CuantiaGanador" id="CuantiaGanador" min="1" value="1" max="${user.getSaldo()}">
+                                <input type="number" step=".01" class="" name="CuantiaGanador" id="CuantiaGanador" min="1" value="1" max="${user.getSaldo()}" oninvalid="this.setCustomValidity('No puedes apostar una cantidad mayor a tu saldo')">
                                 <span>€</span>
                                 <span>Tu saldo actual: ${user.getSaldo()}</span>
                             </div>
