@@ -23,7 +23,7 @@
         <section class="justify-content-center">
             <div class="">
                 <div class="list-group">
-                    <a class="list-group-item list-group-item-action activU" data-toggle="list"
+                    <a class="list-group-item list-group-item-action active" data-toggle="list"
                         data-target="#eventos">Eventos</a>
                     <a class="list-group-item list-group-item-action " data-toggle="list"
                         data-target="#apuestas">Apuestas</a>
@@ -132,11 +132,12 @@ ${res}
                     </div>
 
                     <!--  formularios de Apuestas   -->
+
                     <div class="tab-pane fade row" id="apuestas">
                         <div class="form-row justify-content-center">
                           <form class="formGanador col-md-4 mt-3" action="/ServletGestor" method="POST">
                                 <h3>Crear Apuesta</h3>
-                                <label for="">Apuesta</label>
+                                <label for="">Evento</label>
                                 <select class="form-control"  name="IdEventoCrearA">
                                     <c:forEach items="${eventos}" var="evento">
         								<option>${evento.getNombre()}-${evento.getId()}</option>
@@ -151,9 +152,9 @@ ${res}
                                 <label for="" class="form-label">Predicción</label>
                                 <input type="text" name="PredCrearA" class="form-control"  >
                                 <label for="" class="form-label">Cuota</label>
-                                <input type="number" name="PredCrearA" class="form-control"  >
+                                <input type="number" step=".01" name="CuotaCrearA" class="form-control"  >
                                 <label for="" class="form-label">Cantidad</label>
-                                <input type="number" name="CantCrearA" class="form-control"  >
+                                <input type="number" step=".01" name="CantCrearA" class="form-control"  >
                                 <br>
                                 <input type="submit" name="CrearA" class="form-control" value="Crear Apuesta">
                             </form>
@@ -163,20 +164,23 @@ ${res}
                                 <label for="">Apuesta</label>
                                 <select class="form-control"  name="IdModA">
                                     <c:forEach items="${apuestas}" var="apuesta">
-        								<option>${apuesta.getUsuario()}-${evento.getPrediccion()}-${evento.getId()}</option>
+        								<option>${apuesta.getUsuario().getNombre()}-${apuesta.getPrediccion()}-${apuesta.getId()}</option>
 									</c:forEach>
+
                                 </select>
                                 <label for="">Evento</label>
-                                <select class="form-control"  name="IdEventoModA">
+                                <select class="form-control" name="IdEventoModA">
+                                    <option></option>
                                     <c:forEach items="${eventos}" var="evento">
         								<option>${evento.getNombre()}-${evento.getId()}</option>
 									</c:forEach>
                                 </select>
                                 <label for="">Usuario</label>
                                 <select class="form-control"  name="UIdModA">
-                                    <c:forEach items="${equipos}" var="equipo">
-        								<option>${equipo.getNombre()}-${equipo.getId()}</option>
-									</c:forEach>
+                                    <option></option>
+                                    <c:forEach items="${usuarios}" var="usuario">
+                                        <option>${usuario.getNombre()}-${usuario.getId()}</option>
+                                    </c:forEach>
                                 </select>
                                 <label for="" class="form-label">Predicción</label>
                                 <input type="text" name="PredModA" class="form-control"  >
@@ -193,9 +197,11 @@ ${res}
                                 <h3>Eliminar Apuesta</h3>
                                 <label for="">Apuesta</label>
                                 <select class="form-control" name="IdDelA">
+                                <!-- 
                                     <c:forEach items="${apuestas}" var="apuesta">
-        								<option>${apuesta.getUsuario()}-${evento.getPrediccion()}-${evento.getId()}</option>
+        								<option>-</option>
 									</c:forEach>
+                                -->
                                 </select>
                                 <br>
                                 <input type="submit" name="DelA" class="form-control" value="Eliminar Apuesta">
@@ -220,9 +226,8 @@ ${res}
                             </form>
                         </div>
                         <br>
-                        <textarea name="res" id=""  rows="20">
-
-
+                        <textarea class="resultado" name="res" id=""  rows="20">
+${res}
                         </textarea>
                     </div>
                     <!-- fromularios de Usuario -->
@@ -310,9 +315,8 @@ ${res}
                             </form>
                         </div>
                         <br>
-                        <textarea name="res" id=""  rows="20">
-
-
+                        <textarea class="resultado" name="res" id=""  rows="20">
+${res}
                         </textarea>
                     </div>
                     <!-- fromularios de Deportes -->
@@ -374,9 +378,8 @@ ${res}
                             </form>
                         </div>
                         <br>
-                        <textarea name="res" id=""  rows="20">
-
-
+                        <textarea class="resultado" name="res" id=""  rows="20">
+${res}
                         </textarea>
                     </div>
                 </div>

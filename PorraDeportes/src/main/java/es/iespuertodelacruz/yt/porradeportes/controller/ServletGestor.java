@@ -1,6 +1,7 @@
 package es.iespuertodelacruz.yt.porradeportes.controller;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -17,16 +18,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import es.iespuertodelacruz.yt.porradeportes.Repositories.*;
+import es.iespuertodelacruz.yt.porradeportes.entities.*;
 import org.jboss.logging.Logger;
-
-import es.iespuertodelacruz.yt.porradeportes.Repositories.DeporteRepository;
-import es.iespuertodelacruz.yt.porradeportes.Repositories.EquipoRepository;
-import es.iespuertodelacruz.yt.porradeportes.Repositories.EventoRepository;
-import es.iespuertodelacruz.yt.porradeportes.Repositories.RolRepository;
-import es.iespuertodelacruz.yt.porradeportes.Repositories.UsuarioRepository;
-import es.iespuertodelacruz.yt.porradeportes.entities.Deporte;
-import es.iespuertodelacruz.yt.porradeportes.entities.Equipo;
-import es.iespuertodelacruz.yt.porradeportes.entities.Evento;
 
 /**
  * Servlet implementation class ServletGestor
@@ -55,6 +49,7 @@ public class ServletGestor extends HttpServlet {
         RolRepository rolRepository = new RolRepository(emf);
         EquipoRepository equipoRepository = new EquipoRepository(emf);
         DeporteRepository deporteRepository = new DeporteRepository(emf);
+		ApuestaRepository apuestaRepository = new ApuestaRepository(emf);
         
         
         List<Deporte> deportes = deporteRepository.findAll();
@@ -65,6 +60,13 @@ public class ServletGestor extends HttpServlet {
         
         List<Equipo> equipos = equipoRepository.findAll();
         request.setAttribute("equipos", equipos);
+
+		List<Usuario> usuarios = usuarioRepository.findAll();
+		request.setAttribute("usuarios", usuarios);
+
+		List<Apuesta> apuestas = apuestaRepository.findAll();
+		System.out.println(apuestas);
+		request.setAttribute("apuestas", apuestas);
         
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("vistaGestor.jsp");
         requestDispatcher.forward(request, response);
@@ -82,10 +84,11 @@ public class ServletGestor extends HttpServlet {
         RolRepository rolRepository = new RolRepository(emf);
         EquipoRepository equipoRepository = new EquipoRepository(emf);
         DeporteRepository deporteRepository = new DeporteRepository(emf);
-		
-		//Eventos
-		
-		// crear Evento
+		ApuestaRepository apuestaRepository = new ApuestaRepository(emf);
+
+		//region Formularios de Eventos
+
+		//Crear Evento
 		if (request.getParameter("CrearE") != null) {
 			String nombre = request.getParameter("nombreCrearE");
 			String fecha1 = request.getParameter("FechaCrearE");
@@ -95,9 +98,9 @@ public class ServletGestor extends HttpServlet {
 			try {
 				date1 = formato.parse(fecha1);
 			} catch (ParseException e) {
-				
+
 			}
-			
+
 			String strParticipantes = request.getParameter("PartCrearE");
 			String[] split = strParticipantes.split(",");
 			Set<Equipo> participantes = new LinkedHashSet<>();
@@ -106,10 +109,10 @@ public class ServletGestor extends HttpServlet {
 					Equipo equipo = equipoRepository.findByID(Integer.parseInt(id));
 					participantes.add(equipo);
 				} catch (Exception e) {
-					
+
 				}
 			}
-			
+
 			
 			String strDeporte = request.getParameter("DeporteCrearE");
 			String[] splitDeporte = strDeporte.split("-");
@@ -129,7 +132,7 @@ public class ServletGestor extends HttpServlet {
 			request.setAttribute("res", save + "");
 			this.doGet(request, response);
 		}
-		
+
 		// modificar Evento
 		if (request.getParameter("ModE") != null) {
 			
@@ -199,7 +202,7 @@ public class ServletGestor extends HttpServlet {
 			request.setAttribute("res", (update)?"Se ha actualizado correctamente": "No se ha actualizado correctamente" + "");
 			this.doGet(request, response);
 		}
-		
+
 		// eliminar Evento
 		if (request.getParameter("DelE") != null) {
 										
@@ -216,6 +219,7 @@ public class ServletGestor extends HttpServlet {
 			this.doGet(request, response);
 		
 		}
+
 		// mostrar Evento
 		if (request.getParameter("FindE") != null) {
 			String eventoid = request.getParameter("IdFindE");
@@ -231,6 +235,7 @@ public class ServletGestor extends HttpServlet {
 			this.doGet(request, response);
 		
 		}
+
 		// mostrar Todos
 		if (request.getParameter("FindAllE") != null) {
 			
@@ -240,8 +245,121 @@ public class ServletGestor extends HttpServlet {
 			this.doGet(request, response);
 		
 		}
-		
-		// Apuestas
+
+		//endregion
+
+		//region Apuestas
+
+		// crear Apuesta
+		if (request.getParameter("CrearA") != null) {
+			String strEvento = request.getParameter("IdEventoCrearA");
+			String[] splitEvento= strEvento.split("-");
+			Evento evento = new Evento();
+			try {
+				evento = eventoRepository.findByID(Integer.parseInt(splitEvento[1]));
+			}catch (Exception ex){
+
+			}
+			String strUsuario = request.getParameter("UIdCrearA");
+			String[] splitUsuario= strUsuario.split("-");
+			Usuario usuario = new Usuario();
+			try {
+				usuario = usuarioRepository.findByID(Integer.parseInt(splitUsuario[1]));
+			}catch (Exception ex){
+
+			}
+			String strPrediccion = request.getParameter("PredCrearA");
+			String strCuota = request.getParameter("CuotaCrearA");
+			String strCant = request.getParameter("CantCrearA");
+			BigDecimal cuota = null;
+			BigDecimal cantidad = null;
+
+			try {
+				cuota = BigDecimal.valueOf(Double.parseDouble(strCuota));
+				cantidad = BigDecimal.valueOf(Double.parseDouble(strCant));
+			}catch (Exception ex){
+
+			}
+
+			Apuesta apuesta = new Apuesta();
+			apuesta.setEvento(evento);
+			apuesta.setUsuario(usuario);
+			apuesta.setPrediccion(strPrediccion);
+			apuesta.setCuota(cuota);
+			apuesta.setCantidad(cantidad);
+			apuesta.setEstado("Realizada");
+			Apuesta save = apuestaRepository.save(apuesta);
+
+			request.setAttribute("res", save + "");
+			this.doGet(request, response);
+		}
+
+		if (request.getParameter("ModA") != null) {
+			String strApuesta = request.getParameter("IdModA");
+			String[] splitApuesta= strApuesta.split("-");
+			Apuesta apuesta = new Apuesta();
+			try {
+				apuesta = apuestaRepository.findByID(Integer.parseInt(splitApuesta[2]));
+			}catch (Exception ex){
+
+			}
+			String strEvento = request.getParameter("IdEventoCrearA");
+			String[] splitEvento= strEvento.split("-");
+			Evento evento = new Evento();
+			try {
+				evento = eventoRepository.findByID(Integer.parseInt(splitEvento[1]));
+			}catch (Exception ex){
+
+			}
+			String strUsuario = request.getParameter("UIdCrearA");
+			String[] splitUsuario= strUsuario.split("-");
+			Usuario usuario = new Usuario();
+			try {
+				usuario = usuarioRepository.findByID(Integer.parseInt(splitUsuario[1]));
+			}catch (Exception ex){
+
+			}
+			String strPrediccion = request.getParameter("PredCrearA");
+			String strCuota = request.getParameter("CuotaCrearA");
+			String strCant = request.getParameter("CantCrearA");
+			BigDecimal cuota = null;
+			BigDecimal cantidad = null;
+
+			try {
+				cuota = BigDecimal.valueOf(Double.parseDouble(strCuota));
+				cantidad = BigDecimal.valueOf(Double.parseDouble(strCant));
+			}catch (Exception ex){
+
+			}
+
+/*
+			if (!nombre.equals("")) {
+				evento.setNombre(nombre);
+			}
+			if (!fecha1.equals("")) {
+				evento.setFechaInicio(date1.toInstant());
+			}
+			if (!fecha1.equals("")) {
+				evento.setFechaFin(date2.toInstant());
+			}
+			if (!strDeporte.equals("")) {
+				evento.setIdDeporte(deporte);
+			}
+			if (!strGanador.equals("")) {
+				evento.setIdEquipoGanador(equipo);
+			}
+			if	(!resultado.equals("")) {
+				evento.setResultado(resultado);
+			}
+
+ */
+			Boolean update = eventoRepository.update(evento);
+
+			request.setAttribute("res", (update)?"Se ha actualizado correctamente": "No se ha actualizado correctamente" + "");
+			this.doGet(request, response);
+		}
+
+		//endregion
 		
 		
 	}
