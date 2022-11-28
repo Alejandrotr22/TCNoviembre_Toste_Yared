@@ -40,11 +40,8 @@ public class ServletLoginRegister extends HttpServlet {
                     /*RequestDispatcher requestDispatcher = request.getRequestDispatcher("/ServletApuestaFootball");
                     requestDispatcher.forward(request, response);
                      */
-<<<<<<< HEAD
                     response.sendRedirect("/ServletGestor");
-=======
-                    response.sendRedirect("ServletPrincipal");
->>>>>>> 08d04097dc437cd99da3e1f34235942a9171dda5
+
                 }else{
                     request.setAttribute("respuesta", "Contraseña Incorrecta");
                     RequestDispatcher requestDispatcher = request.getRequestDispatcher("login.jsp");

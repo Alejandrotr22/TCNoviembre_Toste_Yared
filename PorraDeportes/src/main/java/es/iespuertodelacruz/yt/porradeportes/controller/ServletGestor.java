@@ -194,8 +194,6 @@ public class ServletGestor extends HttpServlet {
 			if	(!resultado.equals("")) {
 				evento.setResultado(resultado);
 			}
-			
-			
 			Boolean update = eventoRepository.update(evento);
 			
 			request.setAttribute("res", (update)?"Se ha actualizado correctamente": "No se ha actualizado correctamente" + "");

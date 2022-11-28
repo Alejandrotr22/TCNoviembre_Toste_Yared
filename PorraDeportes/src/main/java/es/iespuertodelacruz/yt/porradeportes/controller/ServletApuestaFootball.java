@@ -2,10 +2,8 @@ package es.iespuertodelacruz.yt.porradeportes.controller;
 
 import es.iespuertodelacruz.yt.porradeportes.Repositories.ApuestaRepository;
 import es.iespuertodelacruz.yt.porradeportes.Repositories.EventoRepository;
-<<<<<<< HEAD
-=======
 import es.iespuertodelacruz.yt.porradeportes.Repositories.UsuarioRepository;
->>>>>>> 08d04097dc437cd99da3e1f34235942a9171dda5
+
 import es.iespuertodelacruz.yt.porradeportes.entities.Apuesta;
 import es.iespuertodelacruz.yt.porradeportes.entities.Equipo;
 import es.iespuertodelacruz.yt.porradeportes.entities.Evento;
