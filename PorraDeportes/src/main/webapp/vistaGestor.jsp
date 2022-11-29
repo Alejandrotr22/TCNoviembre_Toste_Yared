@@ -23,20 +23,20 @@
         <section class="justify-content-center">
             <div class="">
                 <div class="list-group">
-                    <a class="list-group-item list-group-item-action active" data-toggle="list"
+                    <a class="list-group-item list-group-item-action ${tabE}" data-toggle="list"
                         data-target="#eventos">Eventos</a>
-                    <a class="list-group-item list-group-item-action " data-toggle="list"
+                    <a class="list-group-item list-group-item-action ${tabA}" data-toggle="list"
                         data-target="#apuestas">Apuestas</a>
-                    <a class="list-group-item list-group-item-action " data-toggle="list"
+                    <a class="list-group-item list-group-item-action ${tabU}" data-toggle="list"
                         data-target="#usuarios">Usuarios</a>
-                    <a class="list-group-item list-group-item-action " data-toggle="list"
+                    <a class="list-group-item list-group-item-action ${tabD}" data-toggle="list"
                         data-target="#deportes">Deportes</a>
                 </div>
             </div>
             <div class="mt-3">
                 <div class="tab-content">
                     <!--  formularios de Eventos   -->
-                    <div class="tab-pane fade show active row" id="eventos">
+                    <div class="tab-pane fade ${tabE} row" id="eventos">
                         <div class="form-row justify-content-center">
                            <form class="formGanador col-md-4 mt-3" action="/ServletGestor" method="POST">
                                 <h3>Crear Evento</h3>
@@ -133,32 +133,8 @@ ${res}
 
                     <!--  formularios de Apuestas   -->
 
-                    <div class="tab-pane fade row" id="apuestas">
+                    <div class="tab-pane fade row ${tabA}" id="apuestas">
                         <div class="form-row justify-content-center">
-                          <form class="formGanador col-md-4 mt-3" action="/ServletGestor" method="POST">
-                                <h3>Crear Apuesta</h3>
-                                <label for="">Evento</label>
-                                <select class="form-control"  name="IdEventoCrearA">
-                                    <c:forEach items="${eventos}" var="evento">
-        								<option>${evento.getNombre()}-${evento.getId()}</option>
-									</c:forEach>
-                                </select>
-                                <label for="">Usuario</label>
-                                <select class="form-control"  name="UIdCrearA">
-                                    <c:forEach items="${usuarios}" var="usuario">
-        								<option>${usuario.getNombre()}-${usuario.getId()}</option>
-									</c:forEach>
-                                </select>
-                                <label for="" class="form-label">Predicción</label>
-                                <input type="text" name="PredCrearA" class="form-control"  >
-                                <label for="" class="form-label">Cuota</label>
-                                <input type="number" step=".01" name="CuotaCrearA" class="form-control"  >
-                                <label for="" class="form-label">Cantidad</label>
-                                <input type="number" step=".01" name="CantCrearA" class="form-control"  >
-                                <br>
-                                <input type="submit" name="CrearA" class="form-control" value="Crear Apuesta">
-                            </form>
-                            
                            <form class="formGanador col-md-4 mt-3" action="/ServletGestor" method="POST">
                                 <h3>Modificar/Comprobar Apuesta</h3>
                                 <label for="">Apuesta</label>
@@ -166,42 +142,20 @@ ${res}
                                     <c:forEach items="${apuestas}" var="apuesta">
         								<option>${apuesta.getUsuario().getNombre()}-${apuesta.getPrediccion()}-${apuesta.getId()}</option>
 									</c:forEach>
-
                                 </select>
-                                <label for="">Evento</label>
-                                <select class="form-control" name="IdEventoModA">
-                                    <option></option>
-                                    <c:forEach items="${eventos}" var="evento">
-        								<option>${evento.getNombre()}-${evento.getId()}</option>
-									</c:forEach>
-                                </select>
-                                <label for="">Usuario</label>
-                                <select class="form-control"  name="UIdModA">
-                                    <option></option>
-                                    <c:forEach items="${usuarios}" var="usuario">
-                                        <option>${usuario.getNombre()}-${usuario.getId()}</option>
-                                    </c:forEach>
-                                </select>
-                                <label for="" class="form-label">Predicción</label>
-                                <input type="text" name="PredModA" class="form-control"  >
-                                <label for="" class="form-label">Cuota</label>
-                                <input type="number" name="CuotaModA" class="form-control"  >
-                                <label for="" class="form-label">Cantidad</label>
-                                <input type="number" name="CantModA" class="form-control"  >
+                                <label for="" class="form-label">Estado</label>
+                                <input type="text" name="EstadoModA" class="form-control"  >
                                 <br>
                                 <input type="submit" name="ModA" class="form-control" value="Crear Apuesta">
                             </form>
-                            </form>
 
                            <form class="formGanador col-md-4 mt-3" action="/ServletGestor" method="POST">
-                                <h3>Eliminar Apuesta</h3>
+                                <h3>Cerrar Apuesta</h3>
                                 <label for="">Apuesta</label>
                                 <select class="form-control" name="IdDelA">
-                                <!-- 
                                     <c:forEach items="${apuestas}" var="apuesta">
-        								<option>-</option>
+        								<option>${apuesta.getUsuario().getNombre()}-${apuesta.getPrediccion()}-${apuesta.getId()}</option>
 									</c:forEach>
-                                -->
                                 </select>
                                 <br>
                                 <input type="submit" name="DelA" class="form-control" value="Eliminar Apuesta">
@@ -212,7 +166,7 @@ ${res}
                                 <label for="">Apuesta</label>
                                 <select class="form-control" name="IdFindA">
                                     <c:forEach items="${apuestas}" var="apuesta">
-        								<option>${apuesta.getUsuario()}-${evento.getPrediccion()}-${evento.getId()}</option>
+        								<option>${apuesta.getUsuario().getNombre()}-${apuesta.getPrediccion()}-${apuesta.getId()}</option>
 									</c:forEach>
                                 </select>
                                 <br>
@@ -231,7 +185,7 @@ ${res}
                         </textarea>
                     </div>
                     <!-- fromularios de Usuario -->
-                    <div class="tab-pane fade" id="usuarios">
+                    <div class="tab-pane fade ${tabU}" id="usuarios">
                         <div class="form-row justify-content-center">
                            <form class="formGanador col-md-4 mt-3" action="/ServletGestor" method="POST">
                                 <h3>Crear Usuario</h3>
@@ -320,7 +274,7 @@ ${res}
                         </textarea>
                     </div>
                     <!-- fromularios de Deportes -->
-                    <div class="tab-pane fade" id="deportes">
+                    <div class="tab-pane fade ${tabD}" id="deportes">
                         <div class="form-row justify-content-center">
                            <form class="formGanador col-md-4 mt-3" action="/ServletGestor" method="POST">
                                 <h3>Crear Deporte</h3>

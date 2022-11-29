@@ -110,4 +110,8 @@ public class Apuesta {
         return this;
     }
 
+    @Override
+    public String toString() {
+        return "----------\nApuesta: "+ id+"\nUsuario: "+usuario.getNombre()+"\n"+evento.getNombre()+"\n"+prediccion+"\nCuota: " + cuota + "\nCantidad: "+cantidad +"\nEstado: " +estado+"\n----------";
+    }
 }
