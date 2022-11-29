@@ -144,4 +144,13 @@ public class Evento {
         return this;
     }
 
+    @Override
+    public String toString(){
+
+        return "----------\nEvento: "+ id+"\nDeporte: "+idDeporte.getNombre()+"\nFecha Inicio: "+fechaInicio+
+                "\nFecha Final: "+fechaFin+"\nNombre: "+nombre + "\nEquipo ganador: "+idEquipoGanador.getNombre()+
+                "\nResultado: "+resultado+"\n----------";
+
+    }
+
 }

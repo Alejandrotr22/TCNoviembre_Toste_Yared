@@ -57,11 +57,7 @@ public class Rol {
 
     @Override
     public String toString() {
-        final StringBuffer sb = new StringBuffer("Rol{");
-        sb.append("id=").append(id);
-        sb.append(", nombre='").append(nombre).append('\'');
-        sb.append(", usuarios=").append(usuarios);
-        sb.append('}');
-        return sb.toString();
+
+        return "----------\nRol: "+ id + "\nNombre: "+nombre+"\n----------";
     }
 }

@@ -72,4 +72,11 @@ public class Equipo {
         return this;
     }
 
+    @Override
+    public String toString(){
+
+        return "----------\nEquipo: " + id + "\nNombre: "+nombre+"\n----------";
+
+    }
+
 }

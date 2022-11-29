@@ -62,4 +62,12 @@ public class Deporte {
         return this;
     }
 
+    @Override
+    public String toString(){
+
+        return "----------\nDeporte: " + id + "\nNombre: " + nombre+"\n----------";
+
+
+    }
+
 }
