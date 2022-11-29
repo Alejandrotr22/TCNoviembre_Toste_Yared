@@ -20,11 +20,7 @@
         <section class="justify-content-center">
             <div class="">
                 <div class="list-group d-block">
-                    <h1>Tipos de apuestas</h1>
-                    <a class="list-group-item list-group-item-action active" data-toggle="list"
-                       data-target="#ganadorTab">Ganador</a>
-                    <a class="list-group-item list-group-item-action" data-toggle="list"
-                       data-target="#marcadorTab">Marcador</a>
+                    <h1>Apuesta Tenis</h1>
                 </div>
             </div>
             <div class="mt-3">
@@ -32,7 +28,7 @@
                     <!-- formulario de Ganador -->
                     <div class="tab-pane fade show active row" id="ganadorTab">
                         <!-- formulario -->
-                        <form class="formGanador" action="ControllerApuestaFootballGanador" method="POST">
+                        <form class="formGanador" action="ControllerApuestaTenisGanador" method="POST">
                             @csrf
                             <div class="form-row justify-content-center">
                                 <div class="col-md-3 form-group">
@@ -40,7 +36,6 @@
                                     <select class="form-control" id="ganador" name="ganador">
                                         <option>{{session('participantes')[0]->nombre}}</option>
                                         <option>{{session('participantes')[1]->nombre}}</option>
-                                        <option>{{session('participantes')[2]->nombre}}</option>
                                     </select>
                                 </div>
                                 <div class="col-md-5 text-center">
@@ -49,12 +44,11 @@
                                     <!-- Nombre equipo 1 -->
                                     <label for="">{{session('participantes')[0]->nombre}}</label>
                                     <input class="cuota" type="text" name="cuota{{session('participantes')[0]->nombre}}" id="cuota{{session('participantes')[0]->nombre}}" value="{{session('cuotas')['cuotaEquipo1']}}"  >
-                                    <input class="cuota" type="text" name="cuota{{session('participantes')[2]->nombre}}" id="cuota{{session('participantes')[2]->nombre}}" value="{{session('cuotas')['cuotaEmpate']}}"  >
                                     <input class="cuota" type="text" name="cuota{{session('participantes')[1]->nombre}}" id="cuota{{session('participantes')[1]->nombre}}" value="{{session('cuotas')['cuotaEquipo2']}}"  >
+
                                     <!-- Nombre equipo 2 -->
                                     <label for="">{{session('participantes')[1]->nombre}}</label>
-                                    <br>
-                                    <label for="">{{session('participantes')[2]->nombre}}</label>
+
                                 </div>
                             </div>
                             <div class="form-row justify-content-center">
@@ -71,46 +65,7 @@
                             </div>
                         </form>
                     </div>
-                    <!-- fromulario de Marcador -->
-                    <div class="tab-pane fade show row" id="marcadorTab">
-                        <!-- formulario -->
-                        <form class="formGanador" action="ControllerApuestaFootballResultado" method="POST">
-                            @csrf
-                            <div class="form-row justify-content-center">
-                                <div class="col-md-6 form-group text-center">
-                                    <label>Marcador</label>
-                                    <br>
-                                    <!-- Nombre equipo 1 -->
-                                    <label for="">{{session('participantes')[0]->nombre}}</label>
-                                    <input class="marcador" type="text" name="marcador1" id="marcador1"  >
-                                    -
-                                    <input class="marcador" type="text" name="marcador2" id="marcador2"  >
-                                    <!-- Nombre equipo 2 -->
-                                    <label for="">{{session('participantes')[1]->nombre}}</label>
-                                </div>
-                                <div class="col-md-5 text-center">
-                                    <label>Cuotas</label>
-                                    <br>
-                                    <label for="">{{session('participantes')[0]->nombre}}</label>
-                                    <input class="cuota" type="text" name="cuota{{session('participantes')[0]->nombre}}" id="cuota{{session('participantes')[0]->nombre}}" value="{{session('cuotas')['cuotaEquipo1']}}"  >
-                                    <input class="cuota" type="text" name="cuota{{session('participantes')[1]->nombre}}" id="cuota{{session('participantes')[1]->nombre}}" value="{{session('cuotas')['cuotaEquipo2']}}"  >
-                                    <label for="">{{session('participantes')[1]->nombre}}</label>
-                                </div>
-                            </div>
-                            <div class="form-row justify-content-center">
-                                <div class="col-md-5 text-center">
-                                    <label>Cuantia</label>
-                                    <input type="number" step=".01" class="" name="CuantiaGanador" min="1" value="1" max="{{session('user')->saldo}}" oninvalid="this.setCustomValidity('No puedes apostar una cantidad mayor a tu saldo')">
-                                    <span>€</span>
-                                    <span>Tu saldo actual: {{session('user')->saldo}}</span>
-                                </div>
-                                <div class="col-md-5 text-center">
-                                    <!-- Nombre del submit -->
-                                    <input type="submit" name="apostarResultado" class="btn btn-primary" value="Crear Apuesta">
-                                </div>
-                            </div>
-                        </form>
-                    </div>
+
                 </div>
             </div>
         </section>
