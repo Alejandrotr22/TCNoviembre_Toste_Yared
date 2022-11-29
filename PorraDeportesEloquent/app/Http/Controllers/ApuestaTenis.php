@@ -6,8 +6,7 @@ use App\Models\Apuesta;
 use App\Models\Evento;
 use Illuminate\Http\Request;
 
-
-class ApuestaFootball extends Controller
+class ApuestaTenis extends Controller
 {
 
     public function index(Request $request){
@@ -28,27 +27,24 @@ class ApuestaFootball extends Controller
         if($ganadoEquipo1 > $ganadoEquipo2){
 
             $cuotas = array(
-                "cuotaEquipo1"  => "1.35",
-                "cuotaEquipo2"  => "2.20",
-                "cuotaEmpate"  => "1.85"
+                "cuotaEquipo1"  => "1.55",
+                "cuotaEquipo2"  => "1.95"
             );
             session()->put("cuotas", $cuotas);
 
         }else if ($ganadoEquipo1 < $ganadoEquipo2){
 
             $cuotas = array(
-                "cuotaEquipo1"  => "2.20",
-                "cuotaEquipo2"  => "1.25",
-                "cuotaEmpate"  => "1.85"
+                "cuotaEquipo1"  => "1.95",
+                "cuotaEquipo2"  => "1.55"
             );
             session()->put("cuotas", $cuotas);
 
         }else{
 
             $cuotas = array(
-                "cuotaEquipo1"  => "1.85",
-                "cuotaEquipo2"  => "1.85",
-                "cuotaEmpate"  => "1.40"
+                "cuotaEquipo1"  => "1.75",
+                "cuotaEquipo2"  => "1.75"
             );
             session()->put("cuotas", $cuotas);
 
@@ -56,7 +52,7 @@ class ApuestaFootball extends Controller
 
         session()->put("participantes", $participantes);
 
-        return view('apuestaFootball');
+        return view('apuestaTenis');
 
     }
 
@@ -73,40 +69,6 @@ class ApuestaFootball extends Controller
         $apuesta->id_usuario = $user->id;
         $apuesta->id_evento = $eventoApostar->id;
         $apuesta->prediccion = $ganador;
-        $apuesta->cantidad = $cantidad;
-        $apuesta->estado = 'Realizada';
-        $apuesta->cuota = $cuota;
-        $apuesta->save();
-
-        $user->saldo -= $cantidad;
-        $user->save();
-        $user->refresh();
-
-        return view('principal');
-
-
-
-    }
-
-    public function apostarResultado(Request $request){
-
-        $eventoApostar = session()->get('evento');
-        $marcador1 = $request->marcador1;
-        $marcador2 = $request->marcador2;
-        $user = session()->get('user');
-        $cantidad = $request->CuantiaGanador;
-        if($marcador1 > $marcador2){
-            $cuota = session()->get('cuotas')['cuotaEquipo1'];
-        }else if($marcador1 < $marcador2){
-            $cuota = session()->get('cuotas')['cuotaEquipo2'];
-        }else{
-            $cuota = session()->get('cuotas')['cuotaEmpate'];
-        }
-
-        $apuesta = new Apuesta();
-        $apuesta->id_usuario = $user->id;
-        $apuesta->id_evento = $eventoApostar->id;
-        $apuesta->prediccion = session()->get('participantes')[0]->nombre . "_" . $marcador1 . "_" . session()->get('participantes')[1]->nombre . "_" . $marcador2;
         $apuesta->cantidad = $cantidad;
         $apuesta->estado = 'Realizada';
         $apuesta->cuota = $cuota;

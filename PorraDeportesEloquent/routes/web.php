@@ -45,6 +45,16 @@ Route::any('/registrarse', function () {
 
 Route::any('principalIndex', 'App\Http\Controllers\Principal@index');
 
+// Apuestas futbol
+
 Route::post('ControllerApuestaFootball', 'App\Http\Controllers\ApuestaFootball@index');
 
 Route::post('ControllerApuestaFootballGanador', 'App\Http\Controllers\ApuestaFootball@ganador');
+
+Route::post('ControllerApuestaFootballResultado', 'App\Http\Controllers\ApuestaFootball@apostarResultado');
+
+// Apuestas tenis
+
+Route::post('ControllerApuestaTenis', 'App\Http\Controllers\ApuestaTenis@index');
+
+Route::post('ControllerApuestaTenisGanador', 'App\Http\Controllers\ApuestaTenis@ganador');
