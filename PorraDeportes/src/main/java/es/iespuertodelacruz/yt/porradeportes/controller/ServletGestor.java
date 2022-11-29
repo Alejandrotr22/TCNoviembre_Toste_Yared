@@ -74,10 +74,10 @@ public class ServletGestor extends HttpServlet {
         String tabD = (String) request.getAttribute("tabD");
 
         if (tabE == null && tabA == null && tabD == null && tabU == null) {
-            request.setAttribute("tabE", "");
+            request.setAttribute("tabE", "active show");
             request.setAttribute("tabA", "");
             request.setAttribute("tabD", "");
-            request.setAttribute("tabU", "active show");
+            request.setAttribute("tabU", "");
         }
 
 
@@ -266,7 +266,7 @@ public class ServletGestor extends HttpServlet {
 
         //endregion
 
-        //region Apuestas
+        //region Formularios de Apuestas
 
         //Modificar Apuesta
         if (request.getParameter("ModA") != null) {

@@ -146,7 +146,7 @@ ${res}
                                 <label for="" class="form-label">Estado</label>
                                 <input type="text" name="EstadoModA" class="form-control"  >
                                 <br>
-                                <input type="submit" name="ModA" class="form-control" value="Crear Apuesta">
+                                <input type="submit" name="ModA" class="form-control" value="Modificar Apuesta">
                             </form>
 
                            <form class="formGanador col-md-4 mt-3" action="/ServletGestor" method="POST">
@@ -158,7 +158,7 @@ ${res}
 									</c:forEach>
                                 </select>
                                 <br>
-                                <input type="submit" name="DelA" class="form-control" value="Eliminar Apuesta">
+                                <input type="submit" name="DelA" class="form-control" value="Cerrar Apuesta">
                             </form>
 
                            <form class="formGanador col-md-4 mt-3" action="/ServletGestor" method="POST">
@@ -176,7 +176,7 @@ ${res}
                            <form class="formGanador col-md-4 mt-3" action="/ServletGestor" method="POST">
                                 <h3>Mostrar Todos</h3>
                                 <br>
-                                <input type="submit" name="FindAllA" class="form-control" value="Mostrar Todos ">
+                                <input type="submit" name="FindAllA" class="form-control" value="Mostrar Todas ">
                             </form>
                         </div>
                         <br>
