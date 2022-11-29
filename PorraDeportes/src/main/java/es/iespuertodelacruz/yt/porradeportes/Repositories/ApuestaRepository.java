@@ -2,6 +2,7 @@ package es.iespuertodelacruz.yt.porradeportes.Repositories;
 
 import es.iespuertodelacruz.yt.porradeportes.entities.Apuesta;
 import es.iespuertodelacruz.yt.porradeportes.entities.Rol;
+import es.iespuertodelacruz.yt.porradeportes.entities.Usuario;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -125,6 +126,29 @@ public class ApuestaRepository implements ICrud<Apuesta, Integer>{
 
             em.getTransaction().begin();
             apuestas = em.createNamedQuery("Apuesta.findAll", Apuesta.class)
+                    .getResultList();
+            em.getTransaction().commit();
+
+        }catch (RollbackException ex){
+            em.close();
+            return null;
+        }
+        em.close();
+
+        return apuestas;
+
+    }
+
+    public List<Apuesta> findAllById(Usuario usuario) {
+
+        List<Apuesta> apuestas = null;
+        EntityManager em = emf.createEntityManager();
+
+        try {
+
+            em.getTransaction().begin();
+            apuestas = em.createNamedQuery("Apuesta.findAllById",Apuesta.class)
+                    .setParameter("usuario",usuario)
                     .getResultList();
             em.getTransaction().commit();
 

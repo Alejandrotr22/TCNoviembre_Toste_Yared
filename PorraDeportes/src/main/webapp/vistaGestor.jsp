@@ -187,50 +187,25 @@ ${res}
                     <!-- fromularios de Usuario -->
                     <div class="tab-pane fade ${tabU}" id="usuarios">
                         <div class="form-row justify-content-center">
-                           <form class="formGanador col-md-4 mt-3" action="/ServletGestor" method="POST">
-                                <h3>Crear Usuario</h3>
-                                <label for="" class="form-label">Nombre</label>
-                                <input type="text" name="NombreCrearU" class="form-control"  >
-                                <label for="" class="form-label">Email</label>
-                                <input type="email" name="EmailCrearU" class="form-control"  >
-                                <label for="" class="form-label">Contraseña</label>
-                                <input type="password" name="PassCrearU" class="form-control"  >
-                                <label for="" class="form-label">Saldo</label>
-                                <input type="number" name="SaldoCrearU" class="form-control"  >
-                                <label for="">Rol</label>
-                                <select class="form-control"  name="RolCrearU">
-                                    <option></option>
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                </select>
-                                <br>
-                                <input type="submit" name="CrearU" class="form-control" value="Crear Usuario">
-                            </form>
-                            
+
                            <form class="formGanador col-md-4 mt-3" action="/ServletGestor" method="POST">
                                 <h3>Modificar Usuario</h3>
                                 <label for="">Usuario</label>
                                 <select class="form-control"  name="IdModU">
-                                    <option></option>
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
+                                    <c:forEach items="${usuarios}" var="usuario">
+                                        <option>${usuario.getNombre()}-${usuario.getId()}</option>
+                                    </c:forEach>
                                 </select>
-                                <label for="" class="form-label">Nombre</label>
-                                <input type="text" name="NombreModU" class="form-control"  >
                                 <label for="" class="form-label">Email</label>
                                 <input type="email" name="EmailModU" class="form-control"  >
                                 <label for="" class="form-label">Contraseña</label>
                                 <input type="password" name="PassModU" class="form-control"  >
-                                <label for="" class="form-label">Saldo</label>
-                                <input type="number" name="SaldoModU" class="form-control"  >
                                 <label for="">Rol</label>
                                 <select class="form-control"  name="RolModU">
                                     <option></option>
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
+                                    <c:forEach items="${roles}" var="rol">
+                                        <option>${rol.getNombre()}-${rol.getId()}</option>
+                                    </c:forEach>
                                 </select>
                                 <br>
                                 <input type="submit" name="ModU" class="form-control" value="Modificar Usuario">
@@ -240,10 +215,9 @@ ${res}
                                 <h3>Eliminar Usuario</h3>
                                 <label for="">Usuario</label>
                                 <select class="form-control" name="IdDelU">
-                                    <option></option>
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
+                                    <c:forEach items="${usuarios}" var="usuario">
+                                        <option>${usuario.getNombre()}-${usuario.getId()}</option>
+                                    </c:forEach>
                                 </select>
                                 <br>
                                 <input type="submit" name="DelU" class="form-control" value="Eliminar Usuario">
@@ -253,10 +227,9 @@ ${res}
                                 <h3>Buscar Usuario</h3>
                                 <label for="">Usuario</label>
                                 <select class="form-control" name="IdFindU">
-                                    <option></option>
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
+                                    <c:forEach items="${usuarios}" var="usuario">
+                                        <option>${usuario.getNombre()}-${usuario.getId()}</option>
+                                    </c:forEach>
                                 </select>
                                 <br>
                                 <input type="submit" name="FindU" class="form-control" value="Buscar Usuario">

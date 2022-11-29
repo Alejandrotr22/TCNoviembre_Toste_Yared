@@ -25,10 +25,7 @@ SET time_zone = "+00:00";
 -- Dumping data for table apuestas
 --
 
-INSERT INTO apuestas (id, id_evento, id_usuario, prediccion, cuota, cantidad, estado) VALUES
-(9, 1, 1, 'Barca', '1.85', '64.76', 'Realizada'),
-(10, 4, 1, 'Manchester_City_3_Liverpool_1', '1.85', '34.00', 'Realizada'),
-(11, 2, 1, 'Alcaraz', '1.75', '45.00', 'Realizada');
+
 
 --
 -- Dumping data for table deportes
@@ -137,3 +134,8 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+INSERT INTO apuestas (id, id_evento, id_usuario, prediccion, cuota, cantidad, estado) VALUES
+(9, 1, 1, 'Barca', '1.85', '64.76', 'Realizada'),
+(10, 4, 1, 'Manchester_City_3_Liverpool_1', '1.85', '34.00', 'Realizada'),
+(11, 2, 1, 'Alcaraz', '1.75', '45.00', 'Realizada');

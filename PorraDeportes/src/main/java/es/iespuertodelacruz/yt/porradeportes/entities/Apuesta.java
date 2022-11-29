@@ -6,6 +6,7 @@ import java.math.BigDecimal;
 @Entity
 @Table(name = "apuestas")
 @NamedQuery(name="Apuesta.findAll", query = "select a from Apuesta a")
+@NamedQuery(name="Apuesta.findAllById", query = "select a from Apuesta a where a.usuario = :usuario")
 public class Apuesta {
     private Integer id;
 
@@ -112,6 +113,7 @@ public class Apuesta {
 
     @Override
     public String toString() {
-        return "----------\nApuesta: "+ id+"\nUsuario: "+usuario.getNombre()+"\n"+evento.getNombre()+"\n"+prediccion+"\nCuota: " + cuota + "\nCantidad: "+cantidad +"\nEstado: " +estado+"\n----------";
+        return "----------\nApuesta: "+ id+"\nUsuario: "+usuario.getNombre()+"\n"+evento.getNombre()+"\n"+prediccion
+                +"\nCuota: " + cuota + "\nCantidad: "+cantidad +"\nEstado: " +estado+"\n----------";
     }
 }

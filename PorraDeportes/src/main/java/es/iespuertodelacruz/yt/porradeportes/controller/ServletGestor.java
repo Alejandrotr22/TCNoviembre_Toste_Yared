@@ -21,6 +21,7 @@ import javax.servlet.http.HttpServletResponse;
 import es.iespuertodelacruz.yt.porradeportes.Repositories.*;
 import es.iespuertodelacruz.yt.porradeportes.entities.*;
 import org.jboss.logging.Logger;
+import org.mindrot.jbcrypt.BCrypt;
 
 /**
  * Servlet implementation class ServletGestor
@@ -337,8 +338,110 @@ public class ServletGestor extends HttpServlet {
 
         //endregion
 
+        //region Formularios de Usuarios
+
+        //Modificar Usuario
+        if (request.getParameter("ModU") != null){
+            String strUsuario = request.getParameter("IdModU");
+            String[] split = strUsuario.split("-");
+            Usuario usuario = null;
+            try {
+                usuario = usuarioRepository.findByID(Integer.parseInt(split[1]));
+            } catch (Exception e) {
+
+            }
+            String mail = request.getParameter("EmailModU");
+            String password = request.getParameter("PassModU");
+
+            String strRol = request.getParameter("RolModU");
+            Rol rol = null;
+            if (!strRol.equals("")){
+                String[] Rsplit = strRol.split("-");
+
+                try {
+                    rol = rolRepository.findByID(Integer.parseInt(split[1]));
+                } catch (Exception e) {
+
+                }
+            }
+
+            if (!password.equals("")){
+                usuario.setPassword(BCrypt.hashpw(password, BCrypt.gensalt()));
+            }
+            if (!mail.equals("")){
+                usuario.setEmail(mail);
+            }
+            if (rol != null){
+                usuario.setRol(rol);
+            }
+            Boolean update = usuarioRepository.update(usuario);
+            request.setAttribute("res", (update)?"Se ha actualizado correctamente":"No se ha actualizado correctamente" + "");
+            this.doGet(mostrarTab(request, response, 3), response);
+        }
+
+        // Eliminar Usuario
+        if (request.getParameter("DelU") != null){
+            String strUsuario = request.getParameter("IdModU");
+            String[] split = strUsuario.split("-");
+            Usuario usuario = null;
+            try {
+                usuario = usuarioRepository.findByID(Integer.parseInt(split[1]));
+            } catch (Exception e) {
+
+            }
+            Boolean delete = usuarioRepository.delete(usuario.getId());
+            String res = "";
+            if (delete == null){
+                res = "El usuario no se puede eliminar";
+            }else{
+                res = "Se ha eliminado correctamente";
+            }
+            request.setAttribute("res", res);
+            this.doGet(mostrarTab(request, response, 3), response);
+        }
+
+        //Mostrar Usuario
+        if (request.getParameter("FindU") != null){
+            String strUsuario = request.getParameter("IdFindU");
+            String[] split = strUsuario.split("-");
+            Usuario usuario = null;
+            List<Apuesta> apuestas = null;
+            try {
+                usuario = usuarioRepository.findByID(Integer.parseInt(split[1]));
+                apuestas = apuestaRepository.findAllById(usuario);
+            } catch (Exception e) {
+
+            }
+
+            String res = usuario.toString() + "\nApuestas:\n";
+
+                for (Apuesta apuesta: apuestas) {
+                    res = apuesta.toString() + "\n";
+                }
+
+            request.setAttribute("res", res);
+            this.doGet(mostrarTab(request, response, 3), response);
+
+        }
+
+        if (request.getParameter("FindAllU") != null ){
+            String res = "";
+            List<Usuario> findAll = usuarioRepository.findAll();
+            for (Usuario u : findAll) {
+                res += u.toString() + "\n";
+            }
+            request.setAttribute("res", res + "");
+            this.doGet(mostrarTab(request, response, 3), response);
+        }
+
+
+        //endregion
+
+
 
     }
+
+
 
     public HttpServletRequest mostrarTab(HttpServletRequest request, HttpServletResponse response, int tab) throws ServletException, IOException {
 
