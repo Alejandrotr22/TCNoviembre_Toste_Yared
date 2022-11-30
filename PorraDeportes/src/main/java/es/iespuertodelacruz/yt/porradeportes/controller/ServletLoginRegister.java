@@ -74,7 +74,7 @@ public class ServletLoginRegister extends HttpServlet {
                 nuevoUsuario.setPassword(BCrypt.hashpw(password, BCrypt.gensalt()));
                 usuarioRepository.save(nuevoUsuario);
                 request.getSession().setAttribute("user", nuevoUsuario);
-                RequestDispatcher requestDispatcher = request.getRequestDispatcher("home.html");
+                RequestDispatcher requestDispatcher = request.getRequestDispatcher("login.jsp");
                 requestDispatcher.forward(request, response);
 
             }else{
