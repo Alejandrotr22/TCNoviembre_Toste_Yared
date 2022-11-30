@@ -456,42 +456,32 @@ public class ServletGestor extends HttpServlet {
         ApuestaRepository apuestaRepository = new ApuestaRepository(emf);
         UsuarioRepository usuarioRepository = new UsuarioRepository(emf);
 
-        List<Apuesta> findAllbyPrediccion1 = null;
-        List<Apuesta> findAllbyPrediccion2 = null;
+        List<Apuesta> findAllbyPrediccionGanadora1 = null;
+        List<Apuesta> findAllbyPrediccionGanadora2 = null;
         Set<Apuesta> allbyEvento = evento.getApuestas();
 
         if (evento.getIdDeporte().getNombre().equals("Football")){
 
-            findAllbyPrediccion2 = apuestaRepository.findAllbyPrediccion(evento.getId());
-            findAllbyPrediccion1 = apuestaRepository.findAllbyEquipoGanador(evento.getId());
+            findAllbyPrediccionGanadora2 = apuestaRepository.findAllbyPrediccion(evento.getId());
+            findAllbyPrediccionGanadora1 = apuestaRepository.findAllbyEquipoGanador(evento.getId());
 
         }else{
-            findAllbyPrediccion1 = apuestaRepository.findAllbyEquipoGanador(evento.getId());
+            findAllbyPrediccionGanadora1 = apuestaRepository.findAllbyEquipoGanador(evento.getId());
         }
 
 
         for (Apuesta apuesta: allbyEvento) {
-
-        }
-
-
-
-
-        for (Apuesta apuesta: findAllbyPrediccion1) {
-            if (allbyEvento.contains(apuesta)){
-
+            if (findAllbyPrediccionGanadora1.contains(apuesta) || findAllbyPrediccionGanadora2.contains(apuesta)){
+                apuesta.setEstado("Fallada");
+                apuestaRepository.update(apuesta);
+            }else{
+                apuesta.setEstado("Aceptada");
+                apuesta.getUsuario().setSaldo( apuesta.getUsuario().getSaldo().add(apuesta.getCuota().multiply(apuesta.getCantidad())));
+                usuarioRepository.update(apuesta.getUsuario());
+                apuestaRepository.update(apuesta);
             }
-            apuesta.setEstado("Aceptada");
-            apuesta.getUsuario().setSaldo( apuesta.getUsuario().getSaldo().add(apuesta.getCuota().multiply(apuesta.getCantidad())));
-            usuarioRepository.update(apuesta.getUsuario());
-            apuestaRepository.update(apuesta);
         }
-        for (Apuesta apuesta: findAllbyPrediccion2) {
-            apuesta.setEstado("Aceptada");
-            apuesta.getUsuario().setSaldo( apuesta.getUsuario().getSaldo().add(apuesta.getCuota().multiply(apuesta.getCantidad())));
-            usuarioRepository.update(apuesta.getUsuario());
-            apuestaRepository.update(apuesta);
-        }
+
 
     }
 
