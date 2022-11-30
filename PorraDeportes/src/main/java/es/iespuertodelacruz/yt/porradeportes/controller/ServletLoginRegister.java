@@ -40,7 +40,12 @@ public class ServletLoginRegister extends HttpServlet {
                     /*RequestDispatcher requestDispatcher = request.getRequestDispatcher("/ServletApuestaFootball");
                     requestDispatcher.forward(request, response);
                      */
-                    response.sendRedirect("/ServletGestor");
+                    if (usuarioDDBB.getRol().getId() == 1){
+                        response.sendRedirect("/ServletPrincipal");
+                    }else{
+                        response.sendRedirect("/ServletGestor");
+                    }
+
 
                 }else{
                     request.setAttribute("respuesta", "Contraseña Incorrecta");

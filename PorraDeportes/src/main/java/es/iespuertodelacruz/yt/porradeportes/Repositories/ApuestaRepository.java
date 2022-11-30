@@ -174,12 +174,12 @@ public class ApuestaRepository implements ICrud<Apuesta, Integer>{
             em.getTransaction().begin();
             String query = "SELECT a.* FROM apuestas as a INNER JOIN eventos as e on a.id_evento=e.id WHERE a.prediccion = e.resultado AND a.estado != 'Rechazada' and a.estado = 'Realizada' and e.id = "+id ;
             apuestas = em.createNativeQuery(query,Apuesta.class).getResultList();
-            log.info("--------- list Apuestas: " + apuestas);
+
             em.getTransaction().commit();
 
         }catch (RollbackException ex){
             em.close();
-            log.info("--------- Error al generar las apuestas gandoras");
+
             return null;
         }
         em.close();
