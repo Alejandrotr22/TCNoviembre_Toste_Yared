@@ -134,7 +134,7 @@ public class ServletApuestaFootball extends HttpServlet {
             Usuario usuario = (Usuario) request.getSession().getAttribute("user");
             ArrayList<Equipo> participantes = new ArrayList<Equipo>(eventoApostar.getParticipantes());
             List<Equipo> participantesOrdenados = participantes.stream().sorted((Comparator.comparing(Equipo::getId))).collect(Collectors.toList());
-            String prediccion = participantesOrdenados.get(0).getNombre() + ";" + marcador1 + ";" + participantesOrdenados.get(1).getNombre() + ";" + marcador2;
+            String prediccion = participantesOrdenados.get(0).getNombre() + "_" + marcador1 + "_" + participantesOrdenados.get(1).getNombre() + "_" + marcador2;
             if(Integer.parseInt(marcador1) > Integer.parseInt(marcador2)){
                 cuota = request.getParameter("cuota"+participantesOrdenados.get(0).getNombre());
             }else if(Integer.parseInt(marcador1) < Integer.parseInt(marcador2)){

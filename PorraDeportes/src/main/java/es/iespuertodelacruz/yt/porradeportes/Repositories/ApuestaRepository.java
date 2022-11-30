@@ -9,10 +9,12 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.RollbackException;
 import java.util.List;
+import java.util.logging.Logger;
 
 public class ApuestaRepository implements ICrud<Apuesta, Integer>{
 
     EntityManagerFactory emf;
+    Logger log = Logger.getLogger("log");
 
     public ApuestaRepository(EntityManagerFactory emf){ this.emf = emf; }
 
@@ -170,12 +172,14 @@ public class ApuestaRepository implements ICrud<Apuesta, Integer>{
         try {
 
             em.getTransaction().begin();
-            String query = "SELECT a.* FROM apuestas as a INNER JOIN eventos as e on a.id_evento=e.id WHERE a.prediccion = e.resultado AND a.estado != 'Rechazada' and a.estado = 'Realizada' and a.id_evento = "+id ;
+            String query = "SELECT a.* FROM apuestas as a INNER JOIN eventos as e on a.id_evento=e.id WHERE a.prediccion = e.resultado AND a.estado != 'Rechazada' and a.estado = 'Realizada' and e.id = "+id ;
             apuestas = em.createNativeQuery(query,Apuesta.class).getResultList();
+            log.info("--------- list Apuestas: " + apuestas);
             em.getTransaction().commit();
 
         }catch (RollbackException ex){
             em.close();
+            log.info("--------- Error al generar las apuestas gandoras");
             return null;
         }
         em.close();

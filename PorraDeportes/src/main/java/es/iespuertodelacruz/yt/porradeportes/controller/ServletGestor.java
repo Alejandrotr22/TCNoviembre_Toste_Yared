@@ -207,8 +207,12 @@ public class ServletGestor extends HttpServlet {
             if (!resultado.equals("")) {
                 evento.setResultado(resultado);
             }
+
             Boolean update = eventoRepository.update(evento);
 
+            if (!strGanador.equals("") && !resultado.equals("")){
+                comprobarAsignarGanancias(evento,request);
+            }
             request.setAttribute("res", (update) ? "Se ha actualizado correctamente" : "No se ha actualizado correctamente" + "");
             this.doGet(mostrarTab(request, response, 1), response);
         }
@@ -456,33 +460,42 @@ public class ServletGestor extends HttpServlet {
         ApuestaRepository apuestaRepository = new ApuestaRepository(emf);
         UsuarioRepository usuarioRepository = new UsuarioRepository(emf);
 
-        List<Apuesta> findAllbyPrediccionGanadora1 = null;
-        List<Apuesta> findAllbyPrediccionGanadora2 = null;
+        List<Apuesta> findAllbyPrediccionGanadora1 = new ArrayList<>();
+        List<Apuesta> findAllbyPrediccionGanadora2 = new ArrayList<>();
         Set<Apuesta> allbyEvento = evento.getApuestas();
 
-        if (evento.getIdDeporte().getNombre().equals("Football")){
+        if (evento.getIdDeporte().getNombre().equals("futbol")){
 
             findAllbyPrediccionGanadora2 = apuestaRepository.findAllbyPrediccion(evento.getId());
             findAllbyPrediccionGanadora1 = apuestaRepository.findAllbyEquipoGanador(evento.getId());
-
+            log.info("----------- apuestas ganadoras 2: " + findAllbyPrediccionGanadora2);
         }else{
             findAllbyPrediccionGanadora1 = apuestaRepository.findAllbyEquipoGanador(evento.getId());
         }
 
-
         for (Apuesta apuesta: allbyEvento) {
-            if (findAllbyPrediccionGanadora1.contains(apuesta) || findAllbyPrediccionGanadora2.contains(apuesta)){
-                apuesta.setEstado("Fallada");
-                apuestaRepository.update(apuesta);
-            }else{
+            log.info("comprobacion 2: " + comprobarSiEsGanadora(findAllbyPrediccionGanadora2,apuesta));
+            if (comprobarSiEsGanadora(findAllbyPrediccionGanadora1,apuesta) || comprobarSiEsGanadora(findAllbyPrediccionGanadora2,apuesta)){
                 apuesta.setEstado("Aceptada");
                 apuesta.getUsuario().setSaldo( apuesta.getUsuario().getSaldo().add(apuesta.getCuota().multiply(apuesta.getCantidad())));
                 usuarioRepository.update(apuesta.getUsuario());
                 apuestaRepository.update(apuesta);
+            }else{
+                apuesta.setEstado("Fallada");
+                apuestaRepository.update(apuesta);
             }
         }
-
-
     }
 
+    public boolean comprobarSiEsGanadora(List<Apuesta> apuestas,Apuesta apuesta){
+        boolean res = false;
+        for (Apuesta a: apuestas) {
+            if (a.getId() == apuesta.getId()){
+                res = true;
+            }else{
+                res = false;
+            }
+        }
+        return res;
+    }
 }
