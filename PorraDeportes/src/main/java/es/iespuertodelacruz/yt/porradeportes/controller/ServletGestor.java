@@ -468,13 +468,12 @@ public class ServletGestor extends HttpServlet {
 
             findAllbyPrediccionGanadora2 = apuestaRepository.findAllbyPrediccion(evento.getId());
             findAllbyPrediccionGanadora1 = apuestaRepository.findAllbyEquipoGanador(evento.getId());
-            log.info("----------- apuestas ganadoras 2: " + findAllbyPrediccionGanadora2);
         }else{
             findAllbyPrediccionGanadora1 = apuestaRepository.findAllbyEquipoGanador(evento.getId());
         }
 
         for (Apuesta apuesta: allbyEvento) {
-            log.info("comprobacion 2: " + comprobarSiEsGanadora(findAllbyPrediccionGanadora2,apuesta));
+
             if (comprobarSiEsGanadora(findAllbyPrediccionGanadora1,apuesta) || comprobarSiEsGanadora(findAllbyPrediccionGanadora2,apuesta)){
                 apuesta.setEstado("Aceptada");
                 apuesta.getUsuario().setSaldo( apuesta.getUsuario().getSaldo().add(apuesta.getCuota().multiply(apuesta.getCantidad())));

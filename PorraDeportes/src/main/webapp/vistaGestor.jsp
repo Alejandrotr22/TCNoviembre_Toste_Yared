@@ -29,8 +29,6 @@
                         data-target="#apuestas">Apuestas</a>
                     <a class="list-group-item list-group-item-action ${tabU}" data-toggle="list"
                         data-target="#usuarios">Usuarios</a>
-                    <a class="list-group-item list-group-item-action ${tabD}" data-toggle="list"
-                        data-target="#deportes">Deportes</a>
                 </div>
             </div>
             <div class="mt-3">
@@ -246,69 +244,7 @@ ${res}
 ${res}
                         </textarea>
                     </div>
-                    <!-- fromularios de Deportes -->
-                    <div class="tab-pane fade ${tabD}" id="deportes">
-                        <div class="form-row justify-content-center">
-                           <form class="formGanador col-md-4 mt-3" action="/ServletGestor" method="POST">
-                                <h3>Crear Deporte</h3>
-                                <label for="" class="form-label">Nombre</label>
-                                <input type="text" name="NombreCrearD" class="form-control"  >
-                                <br>
-                                <input type="submit" name="CrearD" class="form-control" value="Crear Deporte">
-                            </form>
-                            
-                           <form class="formGanador col-md-4 mt-3" action="/ServletGestor" method="POST">
-                                <h3>Modificar Deporte</h3>
-                                <label for="">Deporte</label>
-                                <select class="form-control"  name="IdModD">
-                                    <option></option>
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                </select>
-                                <label for="" class="form-label">Nombre</label>
-                                <input type="text" name="NombreModD" class="form-control"  >
-                                <br>
-                                <input type="submit" name="ModD" class="form-control" value="Modificar Deporte">
-                            </form>
 
-                           <form class="formGanador col-md-4 mt-3" action="/ServletGestor" method="POST">
-                                <h3>Eliminar Deporte</h3>
-                                <label for="">Deporte</label>
-                                <select class="form-control" name="IdDelD">
-                                    <option></option>
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                </select>
-                                <br>
-                                <input type="submit" name="DelD" class="form-control" value="Eliminar Deporte">
-                            </form>
-
-                           <form class="formGanador col-md-4 mt-3" action="/ServletGestor" method="POST">
-                                <h3>Buscar Deporte</h3>
-                                <label for="">Deporte</label>
-                                <select class="form-control" name="IdFindD">
-                                    <option></option>
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                </select>
-                                <br>
-                                <input type="submit" name="FindD" class="form-control" value="Buscar Deporte">
-                            </form>
-
-                           <form class="formGanador col-md-4 mt-3" action="/ServletGestor" method="POST">
-                                <h3>Mostrar Todos</h3>
-                                <br>
-                                <input type="submit" name="FindAllD" class="form-control" value="Mostrar Todos ">
-                            </form>
-                        </div>
-                        <br>
-                        <textarea class="resultado" name="res" id=""  rows="20">
-${res}
-                        </textarea>
-                    </div>
                 </div>
 
             </div>
