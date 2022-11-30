@@ -148,7 +148,7 @@ public class Evento {
     public String toString(){
 
         return "----------\nEvento: "+ id+"\nDeporte: "+idDeporte.getNombre()+"\nFecha Inicio: "+fechaInicio+
-                "\nFecha Final: "+fechaFin+"\nNombre: "+nombre + "\nEquipo ganador: "+idEquipoGanador.getNombre()+
+                "\nFecha Final: "+fechaFin+"\nNombre: "+nombre + "\nEquipo ganador: "+ ((idEquipoGanador == null)?"null":idEquipoGanador.getNombre()) +
                 "\nResultado: "+resultado+"\n----------";
 
     }

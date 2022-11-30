@@ -4,11 +4,7 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 import javax.persistence.EntityManagerFactory;
 import javax.servlet.RequestDispatcher;
@@ -260,6 +256,8 @@ public class ServletGestor extends HttpServlet {
             List<Evento> findAll = eventoRepository.findAll();
 
 
+
+
             request.setAttribute("res", findAll + "");
             this.doGet(mostrarTab(request, response, 1), response);
 
@@ -413,10 +411,10 @@ public class ServletGestor extends HttpServlet {
 
             }
 
-            String res = usuario.toString() + "\nApuestas:\n";
+            String res = usuario.toString() + "\nApuestas:\n\n";
 
                 for (Apuesta apuesta: apuestas) {
-                    res = apuesta.toString() + "\n";
+                    res += apuesta.toString() + "\n\n";
                 }
 
             request.setAttribute("res", res);
@@ -451,4 +449,50 @@ public class ServletGestor extends HttpServlet {
         request.setAttribute("tabD", (tab == 4) ? "active show" : "");
         return request;
     }
+
+    public void comprobarAsignarGanancias(Evento evento,HttpServletRequest request){
+        Logger log = Logger.getLogger("log");
+        EntityManagerFactory emf = (EntityManagerFactory) request.getServletContext().getAttribute("emf");
+        ApuestaRepository apuestaRepository = new ApuestaRepository(emf);
+        UsuarioRepository usuarioRepository = new UsuarioRepository(emf);
+
+        List<Apuesta> findAllbyPrediccion1 = null;
+        List<Apuesta> findAllbyPrediccion2 = null;
+        Set<Apuesta> allbyEvento = evento.getApuestas();
+
+        if (evento.getIdDeporte().getNombre().equals("Football")){
+
+            findAllbyPrediccion2 = apuestaRepository.findAllbyPrediccion(evento.getId());
+            findAllbyPrediccion1 = apuestaRepository.findAllbyEquipoGanador(evento.getId());
+
+        }else{
+            findAllbyPrediccion1 = apuestaRepository.findAllbyEquipoGanador(evento.getId());
+        }
+
+
+        for (Apuesta apuesta: allbyEvento) {
+
+        }
+
+
+
+
+        for (Apuesta apuesta: findAllbyPrediccion1) {
+            if (allbyEvento.contains(apuesta)){
+
+            }
+            apuesta.setEstado("Aceptada");
+            apuesta.getUsuario().setSaldo( apuesta.getUsuario().getSaldo().add(apuesta.getCuota().multiply(apuesta.getCantidad())));
+            usuarioRepository.update(apuesta.getUsuario());
+            apuestaRepository.update(apuesta);
+        }
+        for (Apuesta apuesta: findAllbyPrediccion2) {
+            apuesta.setEstado("Aceptada");
+            apuesta.getUsuario().setSaldo( apuesta.getUsuario().getSaldo().add(apuesta.getCuota().multiply(apuesta.getCantidad())));
+            usuarioRepository.update(apuesta.getUsuario());
+            apuestaRepository.update(apuesta);
+        }
+
+    }
+
 }

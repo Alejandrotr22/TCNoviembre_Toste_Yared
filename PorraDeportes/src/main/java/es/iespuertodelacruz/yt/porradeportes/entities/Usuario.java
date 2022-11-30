@@ -115,6 +115,6 @@ public class Usuario {
 
     @Override
     public String toString() {
-        return "nombre='" + nombre;
+        return  "----Usuario----\nnombre: " + nombre+"\nId: "+id + "\nEmail: " +email+"\nRol: "+rol.getNombre() +"\nSaldo: " + saldo+"\n--------";
     }
 }

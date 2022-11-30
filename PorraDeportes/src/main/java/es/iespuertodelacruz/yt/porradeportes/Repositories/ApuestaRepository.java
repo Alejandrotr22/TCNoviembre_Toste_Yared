@@ -1,6 +1,7 @@
 package es.iespuertodelacruz.yt.porradeportes.Repositories;
 
 import es.iespuertodelacruz.yt.porradeportes.entities.Apuesta;
+import es.iespuertodelacruz.yt.porradeportes.entities.Equipo;
 import es.iespuertodelacruz.yt.porradeportes.entities.Rol;
 import es.iespuertodelacruz.yt.porradeportes.entities.Usuario;
 
@@ -150,6 +151,49 @@ public class ApuestaRepository implements ICrud<Apuesta, Integer>{
             apuestas = em.createNamedQuery("Apuesta.findAllById",Apuesta.class)
                     .setParameter("usuario",usuario)
                     .getResultList();
+            em.getTransaction().commit();
+
+        }catch (RollbackException ex){
+            em.close();
+            return null;
+        }
+        em.close();
+
+        return apuestas;
+
+    }
+    public List<Apuesta> findAllbyPrediccion(Integer id) {
+
+        List apuestas = null;
+        EntityManager em = emf.createEntityManager();
+
+        try {
+
+            em.getTransaction().begin();
+            String query = "SELECT a.* FROM apuestas as a INNER JOIN eventos as e on a.id_evento=e.id WHERE a.prediccion = e.resultado AND a.estado != 'Rechazada' and a.estado = 'Realizada' and a.id_evento = "+id ;
+            apuestas = em.createNativeQuery(query,Apuesta.class).getResultList();
+            em.getTransaction().commit();
+
+        }catch (RollbackException ex){
+            em.close();
+            return null;
+        }
+        em.close();
+
+        return apuestas;
+
+    }
+
+    public List<Apuesta> findAllbyEquipoGanador(Integer id) {
+
+        List apuestas = null;
+        EntityManager em = emf.createEntityManager();
+
+        try {
+
+            em.getTransaction().begin();
+            String query = "SELECT a.* FROM apuestas as a INNER JOIN eventos as e INNER JOIN equipos as eq ON a.id_evento= e.id AND e.id_equipo_ganador = eq.id WHERE a.prediccion=eq.nombre and a.estado != 'Rechazada' and a.estado = 'Realizada' and a.id_evento = "+id;
+            apuestas = em.createNativeQuery(query,Apuesta.class).getResultList();
             em.getTransaction().commit();
 
         }catch (RollbackException ex){
