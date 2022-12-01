@@ -69,7 +69,9 @@
                     </form>
                 </div>
             </div>
-
+            <form class="usuario mt-2" action="ServletUsuario" method="GET" style="float: right">
+                <input type="submit" name="" class="btn btn-primary" value="Ver Usuario">
+            </form>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

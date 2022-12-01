@@ -21,6 +21,7 @@
     <form class="formGanador col-md-3 mt-3" action="/ServletUsuario" method="POST">
         <h3>Modificar Saldo</h3>
         <label for="" class="">Nuevo Saldo</label>
+        <span style="float: right; font-size: 1.5rem">Saldo actual: ${usuario.getSaldo()}</span>
         <input type="number" name="saldo" class="form-control" min="0" step="0.01" >
         <br>
         <input type="submit" name="actualizar" class="form-control" value="Actualizar Saldo">

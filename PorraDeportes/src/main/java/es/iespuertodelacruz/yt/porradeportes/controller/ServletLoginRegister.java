@@ -40,18 +40,15 @@ public class ServletLoginRegister extends HttpServlet {
                     /*RequestDispatcher requestDispatcher = request.getRequestDispatcher("/ServletApuestaFootball");
                     requestDispatcher.forward(request, response);
                      */
-<<<<<<< HEAD
+
                     if (usuarioDDBB.getRol().getId() == 1){
-                        request.getSession().setAttribute("usuario",usuarioDDBB);
-                        response.sendRedirect("/ServletPrincipal");
+
+                        response.sendRedirect("ServletPrincipal");
                     }else{
 
-                        response.sendRedirect("/ServletGestor");
+                        response.sendRedirect("ServletGestor");
                     }
 
-=======
-                    response.sendRedirect("ServletPrincipal");
->>>>>>> feature_ApuestasFormula_14
 
                 }else{
                     request.setAttribute("respuesta", "Contraseña Incorrecta");
@@ -80,8 +77,7 @@ public class ServletLoginRegister extends HttpServlet {
                 nuevoUsuario.setPassword(BCrypt.hashpw(password, BCrypt.gensalt()));
                 usuarioRepository.save(nuevoUsuario);
                 request.getSession().setAttribute("user", nuevoUsuario);
-                RequestDispatcher requestDispatcher = request.getRequestDispatcher("login.jsp");
-                requestDispatcher.forward(request, response);
+                response.sendRedirect("ServletPrincipal");
 
             }else{
 

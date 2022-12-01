@@ -19,6 +19,7 @@
         <form class="formGanador col-md-3 mt-3" action="nuevoSaldo" method="POST">
             @csrf
             <h3>Modificar Saldo</h3>
+            <span style="float: right; font-size: 1.5rem">Saldo actual: {{session("user")->saldo}}</span>
             <label for="" class="">Nuevo Saldo</label>
             <input type="number" name="saldo" class="form-control" min="0" step="0.01" >
             <br>

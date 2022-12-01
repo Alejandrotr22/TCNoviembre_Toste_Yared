@@ -69,7 +69,9 @@
                 </div>
             </div>
         </section>
-
+        <form class="usuario mt-2" action="vistaUsuario" method="GET">
+            <input type="submit" name="" class="btn btn-primary" value="Ver Usuario">
+        </form>
 
 
 

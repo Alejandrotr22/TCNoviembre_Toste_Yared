@@ -60,7 +60,9 @@
             </div>
         </section>
 
-
+        <form class="usuario mt-2" action="ServletUsuario" method="GET" style="float: right">
+            <input type="submit" name="" class="btn btn-primary" value="Ver Usuario">
+        </form>
 
 
 

@@ -104,13 +104,7 @@
                         <div class="form-row justify-content-center">
                             <div class="col-md-5 text-center">
                                 <label>Cuantia</label>
-<<<<<<< HEAD
-
-                                <input type="number" step=".01" class="" name="CuantiaGanador" min="1" value="1" max="${user.getSaldo()}">
-
-=======
                                 <input type="number" step=".01" class="" name="CuantiaGanador" min="1" value="1" max="${user.getSaldo()}" oninvalid="this.setCustomValidity('No puedes apostar una cantidad mayor a tu saldo')">
->>>>>>> feature_LoginRegisterApuestasEloquent_13
                                 <span>€</span>
                                  <span>Tu saldo actual: ${user.getSaldo()}</span>
                             </div>
@@ -126,6 +120,9 @@
             </div>
         </div>
     </section>
+    <form class="usuario mt-2" action="ServletUsuario" method="GET" style="float: right">
+    <input type="submit" name="" class="btn btn-primary" value="Ver Usuario">
+    </form>
 </main>
 
 
