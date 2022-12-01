@@ -63,6 +63,17 @@ Route::post('ControllerApuestaTenisGanador', 'App\Http\Controllers\ApuestaTenis@
 
 Route::get("/vistaGestor",'App\Http\Controllers\Gestor@index');
 
+Route::post("/crearEvento",'App\Http\Controllers\Gestor@crearEvento');
+
+
+
+
+
+
+
+
+
+
 // Vista Usuario
 
 Route::get("vistaUsuario",'App\Http\Controllers\UsuarioController@index');

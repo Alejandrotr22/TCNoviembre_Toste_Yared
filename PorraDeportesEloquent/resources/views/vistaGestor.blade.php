@@ -21,32 +21,35 @@
                     <div class="">
                         <div class="list-group">
                             <!--session('tabE') -->
-                            <a class="list-group-item list-group-item-action " data-toggle="list"
+                            <a class="list-group-item list-group-item-action {{session('tabE')}}" data-toggle="list"
                                 data-target="#eventos">Eventos</a>
-                            <a class="list-group-item list-group-item-action " data-toggle="list"
+                            <a class="list-group-item list-group-item-action {{session('tabA')}}" data-toggle="list"
                                 data-target="#apuestas">Apuestas</a>
-                            <a class="list-group-item list-group-item-action " data-toggle="list"
+                            <a class="list-group-item list-group-item-action {{session('tabU')}}" data-toggle="list"
                                 data-target="#usuarios">Usuarios</a>
                         </div>
                     </div>
                     <div class="mt-3">
                         <div class="tab-content">
                             <!--  formularios de Eventos   -->
-                            <div class="tab-pane fade  row" id="eventos">
+                            <div class="tab-pane fade  row {{session('tabE')}}" id="eventos">
                                 <div class="form-row justify-content-center">
                                    <form class="formGanador col-md-4 mt-3" action="/crearEvento" method="POST">
+                                    @csrf
                                         <h3>Crear Evento</h3>
                                         <label for="" class="form-label">Nombre</label>
                                         <input type="text" name="nombreCrearE" class="form-control"  >
                                         <label for="" class="form-label">Fecha</label>
                                         <input type="datetime-local" name="FechaCrearE" class="form-control"  >
+                                        <label for="" class="form-label">Fecha fin</label>
+                                        <input type="datetime-local" name="FechaFinCrearE" class="form-control"  >
                                         <label for="" class="form-label">Participantes(id separados por comas)</label>
                                         <input type="text" name="PartCrearE" class="form-control"  >
                                         <label for="" class="form-label">Deporte</label>
                                         <select class="form-control"  name="DeporteCrearE">
                                             <option></option>
-                                            @foreach(session("eventos") as $evento)
-                                                <option value="{{$evento->id}}">{{$evento->nombre}}</option>
+                                            @foreach(session("deportes") as $deporte)
+                                                <option value="{{$deporte->id}}">{{$deporte->nombre}}</option>
                                             @endforeach
                                         </select>
                                         <br>
@@ -54,6 +57,7 @@
                                     </form>
 
                                    <form class="formGanador col-md-4 mt-3" action="/modificarEvento" method="POST">
+                                    @csrf
                                         <h3>Modificar/Cerrar Evento</h3>
                                         <label for="">Evento</label>
                                         <select class="form-control"  name="IdModE">
@@ -89,6 +93,7 @@
                                     </form>
 
                                    <form class="formGanador col-md-4 mt-3" action="/eliminarEvento" method="POST">
+                                    @csrf
                                         <h3>Eliminar Evento</h3>
                                         <label for="">Evento</label>
                                         <select class="form-control" name="IdDelE">
@@ -102,6 +107,7 @@
                                     </form>
 
                                    <form class="formGanador col-md-4 mt-3" action="/buscarEvento" method="POST">
+                                    @csrf
                                         <h3>Buscar Evento</h3>
                                         <label for="">Evento</label>
                                         <select class="form-control" name="IdFindE">
@@ -115,6 +121,7 @@
                                     </form>
 
                                    <form class="formGanador col-md-4 mt-3" action="/mostrarTodosEventos" method="POST">
+                                    @csrf
                                         <h3>Mostrar Todos</h3>
                                         <br>
                                         <input type="submit" name="FindAllE" class="form-control" value="Mostrar Todos ">
@@ -129,9 +136,10 @@
 
                             <!--  formularios de Apuestas   -->
 
-                            <div class="tab-pane fade row " id="apuestas">
+                            <div class="tab-pane fade row {{session('tabA')}}" id="apuestas">
                                 <div class="form-row justify-content-center">
                                    <form class="formGanador col-md-4 mt-3" action="/modificarApuesta" method="POST">
+                                    @csrf
                                         <h3>Modificar/Comprobar Apuesta</h3>
                                         <label for="">Apuesta</label>
                                         <select class="form-control"  name="IdModA">
@@ -146,6 +154,7 @@
                                     </form>
 
                                    <form class="formGanador col-md-4 mt-3" action="/cerrarApuesta" method="POST">
+                                    @csrf
                                         <h3>Cerrar Apuesta</h3>
                                         <label for="">Apuesta</label>
                                         <select class="form-control" name="IdDelA">
@@ -158,6 +167,7 @@
                                     </form>
 
                                    <form class="formGanador col-md-4 mt-3" action="/buscarApuesta" method="POST">
+                                    @csrf
                                         <h3>Buscar Apuesta</h3>
                                         <label for="">Apuesta</label>
                                         <select class="form-control" name="IdFindA">
@@ -170,6 +180,7 @@
                                     </form>
 
                                    <form class="formGanador col-md-4 mt-3" action="/mostrarTodosApuestas" method="POST">
+                                    @csrf
                                         <h3>Mostrar Todos</h3>
                                         <br>
                                         <input type="submit" name="FindAllA" class="form-control" value="Mostrar Todas ">
@@ -181,10 +192,11 @@
                                 </textarea>
                             </div>
                             <!-- fromularios de Usuario -->
-                            <div class="tab-pane fade " id="usuarios">
+                            <div class="tab-pane fade {{session('tabU')}}" id="usuarios">
                                 <div class="form-row justify-content-center">
 
                                    <form class="formGanador col-md-4 mt-3" action="/modificarUsuario" method="POST">
+                                    @csrf
                                         <h3>Modificar Usuario</h3>
                                         <label for="">Usuario</label>
                                         <select class="form-control"  name="IdModU">
@@ -208,6 +220,7 @@
                                     </form>
 
                                    <form class="formGanador col-md-4 mt-3" action="/eliminarUsuario" method="POST">
+                                    @csrf
                                         <h3>Eliminar Usuario</h3>
                                         <label for="">Usuario</label>
                                         <select class="form-control" name="IdDelU">
@@ -220,6 +233,7 @@
                                     </form>
 
                                    <form class="formGanador col-md-4 mt-3" action="/buscarUsuario" method="POST">
+                                    @csrf
                                         <h3>Buscar Usuario</h3>
                                         <label for="">Usuario</label>
                                         <select class="form-control" name="IdFindU">
@@ -232,6 +246,7 @@
                                     </form>
 
                                    <form class="formGanador col-md-4 mt-3" action="/mostrarTodosUsuario" method="POST">
+                                    @csrf
                                         <h3>Mostrar Todos</h3>
                                         <br>
                                         <input type="submit" name="FindAllU" class="form-control" value="Mostrar Todos ">
