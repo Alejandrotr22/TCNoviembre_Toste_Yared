@@ -145,7 +145,7 @@
                                         <input type="submit" name="ModA" class="form-control" value="Modificar Apuesta">
                                     </form>
 
-                                   <form class="formGanador col-md-4 mt-3" action="/ServletGestor" method="POST">
+                                   <form class="formGanador col-md-4 mt-3" action="/cerrarApuesta" method="POST">
                                         <h3>Cerrar Apuesta</h3>
                                         <label for="">Apuesta</label>
                                         <select class="form-control" name="IdDelA">

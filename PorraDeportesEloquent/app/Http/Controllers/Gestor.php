@@ -50,16 +50,32 @@ class Gestor extends Controller
     }
 
 
+
     public function modificarApuesta(Request $request){
 
     }
-    public function eliminarEvento(Request $request){
+    public function cerrarApuestas(Request $request){
 
     }
-    public function buscarEvento(Request $request){
+    public function buscarApuesta(Request $request){
 
     }
-    public function mostrarTodosEvento(Request $request){
+    public function mostrarTodosApuestas(Request $request){
+
+    }
+
+
+
+    public function modificarUsuario(Request $request){
+
+    }
+    public function eliminarApuestas(Request $request){
+
+    }
+    public function buscarUsuario(Request $request){
+
+    }
+    public function mostrarTodosUsuarios(Request $request){
 
     }
 

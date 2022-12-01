@@ -22,7 +22,7 @@
                 <div class="tab-content">
                     <!-- formulario de Ganador -->
                     <!-- formulario -->
-                    <form class="formFutbol" action="ControllerApuestaFootball" method="POST">
+                    <form class="formFutbol mt-2" action="ControllerApuestaFootball" method="POST">
                         @csrf
                         <div class="form-row justify-content-center">
                             <div class="col-md-3 form-group">
@@ -40,7 +40,7 @@
                         </div>
                     </form>
                 </div>
-                <form class="formTenis" action="ControllerApuestaTenis" method="POST">
+                <form class="formTenis mt-2" action="ControllerApuestaTenis" method="POST">
                     @csrf
                     <div class="form-row justify-content-center">
                         <div class="col-md-3 form-group">
@@ -58,7 +58,7 @@
                     </div>
                 </form>
             </div>
-            <form class="formFormula" action="ControllerApuestaFormula" method="POST">
+            <form class="formFormula mt-2" action="ControllerApuestaFormula" method="POST">
                 @csrf
                 <div class="form-row justify-content-center">
                     <div class="col-md-3 form-group">
@@ -76,6 +76,9 @@
                 </div>
             </form>
 
+            <form class="usuario mt-2" action="vistaUsuario" method="GET">
+                <input type="submit" name="" class="btn btn-primary" value="Ver Usuario">
+            </form>
         </section>
 
     </main>
