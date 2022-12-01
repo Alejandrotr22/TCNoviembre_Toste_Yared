@@ -46,7 +46,7 @@
                         </div>
                     </form>
                 </div>
-            <form class="formTenis" action="ServletApuestaTenis" method="POST">
+            <form class="formTenis mt-2" action="ServletApuestaTenis" method="POST">
                 <div class="form-row justify-content-center">
                     <div class="col-md-3 form-group">
                         <label for="">Eventos Tenis</label>
@@ -67,7 +67,7 @@
                 </div>
             </form>
         </div>
-        <form class="formFormula" action="ServletApuestaFormula" method="POST">
+        <form class="formFormula mt-2" action="ServletApuestaFormula" method="POST">
             <div class="form-row justify-content-center">
                 <div class="col-md-3 form-group">
                     <label for="">Eventos Formula 1</label>
@@ -89,8 +89,9 @@
         </form>
 
 
-
-
+             <form class="usuario mt-2" action="ServletUsuario" method="GET">
+                <input type="submit" name="" class="btn btn-primary" value="Ver Usuario">
+            </form>
     </section>
 
 </main>

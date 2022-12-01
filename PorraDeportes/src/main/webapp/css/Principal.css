@@ -52,3 +52,11 @@ form{
     width:96%;
     resize: none;
 }
+.usuario{
+
+    border-style:none;
+    text-align:center;
+}
+.apuestas {
+    font-size:12px;
+}

@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
@@ -12,18 +13,34 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
     <!-- Course CSS -->
-    <link rel="stylesheet" href="Principal.css" />
+    <link rel="stylesheet" href="css/Principal.css" />
 </head>
 <body>
-<h1><h1>
+    <h1>${usuario.getNombre()}<h1>
 
-    <form class="formGanador col-md-3 mt-3" action="/nombreServlet" method="POST">
-        <h3>Buscar Evento</h3>
-        <label for="" class="form-label">Nuevo Saldo</label>
-        <input type="number" name="Saldo" class="form-control" min="0"  >
+    <form class="formGanador col-md-3 mt-3" action="/ServletUsuario" method="POST">
+        <h3>Modificar Saldo</h3>
+        <label for="" class="">Nuevo Saldo</label>
+        <input type="number" name="saldo" class="form-control" min="0" step="0.01" >
         <br>
-        <input type="submit" name="Actualizar Saldo" class="form-control" value="Actualizar">
+        <input type="submit" name="actualizar" class="form-control" value="Actualizar Saldo">
     </form>
+    <br>
+    <h3>Tus apuestas: </h3>
+
+<textarea class="resultado" name="res" id=""  rows="20">
+    <c:forEach items="${apuestas}" var="apuesta">
+----${apuesta.getId()}----
+${apuesta.getPrediccion()}
+${apuesta.getCuota()}
+${apuesta.getCantidad()}
+${apuesta.getEstado()}
+---------
+    </c:forEach>
+ </textarea>
+
+    <br>
+    <a href="/ServletPrincipal?">Volver</a>
 
 
 

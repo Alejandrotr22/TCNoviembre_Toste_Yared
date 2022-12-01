@@ -141,7 +141,6 @@ public class ApuestaRepository implements ICrud<Apuesta, Integer>{
         return apuestas;
 
     }
-
     public List<Apuesta> findAllById(Usuario usuario) {
 
         List<Apuesta> apuestas = null;

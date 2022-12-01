@@ -41,8 +41,10 @@ public class ServletLoginRegister extends HttpServlet {
                     requestDispatcher.forward(request, response);
                      */
                     if (usuarioDDBB.getRol().getId() == 1){
+                        request.getSession().setAttribute("usuario",usuarioDDBB);
                         response.sendRedirect("/ServletPrincipal");
                     }else{
+
                         response.sendRedirect("/ServletGestor");
                     }
 
