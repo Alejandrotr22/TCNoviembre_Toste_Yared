@@ -58,8 +58,9 @@ class Login extends Controller
             $usuario->saldo = 0;
             $usuario->save();
             session()->put('user', $usuario);
-            echo $usuario;
-            return view('home');
+
+
+            return redirect('principalIndex');
 
 
         }
