@@ -58,3 +58,11 @@ Route::post('ControllerApuestaFootballResultado', 'App\Http\Controllers\ApuestaF
 Route::post('ControllerApuestaTenis', 'App\Http\Controllers\ApuestaTenis@index');
 
 Route::post('ControllerApuestaTenisGanador', 'App\Http\Controllers\ApuestaTenis@ganador');
+
+
+// Vista Gestor
+
+Route::get("/vistaGestor",function(){
+
+    return view("vistaGestor");
+});

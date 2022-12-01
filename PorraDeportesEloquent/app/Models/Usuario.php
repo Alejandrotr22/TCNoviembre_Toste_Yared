@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $password
  * @property float $saldo
  * @property Apuesta[] $apuestas
- * @property Role $role
+ * @property Rol $rol
  */
 class Usuario extends Model
 {
@@ -35,6 +35,6 @@ class Usuario extends Model
      */
     public function role()
     {
-        return $this->belongsTo('App\Models\Role', 'id_rol');
+        return $this->belongsTo('App\Models\Rol', 'id_rol');
     }
 }
