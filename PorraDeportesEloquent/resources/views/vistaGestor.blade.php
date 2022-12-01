@@ -12,7 +12,7 @@
             integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
         <!-- Course CSS -->
-        <link rel="stylesheet" href="css/Principal.css" />
+        <link rel="stylesheet" href="../css/Principal.css" />
         </head>
         <body>
             <main class="container-fluid">
@@ -20,18 +20,19 @@
                 <section class="justify-content-center">
                     <div class="">
                         <div class="list-group">
-                            <a class="list-group-item list-group-item-action {{tabE}}" data-toggle="list"
+                            <!--session('tabE') -->
+                            <a class="list-group-item list-group-item-action " data-toggle="list"
                                 data-target="#eventos">Eventos</a>
-                            <a class="list-group-item list-group-item-action {{tabA}}" data-toggle="list"
+                            <a class="list-group-item list-group-item-action " data-toggle="list"
                                 data-target="#apuestas">Apuestas</a>
-                            <a class="list-group-item list-group-item-action {{tabU}}" data-toggle="list"
+                            <a class="list-group-item list-group-item-action " data-toggle="list"
                                 data-target="#usuarios">Usuarios</a>
                         </div>
                     </div>
                     <div class="mt-3">
                         <div class="tab-content">
                             <!--  formularios de Eventos   -->
-                            <div class="tab-pane fade {{tabE}} row" id="eventos">
+                            <div class="tab-pane fade  row" id="eventos">
                                 <div class="form-row justify-content-center">
                                    <form class="formGanador col-md-4 mt-3" action="/crearEvento" method="POST">
                                         <h3>Crear Evento</h3>
@@ -121,14 +122,14 @@
                                 </div>
                                 <br>
                                 <textarea class="resultado" name="res" id=""  rows="20">
-        {{res}}
+{{$res}}
 
                                 </textarea>
                             </div>
 
                             <!--  formularios de Apuestas   -->
 
-                            <div class="tab-pane fade row ${tabA}" id="apuestas">
+                            <div class="tab-pane fade row " id="apuestas">
                                 <div class="form-row justify-content-center">
                                    <form class="formGanador col-md-4 mt-3" action="/modificarApuesta" method="POST">
                                         <h3>Modificar/Comprobar Apuesta</h3>
@@ -176,11 +177,11 @@
                                 </div>
                                 <br>
                                 <textarea class="resultado" name="res" id=""  rows="20">
-        {{res}}
+{{$res}}
                                 </textarea>
                             </div>
                             <!-- fromularios de Usuario -->
-                            <div class="tab-pane fade ${tabU}" id="usuarios">
+                            <div class="tab-pane fade " id="usuarios">
                                 <div class="form-row justify-content-center">
 
                                    <form class="formGanador col-md-4 mt-3" action="/modificarUsuario" method="POST">
@@ -238,7 +239,7 @@
                                 </div>
                                 <br>
                                 <textarea class="resultado" name="res" id=""  rows="20">
-        {{res}}
+{{$res}}
                                 </textarea>
                             </div>
 

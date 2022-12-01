@@ -61,10 +61,7 @@ Route::post('ControllerApuestaTenisGanador', 'App\Http\Controllers\ApuestaTenis@
 
 // Vista Gestor
 
-Route::get("/vistaGestor",function(){
-
-    return view("vistaGestor");
-});
+Route::get("/vistaGestor",'App\Http\Controllers\Gestor@index');
 
 // Apuestas Formula 1
 
