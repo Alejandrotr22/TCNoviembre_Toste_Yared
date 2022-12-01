@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="es.iespuertodelacruz.yt.porradeportes.entities.Usuario" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -24,30 +25,32 @@
         <section class="justify-content-center">
             <div class="">
                 <div class="list-group d-block">
-                    <a class="list-group-item list-group-item-action active" data-toggle="list"
-                        data-target="#ganador">Ganador</a>
+                        <h2>${evento.getNombre()}</h2>
                 </div>
             </div>
             <div class="mt-3">
                 <div class="tab-content">
                     <div class="tab-pane fade show active row" id="ganador">
-                        <form class="formGanador" action="/NOMBRE-SERVLET" method="POST">
+                        <form class="formGanador" action="ServletApuestaFormula" method="POST">
                             <div class="form-row justify-content-center">
                                 <div class="col-md-3 form-group">
                                     <label for="">Ganador</label>
                                     <select class="form-control" id="ganador" name="ganador">
-                                        
+                                        <c:forEach items="${participantes}" var="participante">
+                                            <option><c:out value="${participante}"></c:out></option>
+                                        </c:forEach>
                                     </select>
                                 </div>
                             </div>
                             <div class="form-row justify-content-center">
                                 <div class="col-md-5 text-center">
                                     <label>Cuantia</label>
-                                    <input type="number" class="" name="CuantiaGanador" min="1" value="1">
+                                    <input type="number" step=".01" class="" name="CuantiaGanador" min="1" value="1" max="${user.getSaldo()}" oninvalid="this.setCustomValidity('No puedes apostar una cantidad mayor a tu saldo')">
                                     <span>€</span>
+                                    <span>Tu saldo actual: ${user.getSaldo()}</span>
                                 </div>
                                 <div class="col-md-5 text-center">
-                                    <input type="submit" name="CrearApuesta" class="btn btn-primary" value="Crear Apuesta">
+                                    <input type="submit" name="ApuestaGanador" class="btn btn-primary" value="Crear Apuesta">
                                 </div>
                             </div>
                         </form>
