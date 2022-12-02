@@ -70,12 +70,12 @@ INSERT INTO equipos (id, nombre) VALUES
 --
 
 INSERT INTO eventos (id, id_deporte, fecha_inicio, fecha_fin, nombre, id_equipo_ganador, resultado) VALUES
-(1, 1, '2022-11-24 21:24:04', '2022-11-30 20:20:52', 'Madrid_Barca', NULL, NULL),
-(2, 2, '2022-11-24 21:06:07', '2022-11-30 21:05:34', 'Alcaraz_Nadal', NULL, NULL),
-(3, 2, '2022-11-24 21:06:39', '2022-11-30 21:05:34', 'Ruud_Zverev', NULL, NULL),
-(4, 1, '2022-11-24 21:07:55', '2022-11-30 21:07:34', 'City_Liverpool', NULL, NULL),
-(5, 3, '2022-11-24 21:08:33', '2022-11-30 21:08:01', 'GPbahrein', NULL, NULL),
-(6, 3, '2022-11-24 21:08:44', '2022-11-30 21:08:01', 'GPspain', NULL, NULL);
+(1, 1, '2022-11-24 21:24:04', '2023-11-30 20:20:52', 'Madrid_Barca', NULL, NULL),
+(2, 2, '2022-11-24 21:06:07', '2023-11-30 21:05:34', 'Alcaraz_Nadal', NULL, NULL),
+(3, 2, '2022-11-24 21:06:39', '2023-11-30 21:05:34', 'Ruud_Zverev', NULL, NULL),
+(4, 1, '2022-11-24 21:07:55', '2023-11-30 21:07:34', 'City_Liverpool', NULL, NULL),
+(5, 3, '2022-11-24 21:08:33', '2023-11-30 21:08:01', 'GPbahrein', NULL, NULL),
+(6, 3, '2022-11-24 21:08:44', '2023-11-30 21:08:01', 'GPspain', NULL, NULL);
 
 --
 -- Dumping data for table participantes
@@ -128,7 +128,8 @@ INSERT INTO roles (id, nombre) VALUES
 INSERT INTO usuarios (id, nombre, email, password, id_rol, saldo) VALUES
 (1, 'yared', 'email@gmail.com', '$2a$10$F3QahGpvBNwXg5QfgENJFe1Dp3ykSHxnhiTTP2n/PzJR4d9usPyLy', 1, '56.24'),
 (2, 'yared70', 'yared@gmail.com', '$2a$10$LATSj/tPVABgIzQU1K5PberqlUcrDlEw7xI2adwT/Tj24IGYC94U.', 1, '0.00'),
-(7, 'yaredphp', 'yaredphp@gmail.com', '$2a$10$CRJO5WSg/kzDZig7VhxBLudwTRrN3XrJ0wdUPbKNyw3Xn2BUFLJO6', 1, '0.00');
+(7, 'yaredphp', 'yaredphp@gmail.com', '$2a$10$CRJO5WSg/kzDZig7VhxBLudwTRrN3XrJ0wdUPbKNyw3Xn2BUFLJO6', 1, '0.00'),
+(8, 'admin', 'admin@gmail.com', '$2a$10$.a52wUsNqoV9MnNLX04DY.s3886vuXFGKVtmcnc8sbr3hqCcvxaFu', 2, '0.00');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
