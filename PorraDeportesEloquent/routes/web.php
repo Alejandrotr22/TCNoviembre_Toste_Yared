@@ -63,14 +63,34 @@ Route::post('ControllerApuestaTenisGanador', 'App\Http\Controllers\ApuestaTenis@
 
 Route::get("/vistaGestor",'App\Http\Controllers\Gestor@index');
 
+
 Route::post("/crearEvento",'App\Http\Controllers\Gestor@crearEvento');
 
+Route::post("/eliminarEvento",'App\Http\Controllers\Gestor@eliminarEvento');
+
+Route::post("/modificarEvento",'App\Http\Controllers\Gestor@modificarEvento');
+
+Route::post("/buscarEvento",'App\Http\Controllers\Gestor@buscarEvento');
+
+Route::post("/mostrarTodosEventos",'App\Http\Controllers\Gestor@mostrarTodosEvento');
 
 
+Route::post("/modificarApuesta",'App\Http\Controllers\Gestor@modificarApuesta');
+
+Route::post("/cerrarApuesta",'App\Http\Controllers\Gestor@cerrarApuesta');
+
+Route::post("/buscarApuesta",'App\Http\Controllers\Gestor@buscarApuesta');
+
+Route::post("/mostrarTodosApuestas",'App\Http\Controllers\Gestor@mostrarTodosApuestas');
 
 
+Route::post("/modificarUsuario",'App\Http\Controllers\Gestor@modificarUsuario');
 
+Route::post("/eliminarUsuario",'App\Http\Controllers\Gestor@eliminarUsuario');
 
+Route::post("/buscarUsuario",'App\Http\Controllers\Gestor@buscarUsuario');
+
+Route::post("/mostrarTodosUsuarios",'App\Http\Controllers\Gestor@mostrarTodosUsuarios');
 
 
 

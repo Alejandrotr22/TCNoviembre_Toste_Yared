@@ -81,13 +81,6 @@
                                                 <option value="{{$equipo->id}}">{{$equipo->nombre}}</option>
                                             @endforeach
                                         </select>
-                                        <label for="" class="form-label">Deporte</label>
-                                        <select class="form-control" name="DeporteModE">
-                                            <option></option>
-                                            @foreach(session("deportes") as $deporte)
-                                                <option value="{{$deporte->id}}">{{$deporte->nombre}}</option>
-                                            @endforeach
-                                        </select>
                                         <br>
                                         <input type="submit" name="ModE" class="form-control" value="Modificar/Cerrar Evento">
                                     </form>
@@ -129,7 +122,7 @@
                                 </div>
                                 <br>
                                 <textarea class="resultado" name="res" id=""  rows="20">
-{{$res}}
+{{session("res")}}
 
                                 </textarea>
                             </div>
@@ -188,7 +181,7 @@
                                 </div>
                                 <br>
                                 <textarea class="resultado" name="res" id=""  rows="20">
-{{$res}}
+{{session("res")}}
                                 </textarea>
                             </div>
                             <!-- fromularios de Usuario -->
@@ -254,7 +247,7 @@
                                 </div>
                                 <br>
                                 <textarea class="resultado" name="res" id=""  rows="20">
-{{$res}}
+{{session("res")}}
                                 </textarea>
                             </div>
 
