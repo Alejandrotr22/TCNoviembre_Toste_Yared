@@ -18,7 +18,7 @@
 <body>
     <h1>${usuario.getNombre()}<h1>
 
-    <form class="formGanador col-md-3 mt-3" action="/ServletUsuario" method="POST">
+    <form class="formGanador col-md-3 mt-3" action="ServletUsuario" method="POST">
         <h3>Modificar Saldo</h3>
         <label for="" class="">Nuevo Saldo</label>
         <span style="float: right; font-size: 1.5rem">Saldo actual: ${usuario.getSaldo()}</span>
@@ -26,6 +26,9 @@
         <br>
         <input type="submit" name="actualizar" class="form-control" value="Actualizar Saldo">
     </form>
+        <form class="usuario mt-2" action="ServletPrincipal" method="GET" style="float: right">
+            <input type="submit" name="" class="btn btn-primary" value="Volver">
+        </form>
     <br>
     <h3>Tus apuestas: </h3>
 
@@ -40,8 +43,7 @@ ${apuesta.getEstado()}
     </c:forEach>
  </textarea>
 
-    <br>
-    <a href="/ServletPrincipal?">Volver</a>
+
 
 
 

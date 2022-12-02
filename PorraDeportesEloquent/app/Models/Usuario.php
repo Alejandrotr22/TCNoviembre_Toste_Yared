@@ -37,4 +37,6 @@ class Usuario extends Model
     {
         return $this->belongsTo('App\Models\Rol', 'id_rol');
     }
+
+
 }

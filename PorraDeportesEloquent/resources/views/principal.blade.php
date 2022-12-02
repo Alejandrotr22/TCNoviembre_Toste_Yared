@@ -79,6 +79,7 @@
             <form class="usuario mt-2" action="vistaUsuario" method="GET">
                 <input type="submit" name="" class="btn btn-primary" value="Ver Usuario">
             </form>
+            <a href="logout" style="float: right; margin-right: 3%">Logout</a>
         </section>
 
     </main>

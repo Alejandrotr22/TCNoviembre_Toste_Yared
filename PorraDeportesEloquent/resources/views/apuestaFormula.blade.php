@@ -43,7 +43,7 @@
                             <div class="form-row justify-content-center">
                                 <div class="col-md-5 text-center">
                                     <label>Cuantia</label>
-                                    <input type="number" step=".01" class="" name="CuantiaGanador" id="CuantiaGanador" min="1" value="1" max="{{session('user')->saldo}}" oninvalid="this.setCustomValidity('No puedes apostar una cantidad mayor a tu saldo')">
+                                    <input type="number" step=".01" class="" name="CuantiaGanador" id="CuantiaGanador" min="1" value="1" max="{{session('user')->saldo}}" oninvalid="this.setCustomValidity('No puedes apostar una cantidad mayor a tu saldo o inferior a 0')" onchange="this.setCustomValidity('')">
                                     <span>€</span>
                                     <span>Tu saldo actual: {{session('user')->saldo}}</span>
                                 </div>
@@ -58,6 +58,9 @@
                 </div>
             </div>
         </section>
+        <form class="usuario mt-2" action="principalIndex" method="GET" style="float: right; margin: 0">
+            <input type="submit" name="" class="btn btn-primary" value="Volver">
+        </form>
         <form class="usuario mt-2" action="vistaUsuario" method="GET">
             <input type="submit" name="" class="btn btn-primary" value="Ver Usuario">
         </form>

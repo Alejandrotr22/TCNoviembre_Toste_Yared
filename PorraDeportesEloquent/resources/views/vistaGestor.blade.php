@@ -28,6 +28,7 @@
                             <a class="list-group-item list-group-item-action {{session('tabU')}}" data-toggle="list"
                                 data-target="#usuarios">Usuarios</a>
                         </div>
+                        <a href="logout" style="float: right; margin-right: 3%">Logout</a>
                     </div>
                     <div class="mt-3">
                         <div class="tab-content">
@@ -41,8 +42,6 @@
                                         <input type="text" name="nombreCrearE" class="form-control"  >
                                         <label for="" class="form-label">Fecha</label>
                                         <input type="datetime-local" name="FechaCrearE" class="form-control"  >
-                                        <label for="" class="form-label">Fecha fin</label>
-                                        <input type="datetime-local" name="FechaFinCrearE" class="form-control"  >
                                         <label for="" class="form-label">Participantes(id separados por comas)</label>
                                         <input type="text" name="PartCrearE" class="form-control"  >
                                         <label for="" class="form-label">Deporte</label>
@@ -238,7 +237,7 @@
                                         <input type="submit" name="FindU" class="form-control" value="Buscar Usuario">
                                     </form>
 
-                                   <form class="formGanador col-md-4 mt-3" action="/mostrarTodosUsuario" method="POST">
+                                   <form class="formGanador col-md-4 mt-3" action="/mostrarTodosUsuarios" method="POST">
                                     @csrf
                                         <h3>Mostrar Todos</h3>
                                         <br>

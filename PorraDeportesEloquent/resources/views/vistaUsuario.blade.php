@@ -25,6 +25,9 @@
             <br>
             <input type="submit" name="actualizar" class="form-control" value="Actualizar Saldo">
         </form>
+                <form class="usuario mt-2" action="principalIndex" method="GET" style="float: right">
+                    <input type="submit" name="" class="btn btn-primary" value="Volver">
+                </form>
         <br>
         <h3>Tus apuestas: </h3>
 

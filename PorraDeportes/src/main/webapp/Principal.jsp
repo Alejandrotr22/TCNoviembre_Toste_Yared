@@ -24,6 +24,7 @@
 
     <section class="justify-content-center">
                 <h1>Eventos</h1>
+
         <div class="mt-3">
             <div class="tab-content">
                 <!-- formulario de Ganador -->
@@ -88,10 +89,11 @@
             </div>
         </form>
 
-
              <form class="usuario mt-2" action="ServletUsuario" method="GET">
                 <input type="submit" name="" class="btn btn-primary" value="Ver Usuario">
             </form>
+        <a href="login.jsp" style="float: right; margin-right: 3%">Logout</a>
+
     </section>
 
 </main>

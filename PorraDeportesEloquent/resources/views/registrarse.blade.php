@@ -30,7 +30,7 @@
                 <input class="inputSubmit" type="submit" name="registro" value="Registrarse">
             </form>
             <div class="other">
-                <a href="loginPage"><button class="btn">Iniciar Sesión</button></a>
+                <a href="/"><button class="btn">Iniciar Sesión</button></a>
             </div>
         </section>
     </section>

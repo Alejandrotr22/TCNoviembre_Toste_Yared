@@ -30,13 +30,14 @@
                     <a class="list-group-item list-group-item-action ${tabU}" data-toggle="list"
                         data-target="#usuarios">Usuarios</a>
                 </div>
+                <a href="login.jsp" style="float: right; margin-right: 3%">Logout</a>
             </div>
             <div class="mt-3">
                 <div class="tab-content">
                     <!--  formularios de Eventos   -->
                     <div class="tab-pane fade ${tabE} row" id="eventos">
                         <div class="form-row justify-content-center">
-                           <form class="formGanador col-md-4 mt-3" action="/ServletGestor" method="POST">
+                           <form class="formGanador col-md-4 mt-3" action="ServletGestor" method="POST">
                                 <h3>Crear Evento</h3>
                                 <label for="" class="form-label">Nombre</label>
                                 <input type="text" name="nombreCrearE" class="form-control"  >
@@ -55,7 +56,7 @@
                                 <input type="submit" name="CrearE" class="form-control" value="Crear Evento">
                             </form>
                             
-                           <form class="formGanador col-md-4 mt-3" action="/ServletGestor" method="POST">
+                           <form class="formGanador col-md-4 mt-3" action="ServletGestor" method="POST">
                                 <h3>Modificar/Cerrar Evento</h3>
                                 <label for="">Evento</label>
                                 <select class="form-control"  name="IdModE">
@@ -90,7 +91,7 @@
                                 <input type="submit" name="ModE" class="form-control" value="Modificar/Cerrar Evento">
                             </form>
 
-                           <form class="formGanador col-md-4 mt-3" action="/ServletGestor" method="POST">
+                           <form class="formGanador col-md-4 mt-3" action="ServletGestor" method="POST">
                                 <h3>Eliminar Evento</h3>
                                 <label for="">Evento</label>
                                 <select class="form-control" name="IdDelE">
@@ -103,7 +104,7 @@
                                 <input type="submit" name="DelE" class="form-control" value="Eliminar Evento">
                             </form>
 
-                           <form class="formGanador col-md-4 mt-3" action="/ServletGestor" method="POST">
+                           <form class="formGanador col-md-4 mt-3" action="ServletGestor" method="POST">
                                 <h3>Buscar Evento</h3>
                                 <label for="">Evento</label>
                                 <select class="form-control" name="IdFindE">
@@ -116,7 +117,7 @@
                                 <input type="submit" name="FindE" class="form-control" value="Buscar Evento">
                             </form>
 
-                           <form class="formGanador col-md-4 mt-3" action="/ServletGestor" method="POST">
+                           <form class="formGanador col-md-4 mt-3" action="ServletGestor" method="POST">
                                 <h3>Mostrar Todos</h3>
                                 <br>
                                 <input type="submit" name="FindAllE" class="form-control" value="Mostrar Todos ">
@@ -133,7 +134,7 @@ ${res}
 
                     <div class="tab-pane fade row ${tabA}" id="apuestas">
                         <div class="form-row justify-content-center">
-                           <form class="formGanador col-md-4 mt-3" action="/ServletGestor" method="POST">
+                           <form class="formGanador col-md-4 mt-3" action="ServletGestor" method="POST">
                                 <h3>Modificar/Comprobar Apuesta</h3>
                                 <label for="">Apuesta</label>
                                 <select class="form-control"  name="IdModA">
@@ -147,7 +148,7 @@ ${res}
                                 <input type="submit" name="ModA" class="form-control" value="Modificar Apuesta">
                             </form>
 
-                           <form class="formGanador col-md-4 mt-3" action="/ServletGestor" method="POST">
+                           <form class="formGanador col-md-4 mt-3" action="ServletGestor" method="POST">
                                 <h3>Cerrar Apuesta</h3>
                                 <label for="">Apuesta</label>
                                 <select class="form-control" name="IdDelA">
@@ -159,7 +160,7 @@ ${res}
                                 <input type="submit" name="DelA" class="form-control" value="Cerrar Apuesta">
                             </form>
 
-                           <form class="formGanador col-md-4 mt-3" action="/ServletGestor" method="POST">
+                           <form class="formGanador col-md-4 mt-3" action="ServletGestor" method="POST">
                                 <h3>Buscar Apuesta</h3>
                                 <label for="">Apuesta</label>
                                 <select class="form-control" name="IdFindA">
@@ -171,7 +172,7 @@ ${res}
                                 <input type="submit" name="FindA" class="form-control" value="Buscar Apuesta">
                             </form>
 
-                           <form class="formGanador col-md-4 mt-3" action="/ServletGestor" method="POST">
+                           <form class="formGanador col-md-4 mt-3" action="ServletGestor" method="POST">
                                 <h3>Mostrar Todos</h3>
                                 <br>
                                 <input type="submit" name="FindAllA" class="form-control" value="Mostrar Todas ">
@@ -186,7 +187,7 @@ ${res}
                     <div class="tab-pane fade ${tabU}" id="usuarios">
                         <div class="form-row justify-content-center">
 
-                           <form class="formGanador col-md-4 mt-3" action="/ServletGestor" method="POST">
+                           <form class="formGanador col-md-4 mt-3" action="ServletGestor" method="POST">
                                 <h3>Modificar Usuario</h3>
                                 <label for="">Usuario</label>
                                 <select class="form-control"  name="IdModU">
@@ -209,7 +210,7 @@ ${res}
                                 <input type="submit" name="ModU" class="form-control" value="Modificar Usuario">
                             </form>
 
-                           <form class="formGanador col-md-4 mt-3" action="/ServletGestor" method="POST">
+                           <form class="formGanador col-md-4 mt-3" action="ServletGestor" method="POST">
                                 <h3>Eliminar Usuario</h3>
                                 <label for="">Usuario</label>
                                 <select class="form-control" name="IdDelU">
@@ -221,7 +222,7 @@ ${res}
                                 <input type="submit" name="DelU" class="form-control" value="Eliminar Usuario">
                             </form>
 
-                           <form class="formGanador col-md-4 mt-3" action="/ServletGestor" method="POST">
+                           <form class="formGanador col-md-4 mt-3" action="ServletGestor" method="POST">
                                 <h3>Buscar Usuario</h3>
                                 <label for="">Usuario</label>
                                 <select class="form-control" name="IdFindU">
@@ -233,7 +234,7 @@ ${res}
                                 <input type="submit" name="FindU" class="form-control" value="Buscar Usuario">
                             </form>
 
-                           <form class="formGanador col-md-4 mt-3" action="/ServletGestor" method="POST">
+                           <form class="formGanador col-md-4 mt-3" action="ServletGestor" method="POST">
                                 <h3>Mostrar Todos</h3>
                                 <br>
                                 <input type="submit" name="FindAllU" class="form-control" value="Mostrar Todos ">

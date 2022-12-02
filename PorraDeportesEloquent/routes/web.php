@@ -17,28 +17,19 @@ Route::get('/', function () {
     return view('login');
 });
 
-Route::get('/find', 'App\Http\Controllers\pruebasDDBB@pruebaFind');
-
-Route::get('/login', function (){
-    return view('login');
-});
-
 Route::post('Login', 'App\Http\Controllers\Login@index');
 
-Route::any('/home', function (){
-    return view('home');
-});
 
 Route::post('Registro', 'App\Http\Controllers\Login@registro');
 
 Route::get('registrarsePage', function () {
     return view('registrarse');
 });
-
+/*
 Route::get('loginPage', function (){
     return view('login');
 });
-
+*/
 Route::any('/registrarse', function () {
     return view('registrarse');
 });
@@ -61,7 +52,7 @@ Route::post('ControllerApuestaTenisGanador', 'App\Http\Controllers\ApuestaTenis@
 
 // Vista Gestor
 
-Route::get("/vistaGestor",'App\Http\Controllers\Gestor@index');
+Route::get("/vistaGestor",'App\Http\Controllers\Gestor@inicio');
 
 
 Route::post("/crearEvento",'App\Http\Controllers\Gestor@crearEvento');
@@ -92,7 +83,7 @@ Route::post("/buscarUsuario",'App\Http\Controllers\Gestor@buscarUsuario');
 
 Route::post("/mostrarTodosUsuarios",'App\Http\Controllers\Gestor@mostrarTodosUsuarios');
 
-
+Route::any('logout', 'App\Http\Controllers\Login@logout');
 
 // Vista Usuario
 
@@ -106,3 +97,4 @@ Route::post('ControllerApuestaFormula', 'App\Http\Controllers\ApuestaFormula@ind
 
 Route::post('ControllerApuestaFormulaGanador', 'App\Http\Controllers\ApuestaFormula@ganador');
 
+Route::any('logearse', 'App\Http\Controllers\Login@index');

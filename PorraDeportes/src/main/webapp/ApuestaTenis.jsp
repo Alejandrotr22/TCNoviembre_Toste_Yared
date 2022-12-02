@@ -48,8 +48,8 @@
                                 <br>
                                 <!-- Nombre equipo 1 -->
                                 <label for="">${equipo1}</label>
-                                <input class="cuota" type="text" name="cuota${equipo1}" id="cuota${equipo1}" value="${cuotaEquipo1}"  >
-                                <input class="cuota" type="text" name="cuota${equipo2}" id="cuota${equipo2}" value="${cuotaEquipo2}"  >
+                                <input class="cuota" type="text" name="cuota${equipo1}" id="cuota${equipo1}" value="${cuotaEquipo1}"  readonly>
+                                <input class="cuota" type="text" name="cuota${equipo2}" id="cuota${equipo2}" value="${cuotaEquipo2}"  readonly>
                                 <!-- Nombre equipo 2 -->
                                 <label for="">${equipo2}</label>
                             </div>
@@ -69,7 +69,10 @@
                     </form>
                 </div>
             </div>
-            <form class="usuario mt-2" action="ServletUsuario" method="GET" style="float: right">
+            <form class="usuario mt-2" action="ServletPrincipal" method="GET" style="float: right; margin: 0">
+                <input type="submit" name="" class="btn btn-primary" value="Volver">
+            </form>
+            <form class="usuario mt-2" action="ServletUsuario" method="GET" style="float: right; margin: 0">
                 <input type="submit" name="" class="btn btn-primary" value="Ver Usuario">
             </form>
 

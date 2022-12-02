@@ -10,16 +10,25 @@ class Login extends Controller
 
     public function index(Request $request){
 
+
         $emailLogin = $request->email;
         $passLogin = $request->password;
+
 
         $usuario = Usuario::where('email', '=', $emailLogin)
             ->first();
         if($usuario != null) {
             $checkPass = password_verify($passLogin, $usuario->password);
             if($checkPass) {
+
                 session()->put('user', $usuario);
-                return redirect('principalIndex');
+
+                if($usuario->id_rol == 1) {
+                    return redirect('principalIndex');
+                }else{
+
+                    return redirect('/vistaGestor');
+                }
             }else{
                 $respuesta = "Login incorrecto";
             }
@@ -64,6 +73,13 @@ class Login extends Controller
 
 
         }
+
+    }
+
+    public function logout(){
+
+        session()->forget('user');
+        return view('login');
 
     }
 

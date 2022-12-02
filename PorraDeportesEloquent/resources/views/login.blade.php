@@ -19,8 +19,8 @@
     <section>
         <section class="cartaLogin">
             <h3 class="titleLogin">Iniciar Sesión</h3>
-            <form class="formulario" action="Login" method="POST">
-                @csrf
+            <form class="formulario" action="logearse" method="POST">
+                 @csrf
                 <label class="label">Email</label>
                 <input class="inputText" type="email" name="email" placeholder="correo">
                 <label class="label">Contraseña</label>

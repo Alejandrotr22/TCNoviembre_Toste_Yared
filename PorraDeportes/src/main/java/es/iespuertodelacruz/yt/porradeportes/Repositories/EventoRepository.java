@@ -128,7 +128,7 @@ public class EventoRepository implements ICrud<Evento,Integer>{
 
         EntityManager em = emf.createEntityManager();
         List<Evento> eventosNoFinalizados = new ArrayList<>();
-        String query = "select * from eventos where fecha_fin > now()";
+        String query = "select * from eventos where fecha_fin > now() and resultado is null";
         try {
 
             eventosNoFinalizados = em.createNativeQuery(query, Evento.class)

@@ -15,8 +15,9 @@ use Nette\Utils\Arrays;
 class Gestor extends Controller
 {
 
-    public function index(Request $request)
+    public function inicio(Request $request)
     {
+
 
         $eventos = Evento::all();
         $apuestas = Apuesta::all();
@@ -53,15 +54,14 @@ class Gestor extends Controller
 
         $nombre = $request->get("nombreCrearE");
         $fecha1 = $request->get("FechaCrearE");
-        $fecha2 = $request->get("FechaFinCrearE");
         $strParticipantes = $request->get("PartCrearE");
         $strDeporte = $request->get("DeporteCrearE");
 
 
         $evento = new Evento();
         $evento->nombre = $nombre;
-        $evento->fecha_inicio = $fecha1;
-        $evento->fecha_fin = $fecha2;
+        $evento->fecha_inicio = now();
+        $evento->fecha_fin = $fecha1;
         $split = explode(",", $strParticipantes);
 
 
@@ -111,6 +111,7 @@ class Gestor extends Controller
             $evento->id_equipo_ganador = $ganador;
         }
         if ($resultado != "" && $ganador != ""){
+            $evento->save();
             $this->comprobarApuestas($evento);
         }
         //$evento->save();
@@ -325,6 +326,7 @@ class Gestor extends Controller
         return redirect("/vistaGestor");
     }
     public function comprobarApuestas(Evento $evento){
+
 
         $all = Apuesta::where("apuestas.id_evento","=",$evento->id)->get();
         $res = DB::select("SELECT a.* FROM apuestas as a INNER JOIN eventos as e on a.id_evento=e.id WHERE a.prediccion = e.resultado AND a.estado != 'Rechazada' and a.estado = 'Realizada' and e.id = ".$evento->id);

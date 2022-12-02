@@ -23,4 +23,10 @@ class Deporte extends Model
     {
         return $this->hasMany('App\Models\Evento', 'id_deporte');
     }
+
+    public function toString(){
+
+
+
+    }
 }

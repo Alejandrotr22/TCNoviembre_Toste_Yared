@@ -53,9 +53,9 @@
                                 <br>
                                 <!-- Nombre equipo 1 -->
                                 <label for="">${equipo1}</label>
-                                <input class="cuota" type="text" name="cuota${equipo1}" id="cuota${equipo1}" value="${cuotaEquipo1}"  >
-                                <input class="cuota" type="text" name="cuota${empate}" id="cuota${empate}" value="${cuotaEmpate}"  >
-                                <input class="cuota" type="text" name="cuota${equipo2}" id="cuota${equipo2}" value="${cuotaEquipo2}"  >
+                                <input class="cuota" type="text" name="cuota${equipo1}" id="cuota${equipo1}" value="${cuotaEquipo1}" readonly >
+                                <input class="cuota" type="text" name="cuota${empate}" id="cuota${empate}" value="${cuotaEmpate}"  readonly>
+                                <input class="cuota" type="text" name="cuota${equipo2}" id="cuota${equipo2}" value="${cuotaEquipo2}"  readonly>
                                 <!-- Nombre equipo 2 -->
                                 <label for="">${equipo2}</label>
                                 <br>
@@ -65,7 +65,7 @@
                         <div class="form-row justify-content-center">
                             <div class="col-md-5 text-center">
                                 <label>Cuantia</label>
-                                <input type="number" step=".01" class="" name="CuantiaGanador" id="CuantiaGanador" min="1" value="1" max="${user.getSaldo()}" oninvalid="this.setCustomValidity('No puedes apostar una cantidad mayor a tu saldo')">
+                                <input type="number" step=".01" class="" name="CuantiaGanador" id="CuantiaGanador" min="1" value="1" max="${user.getSaldo()}" oninvalid="this.setCustomValidity('No puedes apostar una cantidad mayor a tu saldo o inferior a 0')" onchange="this.setCustomValidity('')">
                                 <span>€</span>
                                 <span>Tu saldo actual: ${user.getSaldo()}</span>
                             </div>
@@ -96,15 +96,15 @@
                                 <label>Cuotas</label>
                                 <br>
                                 <label for="">${equipo1}</label>
-                                <input class="cuota" type="text" name="cuota${equipo1}" id="cuota${equipo1}" value="${cuotaEquipo1}"  >
-                                <input class="cuota" type="text" name="cuota${equipo2}" id="cuota${equipo2}" value="${cuotaEquipo2}"  >
+                                <input class="cuota" type="text" name="cuota${equipo1}" id="cuota${equipo1}" value="${cuotaEquipo1}"  readonly>
+                                <input class="cuota" type="text" name="cuota${equipo2}" id="cuota${equipo2}" value="${cuotaEquipo2}"  readonly>
                                 <label for="">${equipo2}</label>
                             </div>
                         </div>
                         <div class="form-row justify-content-center">
                             <div class="col-md-5 text-center">
                                 <label>Cuantia</label>
-                                <input type="number" step=".01" class="" name="CuantiaGanador" min="1" value="1" max="${user.getSaldo()}" oninvalid="this.setCustomValidity('No puedes apostar una cantidad mayor a tu saldo')">
+                                <input type="number" step=".01" class="" name="CuantiaGanador" min="1" value="1" max="${user.getSaldo()}" oninvalid="this.setCustomValidity('No puedes apostar una cantidad mayor a tu saldo o inferior a 0')" onchange="this.setCustomValidity('')">
                                 <span>€</span>
                                  <span>Tu saldo actual: ${user.getSaldo()}</span>
                             </div>
@@ -120,7 +120,10 @@
             </div>
         </div>
     </section>
-    <form class="usuario mt-2" action="ServletUsuario" method="GET" style="float: right">
+    <form class="usuario mt-2" action="ServletPrincipal" method="GET" style="float: right; margin: 0">
+        <input type="submit" name="" class="btn btn-primary" value="Volver">
+    </form>
+    <form class="usuario mt-2" action="ServletUsuario" method="GET" style="float: right; margin: 0">
     <input type="submit" name="" class="btn btn-primary" value="Ver Usuario">
     </form>
 </main>

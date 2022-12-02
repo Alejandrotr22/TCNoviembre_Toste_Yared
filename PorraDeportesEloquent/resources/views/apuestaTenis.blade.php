@@ -43,8 +43,8 @@
                                     <br>
                                     <!-- Nombre equipo 1 -->
                                     <label for="">{{session('participantes')[0]->nombre}}</label>
-                                    <input class="cuota" type="text" name="cuota{{session('participantes')[0]->nombre}}" id="cuota{{session('participantes')[0]->nombre}}" value="{{session('cuotas')['cuotaEquipo1']}}"  >
-                                    <input class="cuota" type="text" name="cuota{{session('participantes')[1]->nombre}}" id="cuota{{session('participantes')[1]->nombre}}" value="{{session('cuotas')['cuotaEquipo2']}}"  >
+                                    <input class="cuota" type="text" name="cuota{{session('participantes')[0]->nombre}}" id="cuota{{session('participantes')[0]->nombre}}" value="{{session('cuotas')['cuotaEquipo1']}}"  readonly>
+                                    <input class="cuota" type="text" name="cuota{{session('participantes')[1]->nombre}}" id="cuota{{session('participantes')[1]->nombre}}" value="{{session('cuotas')['cuotaEquipo2']}}"  readonly>
 
                                     <!-- Nombre equipo 2 -->
                                     <label for="">{{session('participantes')[1]->nombre}}</label>
@@ -54,7 +54,7 @@
                             <div class="form-row justify-content-center">
                                 <div class="col-md-5 text-center">
                                     <label>Cuantia</label>
-                                    <input type="number" step=".01" class="" name="CuantiaGanador" id="CuantiaGanador" min="1" value="1" max="{{session('user')->saldo}}" oninvalid="this.setCustomValidity('No puedes apostar una cantidad mayor a tu saldo')">
+                                    <input type="number" step=".01" class="" name="CuantiaGanador" id="CuantiaGanador" min="1" value="1" max="{{session('user')->saldo}}" oninvalid="this.setCustomValidity('No puedes apostar una cantidad mayor a tu saldo o inferior a 0')" onchange="this.setCustomValidity('')">
                                     <span>€</span>
                                     <span>Tu saldo actual: {{session('user')->saldo}}</span>
                                 </div>
@@ -68,6 +68,9 @@
 
                 </div>
             </div>
+            <form class="usuario mt-2" action="principalIndex" method="GET" style="float: right; margin: 0">
+                <input type="submit" name="" class="btn btn-primary" value="Volver">
+            </form>
         </section>
         <form class="usuario mt-2" action="vistaUsuario" method="GET">
             <input type="submit" name="" class="btn btn-primary" value="Ver Usuario">

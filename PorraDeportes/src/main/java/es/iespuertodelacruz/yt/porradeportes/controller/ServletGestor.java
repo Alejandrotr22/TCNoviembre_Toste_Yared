@@ -22,7 +22,7 @@ import org.mindrot.jbcrypt.BCrypt;
 /**
  * Servlet implementation class ServletGestor
  */
-@WebServlet("/ServletGestor")
+@WebServlet(name = "ServletGestor", value = "/ServletGestor")
 public class ServletGestor extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
@@ -114,6 +114,7 @@ public class ServletGestor extends HttpServlet {
 
             String strParticipantes = request.getParameter("PartCrearE");
             String[] split = strParticipantes.split(",");
+            log.log(Logger.Level.INFO, split);
             Set<Equipo> participantes = new LinkedHashSet<>();
             for (String id : split) {
                 try {
@@ -137,6 +138,7 @@ public class ServletGestor extends HttpServlet {
             evento.setNombre(nombre);
             evento.setFechaInicio(date1.toInstant());
             evento.setFechaFin(date2.toInstant());
+            evento.setParticipantes(participantes);
             evento.setIdDeporte(deporte);
             Evento save = eventoRepository.save(evento);
 
