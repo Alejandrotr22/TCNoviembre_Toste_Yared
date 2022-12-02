@@ -197,7 +197,7 @@ public class ServletGestor extends HttpServlet {
             if (!fecha1.equals("")) {
                 evento.setFechaInicio(date1.toInstant());
             }
-            if (!fecha1.equals("")) {
+            if (!fecha2.equals("")) {
                 evento.setFechaFin(date2.toInstant());
             }
             if (!strDeporte.equals("")) {
@@ -260,6 +260,18 @@ public class ServletGestor extends HttpServlet {
         if (request.getParameter("FindAllE") != null) {
 
             List<Evento> findAll = eventoRepository.findAll();
+
+
+
+
+            request.setAttribute("res", findAll + "");
+            this.doGet(mostrarTab(request, response, 1), response);
+
+        }
+
+        if (request.getParameter("FindAllEquipos") != null) {
+
+            List<Equipo> findAll = equipoRepository.findAll();
 
 
 

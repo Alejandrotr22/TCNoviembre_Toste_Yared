@@ -175,6 +175,19 @@ class Gestor extends Controller
         return redirect("/vistaGestor");
     }
 
+    public function mostrarTodosEquipos(Request $request)
+    {
+        $equipos = Equipo::all();
+        session()->put("res",json_encode($equipos, JSON_UNESCAPED_UNICODE));
+        $tabE = "active show";
+        session()->put("tabE", $tabE);
+        $tabA = " ";
+        session()->put("tabA", $tabA);
+        $tabU = " ";
+        session()->put("tabU", $tabU);
+        return redirect("/vistaGestor");
+    }
+
 
 
     public function modificarApuesta(Request $request)
@@ -330,6 +343,9 @@ class Gestor extends Controller
 
         $all = Apuesta::where("apuestas.id_evento","=",$evento->id)->get();
         $res = DB::select("SELECT a.* FROM apuestas as a INNER JOIN eventos as e on a.id_evento=e.id WHERE a.prediccion = e.resultado AND a.estado != 'Rechazada' and a.estado = 'Realizada' and e.id = ".$evento->id);
+        $findAllByPrediccion1 = [];
+        $findAllByPrediccion2 = [];
+
         foreach ($res as $arrayApuesta) {
             $findAllByPrediccion2[] = Apuesta::find($arrayApuesta->id);
         }

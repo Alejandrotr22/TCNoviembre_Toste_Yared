@@ -65,6 +65,8 @@ Route::post("/buscarEvento",'App\Http\Controllers\Gestor@buscarEvento');
 
 Route::post("/mostrarTodosEventos",'App\Http\Controllers\Gestor@mostrarTodosEvento');
 
+Route::post("/mostrarTodosEquipos",'App\Http\Controllers\Gestor@mostrarTodosEquipos');
+
 
 Route::post("/modificarApuesta",'App\Http\Controllers\Gestor@modificarApuesta');
 

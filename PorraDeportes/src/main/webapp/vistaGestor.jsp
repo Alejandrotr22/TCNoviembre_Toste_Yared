@@ -122,6 +122,11 @@
                                 <br>
                                 <input type="submit" name="FindAllE" class="form-control" value="Mostrar Todos ">
                             </form>
+                            <form class="formGanador col-md-4 mt-3" action="ServletGestor" method="POST">
+                                <h3>Mostrar Todos los equipos</h3>
+                                <br>
+                                <input type="submit" name="FindAllEquipos" class="form-control" value="Mostrar todos los equipos">
+                            </form>
                         </div>
                         <br>
                         <textarea class="resultado" name="res" id=""  rows="20">

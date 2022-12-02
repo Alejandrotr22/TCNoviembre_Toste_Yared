@@ -118,6 +118,12 @@
                                         <br>
                                         <input type="submit" name="FindAllE" class="form-control" value="Mostrar Todos ">
                                     </form>
+                                    <form class="formGanador col-md-4 mt-3" action="/mostrarTodosEquipos" method="POST">
+                                        @csrf
+                                        <h3>Mostrar Equipos</h3>
+                                        <br>
+                                        <input type="submit" name="FindAllE" class="form-control" value="Mostrar Todos ">
+                                    </form>
                                 </div>
                                 <br>
                                 <textarea class="resultado" name="res" id=""  rows="20">
